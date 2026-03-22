@@ -1,0 +1,41 @@
+
+----------------->>>>>>>>>>>>>>>>>>>>    npm init           pentru a crea package.json
+
+
+
+<script>
+document.addEventListener('click', function (e) {
+    const img = document.querySelector('img[usemap="#mapa-produse"]');
+    if (!img) return;
+
+    const rect = img.getBoundingClientRect();
+    const x = Math.round(e.clientX - rect.left);
+    const y = Math.round(e.clientY - rect.top);
+
+    console.log('Click la:', x + ',' + y);
+});
+</script>
+
+
+
+
+nodemon .
+
+ctrl + f     ca sa dam replace all
+
+
+
+
+
+Bonusuri HTML
+1   423
+2   731
+3   990
+4   1043
+5   669
+
+
+
+
+
+

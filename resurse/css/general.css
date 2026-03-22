@@ -1,0 +1,587 @@
+:root {
+    --color-1: #F5E6D3;
+    --color-2: #D2B48C;
+    --color-3: #A67C52;
+    --color-4: #6B4F3A;
+    --color-5: #3E2C1C;
+}
+
+
+body {
+    background-color: var(--color-1);
+    
+}
+
+main {
+    margin-left: 25px;
+    margin-right: 25px;
+    padding: 40px;
+}
+
+
+/* Telefoane (sub 600px) */
+@media (max-width: 600px) {
+    main {
+        padding: 20px;
+    }
+}
+
+/* Tablete (600px – 900px) */
+@media (min-width: 600px) and (max-width: 900px) {
+    main {
+        padding: 30px;
+    }
+}
+
+/* Desktop mare (peste 1200px) */
+@media (min-width: 1200px) {
+    main {
+        padding: 60px;
+    }
+}
+
+
+
+
+
+
+#pdf-ghid {
+    width: 100%;
+    max-width: 100%;
+    height: 500px;
+    border: none;
+}
+
+
+
+
+
+
+
+/* Stil general */
+meter {
+    width: 200px;
+    height: 20px;
+}
+
+/* ===== Chrome / Edge / Opera (WebKit) ===== */
+
+/* Valoare mică → verde */
+#meter-mic::-webkit-meter-suboptimum-value,
+#meter-mic::-webkit-meter-optimum-value {
+    background: green;
+}
+
+/* Valoare mare → roșu */
+#meter-mare::-webkit-meter-suboptimum-value,
+#meter-mare::-webkit-meter-even-less-good-value {
+    background: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hr {
+    border: none;
+    height: 5px;
+    width: 60%;
+    margin: 40px auto;
+    background: linear-gradient(
+        90deg,
+        var(--color-4),
+        var(--color-3),
+        var(--color-4)
+    );
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+/* H1 */
+h1 {
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 14px 20px;
+    margin: 25px 0;
+    border: 3px solid var(--color-4);
+    background-color: var(--color-2);
+    color: var(--color-5);
+    border-radius: 8px;
+}
+
+/* H2 */
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 12px 18px;
+    margin: 22px 0;
+    border: 3px solid var(--color-3);
+    background-color: var(--color-1);
+    color: var(--color-5);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* H3 */
+h3 {
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 10px 16px;
+    margin: 20px 0;
+    border: 2px solid var(--color-3);
+    background-color: var(--color-1);
+    color: var(--color-5);
+    border-radius: 8px;
+}
+
+/* H4 */
+h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 8px 14px;
+    margin: 18px 0;
+    border: 2px solid var(--color-2);
+    background-color: var(--color-1);
+    color: var(--color-5);
+    border-radius: 8px;
+}
+
+/* H5 */
+h5 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 6px 12px;
+    margin: 16px 0;
+    border: 2px solid var(--color-2);
+    background-color: var(--color-1);
+    color: var(--color-5);
+    border-radius: 8px;
+}
+
+/* H6 */
+h6 {
+    font-size: 1.15rem;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 5px 10px;
+    margin: 14px 0;
+    border: 2px solid var(--color-2);
+    background-color: var(--color-1);
+    color: var(--color-5);
+    border-radius: 8px;
+}
+
+/* Paragrafe */
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 10px 14px;
+    margin: 14px 0;
+    border: 2px solid var(--color-2);
+    background-color: var(--color-1);
+    color: var(--color-5);
+    border-radius: 8px;
+}
+
+
+picture img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100vh;
+    height: auto;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Container general */
+#tab-orar {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: var(--color-1);
+    border: 3px solid var(--color-4);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Header */
+#tab-orar thead th {
+    background-color: var(--color-3);
+    color: var(--color-5);
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 3px solid var(--color-4);
+}
+
+/* Celule */
+#tab-orar td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-2);
+    color: var(--color-5);
+    background-color: var(--color-1);
+}
+
+/* Alternare rânduri */
+#tab-orar tbody tr:nth-child(even) td {
+    background-color: var(--color-2);
+}
+
+/* Footer */
+#tab-orar tfoot td {
+    grid-column: span 6;
+    background-color: var(--color-4);
+    color: var(--color-1);
+    padding: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Celule cu rowspan – regula generală (Zile lucrătoare) */
+#tab-orar td[rowspan] {
+    background-color: var(--color-3);
+    color: var(--color-5);
+    font-weight: bold;
+    position: relative;
+    z-index: 2; /* ca să nu fie afectate de nth-child */
+}
+
+/* Weekend (rowspan=2) – suprascrie regula generală */
+#tab-orar td[rowspan="2"] {
+    background-color: var(--color-4) !important;
+    color: var(--color-1);
+}
+
+#tab-orar caption {
+    caption-side: top;        
+    padding: 12px 16px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-5);
+    background-color: var(--color-4);
+    text-align: center;
+    letter-spacing: 0.03em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Containerul figurilor — pune figurile pe linie */
+#grid-galerie {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Fiecare figure — card vertical */
+#grid-galerie figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    margin: 0;
+}
+
+/* Imaginile — păstrează raportul, nu se întind */
+#grid-galerie figure img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+/* Figcaption — text centrat sub imagine */
+#grid-galerie figure figcaption {
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Container general */
+.container-iframe {
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 10px;
+    background-color: var(--color-1);
+    border: 3px solid var(--color-4);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+}
+
+/* Bara de taburi */
+.taburi-iframe {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Linkurile din taburi */
+.taburi-iframe a {
+    padding: 10px 18px;
+    background-color: var(--color-3);
+    color: var(--color-5);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.25s ease;
+    border: 2px solid var(--color-4);
+}
+
+/* Hover tab */
+.taburi-iframe a:hover {
+    background-color: var(--color-4);
+    color: var(--color-1);
+}
+
+/* Iframe stilizat */
+.container-iframe iframe {
+    width: 100%;
+    max-width: 1050px;
+    height: 590px;
+    border-radius: 12px;
+    border: 3px solid var(--color-4);
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+section {
+    max-width: 90%;
+}
+
+
+
+#grid-pagina {
+    display: grid;
+    gap:5 px;
+    padding: 5 px;
+    grid-template-columns: 1fr 1fr; /*  repeat(2, 1fr) */
+    grid-template-areas:
+        "welcome welcome"
+        "about-us why-shop"
+        "promotii anunturi"
+        "produse produse"
+        "trending recomandat"
+        "favorite favorite"
+        "index-intrebari index-intrebari"
+        "tutoriale tutoriale"
+        "help_ help_"
+        "bloguri bloguri"
+        "orar orar"
+        "fig1 fig2"
+        "fig3 fig4"
+        "galerie-statica galerie-statica"
+        "ad ad"
+        "image-map image-map"
+        "contact contact";
+}
+
+@media screen and (max-width:700px) {
+    #grid-pagina {
+        grid-template-columns: 1fr; /* O singură coloană pe mobil */
+        grid-template-areas:
+            "welcome"
+            "about-us"
+            "why-shop"
+            "promotii"
+            "anunturi"
+            "produse"
+            "trending"
+            "recomandat"
+            "favorite"
+            "index-intrebari"
+            "tutoriale"
+            "help_"
+            "bloguri"
+            "orar"
+            "fig1"
+            "fig2"
+            "fig3"
+            "fig4"
+            "galerie-statica"
+            "ad"
+            "image-map"
+            "contact";
+    }
+
+    
+}
+
+ 
+#welcome{
+    grid-area: welcome;
+}
+#about-us{
+    grid-area: about-us;
+}
+#why-shop{
+    grid-area: why-shop;
+}
+#promotii{
+    grid-area: promotii;
+}
+#anunturi{
+    grid-area: anunturi;
+}
+#produse{
+    grid-area: produse;
+}
+#trending{
+    grid-area: trending;
+}
+#recomandat{
+    grid-area: recomandat;
+}
+#favorite{
+    grid-area: favorite;
+}
+#index-intrebari{
+    grid-area: index-intrebari;
+}
+#tutoriale{
+    grid-area: tutoriale;
+}
+#help{
+    grid-area: help_;
+}
+#bloguri{
+    grid-area: bloguri;
+}
+#orar{
+    grid-area: orar;
+}
+#fig1{
+    grid-area: fig1;
+}
+#fig2{
+    grid-area: fig2;
+}
+#fig3{
+    grid-area: fig3;
+}
+#fig4{
+    grid-area: fig4;
+}
+#galerie-statica{
+    grid-area: galerie-statica;
+}
+#contact{
+    grid-area: contact;
+}
+#ad{
+    grid-area: ad;
+}
+#image-map{
+    grid-area: image-map;
+}
+
+
+
+
+
+
+
+
+
+.th-1 {
+    width: 1fr;
+}
+
+.th-2 {
+    width: 2fr;
+}
+
+
+
+
+
+.taburi-iframe > a {
+    padding: 10px 18px;
+    background-color: var(--color-3);
+    color: var(--color-5);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.25s ease;
+    border: 2px solid var(--color-4);
+}

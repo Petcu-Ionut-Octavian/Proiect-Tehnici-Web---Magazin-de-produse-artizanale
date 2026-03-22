@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <title>Artizania - Magazin de produse handmade autentice</title>
+    <meta name="description" content="Magazin de produse artizanale handmade: decorațiuni, accesorii, cadouri personalizate și creații unicat realizate de artizani locali.">
+    <meta name="keywords" content="Artizania, handmade, produse handmade, artizani locali, obiecte realizate manual, decorațiuni handmade, accesorii handmade, cosmetice naturale, cadouri personalizate, produse unicat, materiale pentru creație, fire și textile, materiale naturale, seturi DIY, accesorii meșteșug, ambalaje artizanale, lumânări parfumate, ceramică pictată manual, decorațiuni din lemn, accesorii textile brodate, comunitate artizani, creații autentice, produse artizanale România">
+
+
+    <%- include('../fragmente/head.ejs') %>
+
+
+</head>
+
+
+<body> 
+
+    
+    <%- include('../fragmente/header.ejs') %>
+
+    <main>
+        <div id="grid-pagina">
+
+            <section id="welcome">
+                <hgroup>
+                    <h2>Bine ați venit</h2>
+                    <p class="subtitlu">Explorați universul creațiilor handmade autentice</p>
+                </hgroup>
+
+                <p class="intro">
+                    Suntem bucuroși să vă avem alături pe Artizania – locul unde pasiunea pentru lucrul manual 
+                    prinde viață. Aici descoperiți obiecte realizate cu grijă, creativitate și suflet de artizani locali.
+                </p>
+
+                <p class="intro">
+                    Fiecare produs spune o poveste, iar fiecare creator își pune amprenta unică în ceea ce face. 
+                    Vă invităm să explorați colecțiile noastre și să găsiți obiecte care inspiră, încântă și aduc 
+                    un strop de autenticitate în viața de zi cu zi.
+                </p>
+
+                <div class="intro-oferte">
+                    <h3>Produse gata făcute</h3>
+                    <div>Decorațiuni</div>
+                    <div>Accesorii</div>
+                    <div>Cosmetice naturale</div>
+                    <div>Cadouri personalizate</div>
+                    <div>Produse unicat</div>
+
+                    <h3>Materiale pentru creație</h3>
+                    <div>Fire și textile</div>
+                    <div>Materiale naturale</div>
+                    <div>Seturi DIY</div>
+                    <div>Accesorii pentru meșteșug</div>
+                    <div>Ambalaje artizanale</div>
+                </div>
+
+                <p class="anunt intro">
+                    Toate produsele pot fi livrate oriunde în țară, astfel încât să vă bucurați de creații handmade 
+                    autentice direct la domiciliu.
+                </p>
+
+                <figure id="fig-welcome">
+                    <picture>
+                        <!-- Imagine mică pentru mobil -->
+                        <source srcset="./resurse/imagini/poza_relaxanta_1.png" media="(max-width: 800px)">
+                        
+                        <!-- Imagine medie pentru tabletă -->
+                        <source srcset="./resurse/imagini/poza_relaxanta_2.png" media="(max-width: 1450px)">
+                        
+                        <!-- Imagine mare pentru desktop -->
+                        <img src="./resurse/imagini/poza_relaxanta_3.png"
+                            alt="Creații handmade autentice realizate de artizani locali"
+                            title="Creații handmade autentice realizate de artizani locali">
+                    </picture>
+
+                    <figcaption>
+                        Moment de relaxare cu produse handmade autentice create de artizani locali.
+                    </figcaption>
+                </figure>
+
+
+                <hr>
+            </section>
+
+
+            
+
+            <section id="about-us">
+                <h2>About Us</h2>
+
+                <p>
+                    Artizania a luat naștere din dorința de a aduce în același loc <b>pasiunea</b>, 
+                    <b>creativitatea</b> și <b>tradiția</b> artizanilor locali. Credem în frumusețea obiectelor 
+                    realizate manual, în imperfecțiunile care le fac unice și în emoția pe care o transmit 
+                    atunci când sunt create cu grijă și suflet.
+                </p>
+
+                <p>
+                    Platforma noastră este un spațiu digital dedicat celor care apreciază creațiile handmade autentice. 
+                    Aici găsiți produse artizanale realizate manual, de la decorațiuni și accesorii handmade 
+                    până la obiecte unicat create de artizani locali. Folosim termeni precum 
+                    <i>responsive design</i> și <i>user experience</i> pentru a oferi o experiență modernă.
+                </p>
+
+                <p>
+                    <strong>Atenție! Stocurile pentru unele produse sunt limitate.</strong>
+                    Ne propunem să conectăm creatori și cumpărători într‑un mod simplu, plăcut și transparent. 
+                    Printr‑un design modern și o structură intuitivă, Artizania oferă o experiență de navigare 
+                    ușoară, astfel încât fiecare vizitator să poată descoperi rapid obiectele care îl 
+                    <em>inspiră</em>.
+                </p>
+
+                <p>
+                    Artizania nu este doar un magazin online — este o comunitate care susține meșteșugul, tradiția și 
+                    frumusețea lucrului făcut cu mâinile. Promovăm creații autentice, produse artizanale din România 
+                    și talentul artizanilor care dau viață fiecărei piese. Termenul 
+                    <dfn>filigran</dfn> reprezintă o tehnică fină de modelare a metalului în forme delicate.
+                </p>
+
+                <p>
+                    Folosim și standarde precum <abbr title="Cascading Style Sheets">CSS</abbr> pentru a menține 
+                    o prezentare modernă. După cum spunea un artizan celebru: 
+                    <q>Frumusețea stă în detalii</q>, citat în lucrarea 
+                    <cite>Arta Meșteșugului Modern</cite>.
+                </p>
+
+                <!-- METER 1: valoare mică -->
+                <p>Număr de artizani activi în această dimineață:</p>
+                <meter id="meter-mic" value="12" min="0" max="100" low="30" high="70" optimum="50">
+                    12 din 100
+                </meter>
+
+                <!-- METER 2: valoare mare -->
+                <p>Gradul de ocupare al atelierului în weekend:</p>
+                <meter id="meter-mare" value="85" min="0" max="100" low="30" high="70" optimum="50">
+                    85%
+                </meter>
+
+                <hr>
+            </section>
+
+
+            
+
+            <section id="why-shop" class="why-shop-section">
+                <h2>Why Shop With Us</h2>
+                <p class="subtitlu">
+                    Descoperiți avantajele cumpărăturilor dintr-un magazin dedicat creațiilor handmade autentice
+                </p>
+
+                <div class="why-grid">
+                    <div class="why-item">
+                        <h3>Produse unice, realizate manual</h3>
+                        <p>
+                            Fiecare obiect este creat în serii mici sau ca piesă unicat, cu atenție la detalii și respect 
+                            pentru tradiție. Nu veți găsi produse de serie, ci doar creații handmade autentice, 
+                            decorațiuni și accesorii realizate manual, fiecare cu propria personalitate.
+                        </p>
+                    </div>
+
+                    <div class="why-item">
+                        <h3>Susținem artizanii locali</h3>
+                        <p>
+                            Cumpărând de la Artizania, sprijiniți direct creatori români care își dedică timpul și talentul 
+                            pentru a realiza produse artizanale cu suflet. Fiecare achiziție contribuie la dezvoltarea 
+                            comunității artizanale și la promovarea meșteșugului tradițional.
+                        </p>
+                    </div>
+
+                    <div class="why-item">
+                        <h3>Calitate și transparență</h3>
+                        <p>
+                            Materialele folosite sunt naturale, sigure și atent selectate. Oferim informații clare despre 
+                            procesul de creație, astfel încât să știți exact ce cumpărați, cine a realizat produsul și 
+                            ce materiale handmade au fost folosite pentru fiecare piesă.
+                        </p>
+                    </div>
+                </div>
+                <hr>
+            </section>
+
+            
+
+            <section id="promotii">
+                <h2>Promoții și oferte</h2>
+
+                <article>
+                    <h3 class="titlu">Reduceri de weekend</h3>
+                    <p>
+                        <b>Atelierul Artizanal Mâini de Aur</b> oferă 
+                        <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru toate 
+                        produsele handmade realizate manual în intervalul 10–14.
+                    </p>
+                    <p>
+                        Oferta este valabilă doar în zilele de sâmbătă și duminică în atelierele 
+                        <abbr title="Atelierul Artizanal Mâini de Aur">AAMA</abbr>.
+                    </p>
+                    <p>
+                        Dacă achiziționați mai mult de zece <b>obiecte artizanale</b>, primiți și un card de fidelitate 
+                        cu acces la colecții limitate și produse artizanale din România.
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Ofertă pachet</h3>
+                    <p>Pachetul special include creații handmade autentice:</p>
+                    <ol>
+                        <li><i lang="en">handmade soap</i> din ingrediente naturale</li>
+                        <li>Un set de 4 lumânări parfumate turnate manual</li>
+                        <li>Un obiect decorativ la alegere (ceramică, lemn sau textile)</li>
+                        <li>Un <i>ceai aromat</i> ambalat artizanal</li>
+                        <li>Gratis: o cutie decorată manual cu inițiala atelierului</li>
+                        <li>Gratis: o felicitare ilustrată de un artist local</li>
+                        <li>Gratis: o mică plantă suculentă adoptată din atelier</li>
+                    </ol>
+                </article>
+
+                <article>
+                    <h3>Produse tematice de toamnă</h3>
+                    <p>Fiecare obiect este lucrat cu grijă, inspirație din natură și tehnici tradiționale handmade.</p>
+                    <p>Chiar dacă nu e încă sezonul târgurilor, avem colecții tematice de toamnă, în ediție limitată:</p>
+                    <ol>
+                        <li>Decorațiuni din lemn care își schimbă nuanța în funcție de lumină.</li>
+                        <li>Seturi de ceramică pictată manual, fiecare cu personalitate proprie.</li>
+                        <li>Accesorii textile brodate, realizate manual, cu modele inspirate din folclor.</li>
+                    </ol>
+                </article>
+
+                <article>
+                    <h3>Colecția de Anul Nou</h3>
+                    <p>
+                        La început de an, vă propunem să începeți cu ceva simplu: un obiect handmade care să vă aducă 
+                        bucurie și inspirație.
+                    </p>
+                    <p>
+                        Fie că este o lumânare parfumată, un jurnal legat manual sau o decorațiune unicat, fiecare piesă 
+                        este creată pentru a vă însoți în noul an cu energie bună și autenticitate.
+                    </p>
+                </article>
+
+                <hr>
+            </section>
+
+            
+
+            <section id="evenimente">
+                <h2 class="fg-img">Evenimente</h2>
+
+                <ul>
+                    <li>
+                        <time datetime="2025-01-15T12:00">15 ianuarie 2025, ora 12:00</time>
+                        — <b>Prăjituri cadou</b>: oferim tuturor vizitatorilor câte o prăjitură gratis, în funcție de stocul disponibil.
+                    </li>
+
+                    <li>
+                        <time datetime="2025-02-10T16:30">10 februarie 2025, ora 16:30</time>
+                        — <b>Atelier de lumânări parfumate</b>: demonstrație live despre turnarea lumânărilor handmade.
+                    </li>
+
+                    <li>
+                        <time datetime="2025-03-01T10:00">1 martie 2025, ora 10:00</time>
+                        — <b>Mărțișoare artizanale</b>: lansăm colecția anuală de mărțișoare lucrate manual.
+                    </li>
+
+                    <li>
+                        <time datetime="2025-04-20T14:00">20 aprilie 2025, ora 14:00</time>
+                        — <b>Expoziție de decorațiuni din lemn</b>: prezentăm piese sculptate de artizani locali.
+                    </li>
+
+                    <li>
+                        <time datetime="2025-05-05T18:00">5 mai 2025, ora 18:00</time>
+                        — <b>Noaptea atelierelor</b>: acces gratuit în atelier și demonstrații creative.
+                    </li>
+                </ul>
+
+                <hr>
+            </section>
+
+
+
+            
+
+            <section id="produse">
+                <h2>Produsele noastre</h2>
+                <p>
+                    Vă oferim o multitudine de metode să vă umpleți casa cu obiecte frumoase, lucrate manual, 
+                    produse handmade autentice care aduc bucurie… și eventual vă golesc ușor portofelul, dar cu stil.
+                </p>
+
+                <section>
+                    <h3>Decoruri artizanale</h3>
+                    <p>
+                        Dacă nu le puteți cumpăra pe toate, fiindcă încercați să fiți „minimalist”, puneți accentul pe 
+                        <em>mini</em>, nu pe <em>malist</em>.
+                    </p>
+                    <p>Avem decoruri realizate manual cu:</p>
+                    <ul>
+                        <li>lemn sculptat</li>
+                        <li>ceramică pictată manual</li>
+                        <li>lână împâslită</li>
+                        <li>rășină turnată</li>
+                        <li>materiale textile naturale</li>
+                        <li>inspirație și pasiune</li>
+                    </ul>
+
+                    <!-- ASIDE introdus natural -->
+                    <aside class="tip-handmade">
+                        <h4>Sfat util</h4>
+                        <p>
+                            Produsele handmade din materiale naturale pot avea mici variații de culoare sau textură — 
+                            acestea nu sunt defecte, ci semne ale autenticității și ale muncii artizanale.
+                        </p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h3>Accesorii handmade</h3>
+                    <p>
+                        Oferim accesorii clasice, plus câteva creații proprii, très chic! Toate sunt produse artizanale 
+                        realizate manual de artizani locali.
+                    </p>
+                    <p>Accesorii:</p>
+                    <ul>
+                        <li>brățări împletite manual</li>
+                        <li>cercei din argilă polimerică</li>
+                        <li>coliere cu pietre naturale</li>
+                        <li>broșe textile</li>
+                        <li>portofele și săculeți cusuți manual</li>
+                        <li>agende legate manual</li>
+                        <li>lumânări parfumate artizanale</li>
+                        <li>obiecte personalizate la comandă</li>
+                    </ul>
+                </section>
+
+                <section id="formula-cost">
+                    <h3>Formula de calcul a prețului unui produs handmade</h3>
+                    <p>
+                        Pentru transparență, iată cum se calculează prețul unui obiect artizanal realizat manual:
+                    </p>
+
+                    <math>
+                        <mrow>
+                            <mi>preț</mi>
+                            <mo>=</mo>
+
+                            <!-- Suma materialelor -->
+                            <munder>
+                                <mo>∑</mo>
+                                <mi>i</mi>
+                            </munder>
+
+                            <mrow>
+                                <mo>(</mo>
+                                <msub><mi>preț</mi><mi>i</mi></msub>
+                                <mo>×</mo>
+                                <msub><mi>cantitate</mi><mi>i</mi></msub>
+                                <mo>)</mo>
+                            </mrow>
+
+                            <!-- plus timpul de lucru -->
+                            <mo>+</mo>
+                            <mi>timp</mi>
+                            <mo>×</mo>
+                            <mi>tarif</mi>
+                        </mrow>
+                    </math>
+
+                    <p>
+                        Această formulă detaliază modul real în care se calculează prețul unui produs handmade: 
+                        costul total al materialelor este obținut prin însumarea prețurilor fiecărui material folosit, 
+                        înmulțite cu cantitatea necesară, iar la acest cost se adaugă timpul de lucru al artizanului 
+                        înmulțit cu tariful orar. Astfel, prețul final reflectă atât valoarea resurselor utilizate, 
+                        cât și munca, experiența și atenția la detalii investite în fiecare creație.
+                    </p>
+                </section>
+
+                <hr>
+            </section>
+
+
+            
+
+            <section id="trending" class="trending-section">
+                <h2>Trending această săptămână</h2>
+                <p class="subtitlu">Cele mai apreciate creații handmade ale săptămânii</p>
+
+                <div class="trending-grid">
+                    <div class="trend-item">
+                        <img src="/resurse/imagini/decoratiuni-din-lemn.webp" alt="Decorațiuni din lemn sculptat manual">
+                        <h3>Decorațiuni din lemn</h3>
+                        <p>Obiecte sculptate manual, perfecte pentru un decor natural și autentic.</p>
+                    </div>
+
+                    <div class="trend-item">
+                        <img src="/resurse/imagini/bijuterii-artizanale.webp" alt="Bijuterii artizanale handmade">
+                        <h3>Bijuterii artizanale</h3>
+                        <p>Accesorii unicat create cu materiale naturale și tehnici tradiționale handmade.</p>
+                    </div>
+
+                    <div class="trend-item">
+                        <img src="/resurse/imagini/cosmetice-naturale.webp" alt="Cosmetice naturale artizanale">
+                        <h3>Cosmetice naturale</h3>
+                        <p>Săpunuri, creme și uleiuri realizate din ingrediente 100% naturale, produse artizanale din România.</p>
+                    </div>
+
+                    <div class="trend-item">
+                        <img src="/resurse/imagini/lumanari-handmade.webp" alt="Lumânări handmade artizanale">
+                        <h3>Lumânări handmade</h3>
+                        <p>Arome calde, forme creative și materiale eco-friendly, turnate manual în serii mici.</p>
+                    </div>
+                </div>
+
+                <!-- ASIDE pentru context și bonus semantic -->
+                <aside class="trending-note">
+                    <h4>Notă</h4>
+                    <p>
+                        Produsele handmade din top sunt realizate în serii mici de artizani locali, 
+                        iar disponibilitatea lor poate varia în funcție de stoc și de procesul artizanal.
+                    </p>
+                </aside>
+
+                <hr>
+            </section>
+
+            
+
+            <section id="recomandat" class="recommended-section">
+                <h2>Recomandat pentru tine</h2>
+                <p class="subtitlu">Selecții speciale inspirate din preferințele tale</p>
+
+                <div class="recommended-grid">
+                    <div class="rec-item">
+                        <img src="/resurse/imagini/set-cadou-handmade.webp" alt="Set cadou handmade artizanal">
+                        <h3>Seturi cadou handmade</h3>
+                        <p>Alege combinații create cu grijă, produse handmade perfecte pentru surprize memorabile.</p>
+                    </div>
+
+                    <div class="rec-item">
+                        <img src="/resurse/imagini/accesorii-din-materiale-naturale.webp" alt="Accesorii handmade din materiale naturale">
+                        <h3>Accesorii naturale</h3>
+                        <p>Bijuterii și accesorii realizate manual din materiale eco, cu design unic și autentic.</p>
+                    </div>
+
+                    <div class="rec-item">
+                        <img src="/resurse/imagini/decoratiuni-artizanale.webp" alt="Decorațiuni artizanale handmade">
+                        <h3>Decorațiuni artizanale</h3>
+                        <p>Obiecte artizanale care aduc căldură, personalitate și stil în orice spațiu.</p>
+                    </div>
+
+                    <div class="rec-item">
+                        <img src="/resurse/imagini/produse-personalizate.webp" alt="Produse personalizate handmade">
+                        <h3>Produse personalizate</h3>
+                        <p>Transformă o idee într-un obiect unic, creat manual special pentru tine.</p>
+                    </div>
+                </div>
+
+                <!-- ASIDE pentru context și bonus semantic -->
+                <aside class="recommended-note">
+                    <h4>Notă</h4>
+                    <p>
+                        Recomandările sunt generate pe baza preferințelor tale și includ produse handmade realizate 
+                        în serii mici de artizani locali. Disponibilitatea poate varia în funcție de stoc.
+                    </p>
+                </aside>
+
+                <hr>
+            </section>
+
+            
+
+            <section id="favorite" class="favorite-section">
+                <h2>Favorite</h2>
+                <p class="subtitlu">Produsele salvate pentru mai târziu</p>
+
+                <div class="favorite-info">
+                    <p>
+                        Aici veți găsi toate produsele pe care le-ați marcat ca favorite. 
+                        Păstrați aproape creațiile handmade care v-au atras atenția și reveniți oricând pentru a le comanda.
+                    </p>
+                </div>
+
+                <div class="favorite-grid">
+                    <!-- Exemplu de card favorit -->
+                    <div class="fav-item">
+                        <img src="/resurse/imagini/decoratiuni-ceramice.webp" alt="Decorațiune ceramică handmade">
+                        <h3>Decorațiune ceramică</h3>
+                        <p>Realizată manual, perfectă pentru un decor cald, natural și autentic.</p>
+                    </div>
+
+                    <div class="fav-item">
+                        <img src="/resurse/imagini/lumanare-parfumata.webp" alt="Brățară artizanală handmade">
+                        <h3>Brățară artizanală</h3>
+                        <p>Creată din materiale naturale, ideală pentru un stil autentic și elegant.</p>
+                    </div>
+
+                    <div class="fav-item">
+                        <img src="/resurse/imagini/obiecte_artizanale_autentice.webp" alt="Lumânare handmade parfumată">
+                        <h3>Lumânare parfumată</h3>
+                        <p>Arome calde, turnată manual din ceară naturală, produs artizanal din România.</p>
+                    </div>
+                </div>
+
+                <hr>
+            </section>
+
+            
+
+            <section id="index-intrebari">
+                <h2>Întrebări frecvente</h2>
+
+                <details>
+                    <summary>Obiectele dumneavoastră artizanale provoacă dependență?</summary>
+                    <p>Da! O dependență sănătoasă de frumos și de produse handmade autentice.</p>
+
+                    <blockquote>
+                        <p>„Dependența de frumos nu este o problemă, ci o soluție.” — Artizania</p>
+                    </blockquote>
+                </details>
+
+                <details>
+                    <summary>Produsele dumneavoastră pot cauza dezordine în casă?</summary>
+                    <p>Da! Pentru că veți dori să le cumpărați pe toate și nu veți mai avea unde să le puneți.</p>
+                </details>
+
+                <details>
+                    <summary>Obiectele handmade sunt periculoase pentru portofel?</summary>
+                    <p>Foarte! Dar măcar arată bine și sunt creații artizanale realizate cu suflet.</p>
+                </details>
+
+                <details>
+                    <summary>Ce înseamnă anumite expresii din lumea handmade?</summary>
+
+                    <dl>
+                        <dt>Handmade</dt>
+                        <dd>Obiect realizat manual, cu atenție și pasiune.</dd>
+
+                        <dt>Artizanal</dt>
+                        <dd>Produs creat în serii mici, de artizani locali.</dd>
+
+                        <dt>Unicat</dt>
+                        <dd>O piesă care nu poate fi reprodusă identic.</dd>
+                    </dl>
+                </details>
+
+                <hr>
+            </section>
+
+
+            
+
+            <section id="tutoriale">
+                <h2>Tutoriale</h2>
+                <p>
+                    Dacă doriți să vă creați singuri obiectele artizanale 
+                    (dar de ce ați face asta când ne aveți pe noi???)
+                    vă recomandăm câteva tutoriale simple. Sperăm să le încercați,
+                    să vedeți cât e de <s>ușor</s> complicat,
+                    să vă dați în final bătuți și să reveniți la noi. Mulțumim!
+                </p>
+
+                <div class="container-iframe">
+                    <div class="taburi-iframe">
+                        <a href="https://www.youtube.com/embed/H1W3I0HJVQA" target="ifr-video">Lumânare artizanală</a>
+                        <a href="https://www.youtube.com/embed/CsB0ef3xzKc" target="ifr-video">Brățară împletită</a>
+                        <a href="https://www.youtube.com/embed/48LAtdvgbEo" target="ifr-video">Decor din lemn</a>
+                    </div>
+
+                    <iframe
+                        src="https://www.youtube.com/embed/H1W3I0HJVQA" 
+                        name="ifr-video"
+                        title="Tutorial handmade" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <!-- PLAYLIST BONUS -->
+                <div class="playlist-container">
+                    <h3>Playlist complet de tutoriale handmade</h3>
+                    <iframe 
+                        width="560" 
+                        height="315"
+                        src="https://www.youtube.com/embed/videoseries?list=PLG9WQ0ZOBAI5j3X5zNZslZRRzOt7ujqFb&autoplay=1&loop=1&controls=1"
+                        title="Playlist tutoriale handmade"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <hr>
+            </section>
+
+
+            
+
+            <section id="help" class="help-section">
+                <h2>Help</h2>
+                <p class="subtitlu">Ghid rapid pentru întrebări și asistență</p>
+
+                <div class="help-grid">
+
+                    <div class="help-item">
+                        <h3>Întrebări frecvente</h3>
+                        <p>
+                            Găsiți răspunsuri la cele mai comune întrebări despre comenzi, livrare și produsele noastre handmade.
+                        </p>
+                        <ul>
+                            <li>Care este timpul de livrare?</li>
+                            <li>Pot returna un produs handmade?</li>
+                            <li>Produsele sunt realizate manual?</li>
+                            <li>Pot solicita personalizare?</li>
+                        </ul>
+                    </div>
+
+                    <div class="help-item">
+                        <h3>Asistență pentru comenzi</h3>
+                        <p>
+                            Dacă întâmpinați probleme cu o comandă, suntem aici să vă ajutăm cu orice aveți nevoie.
+                        </p>
+                        <ul>
+                            <li>Verificarea statusului comenzii</li>
+                            <li>Modificarea sau anularea unei comenzi</li>
+                            <li>Raportarea unei erori de plată</li>
+                        </ul>
+                    </div>
+
+                    <div class="help-item">
+                        <h3>Contact și suport</h3>
+                        <p>
+                            Pentru întrebări suplimentare, ne puteți contacta oricând. Promitem să răspundem rapid.
+                        </p>
+                        <ul>
+                            <li>Email: suport@artizania.ro</li>
+                            <li>Program: Luni – Vineri, 09:00 – 18:00</li>
+                            <li>Răspuns în max. 24 de ore</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- PDF EMBED -->
+                <div class="help-pdf">
+                    <h3>Ghid complet în format PDF</h3>
+                    <p>Pentru informații detaliate despre comenzi, livrare și produse handmade, puteți consulta ghidul nostru complet:</p>
+
+                    <embed id="pdf-ghid"
+                    src="/resurse/pdf/ghid-artizania.pdf" 
+                    type="application/pdf">
+                </div>
+
+                <hr>
+            </section>
+
+
+
+            
+
+            <section id="bloguri" class="bloguri-section">
+                <h2>Bloguri ale artizanilor</h2>
+                <p class="subtitlu">Povești, inspirație și procese creative direct de la artizanii noștri</p>
+
+                <div class="bloguri-grid">
+
+                    <article class="blog-item">
+                        <img src="/resurse/imagini/blog-artizan-lemn.webp" alt="Blog artizan lemn">
+                        <h3>Atelierul din lemn</h3>
+                        <p>
+                            Descoperiți cum iau naștere obiectele sculptate manual, de la alegerea lemnului 
+                            până la finisajele naturale care dau viață fiecărei piese.
+                        </p>
+                        <a href="#" class="citeste" aria-label="Citește articolul Atelierul din lemn">Citește articolul</a>
+                    </article>
+
+                    <article class="blog-item">
+                        <img src="/resurse/imagini/blog-bijuterii-handmade.webp" alt="Blog bijuterii handmade">
+                        <h3>Bijuterii cu suflet</h3>
+                        <p>
+                            O privire în culisele creației de bijuterii artizanale, unde fiecare detaliu 
+                            este lucrat cu migală și pasiune.
+                        </p>
+                        <a href="#" class="citeste" aria-label="Citește articolul Bijuterii cu suflet">Citește articolul</a>
+                    </article>
+
+                    <article class="blog-item">
+                        <img src="/resurse/imagini/blog-cosmetice-naturale.webp" alt="Blog cosmetice naturale">
+                        <h3>Cosmetice naturale</h3>
+                        <p>
+                            Rețete, ingrediente și tehnici folosite pentru a crea produse naturale, 
+                            sigure și prietenoase cu pielea.
+                        </p>
+                        <a href="#" class="citeste" aria-label="Citește articolul Cosmetice naturale">Citește articolul</a>
+                    </article>
+
+                    <article class="blog-item">
+                        <img src="/resurse/imagini/blog-lumanari-handmade.webp" alt="Blog lumânări handmade">
+                        <h3>Magia lumânărilor handmade</h3>
+                        <p>
+                            Arome, culori și forme creative – află cum sunt turnate lumânările artizanale 
+                            și ce le face atât de speciale.
+                        </p>
+                        <a href="#" class="citeste" aria-label="Citește articolul Magia lumânărilor handmade">Citește articolul</a>
+                    </article>
+
+                </div>
+
+                <hr>
+            </section>
+
+
+            
+
+            <section id="orar">
+                <h2>Orar</h2>
+                <table id="tab-orar">
+                    <caption>Orarul de funcționare al magazinului</caption>
+                    <thead>
+                        <tr>
+                            <th class = "th-1">Cod</th>
+                            <th class = "th-2">Perioadă</th>
+                            <th class = "th-1">Zi</th>
+                            <th class = "th-1">Program dimineața</th>
+                            <th class = "th-1">Pauză</th>
+                            <th class = "th-1">Program seara</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td rowspan="5">Zile lucrătoare</td>
+                            <td>Luni</td>
+                            <td>10–12</td>
+                            <td>12–14</td>
+                            <td>14–20</td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>Marți</td>
+                            <td>9–12</td>
+                            <td>12–14</td>
+                            <td>14–21</td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>Miercuri</td>
+                            <td>9–11</td>
+                            <td>11–13</td>
+                            <td>14–21</td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td>Joi</td>
+                            <td>9–11</td>
+                            <td>11–13</td>
+                            <td>14–21</td>
+                        </tr>
+                        <tr>
+                            <td>05</td>
+                            <td>Vineri</td>
+                            <td>9–12</td>
+                            <td>12–14</td>
+                            <td>14–19</td>
+                        </tr>
+                        <tr>
+                            <td>06</td>
+                            <td rowspan="2">Weekend</td>
+                            <td>Sâmbătă</td>
+                            <td>10–12</td>
+                            <td>12–13</td>
+                            <td>13–16</td>
+                        </tr>
+                        <tr>
+                            <td>07</td>
+                            <td>Duminică</td>
+                            <td>10–14</td>
+                            <td>-</td>
+                            <td>Închis</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6">Închis în zilele de sărbători legale și în perioadele dedicate atelierelor artizanale.</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <p><strong>Atenție!</strong> În prima zi a fiecărei luni realizăm inventarul produselor handmade.</p>
+                <hr>
+            </section>
+
+            
+
+            <figure id="fig1" class="fg-img">
+                <img src="/resurse/imagini/produse_1.webp" alt="produse artizanale">
+                <figcaption>Produse 1</figcaption>
+            </figure>
+            <figure id="fig2" class="fg-img">
+                <img src="/resurse/imagini/produse_2.webp" alt="produse artizanale">
+                <figcaption>Produse 2</figcaption>
+            </figure>
+            <figure  id="fig3" class="fg-img">
+                <img src="/resurse/imagini/produse_3.webp" alt="produse artizanale">
+                <figcaption>Produse 3</figcaption>
+            </figure>
+            <figure  id="fig4">
+                <img src="/resurse/imagini/produse_4.webp" alt="produse artizanale">
+                <figcaption>Produse 4</figcaption>
+            </figure>
+
+            
+
+            
+            <section id="galerie-statica">
+                <h2>Galerie</h2>
+                <p class="subtitlu">O selecție de creații artizanale realizate manual</p>
+
+                <div id="grid-galerie">
+
+                    <figure>
+                        <div>
+                            <img src="/resurse/imagini/ceramica-pictata.webp" alt="ceramică pictată" loading="lazy">
+                        </div>
+                        <figcaption>Ceramică pictată manual</figcaption>
+                    </figure>
+
+                    <figure>
+                        <img src="/resurse/imagini/lumanare-parfumata.webp" alt="lumânare artizanală" loading="lazy">
+                        <figcaption>Lumânare parfumată artizanală</figcaption>
+                    </figure>
+
+                    <figure>
+                        <img src="/resurse/imagini/bratara-impletita.webp" alt="brățară împletită" loading="lazy">
+                        <figcaption>Brățară împletită manual</figcaption>
+                    </figure>
+
+                    <figure>
+                        <img src="/resurse/imagini/agenda-handmade.webp" alt="agendă handmade" loading="lazy">
+                        <figcaption>Agendă legată manual</figcaption>
+                    </figure>
+
+                    <figure>
+                        <img src="/resurse/imagini/ornament-lemn.webp" alt="ornament din lemn" loading="lazy">
+                        <figcaption>Ornament sculptat în lemn</figcaption>
+                    </figure>
+
+                    <figure>
+                        <img src="/resurse/imagini/cercei-argila.webp" alt="cercei din argilă" loading="lazy">
+                        <figcaption>Cercei din argilă polimerică</figcaption>
+                    </figure>
+
+                    <figure>
+                        <img src="/resurse/imagini/tesatura-artizanala.webp" alt="țesătură artizanală" loading="lazy">
+                        <figcaption>Țesătură artizanală</figcaption>
+                    </figure>
+
+                </div>
+                <hr>
+            </section>
+
+
+            <section id="ad">
+                <h2>Linkuri utile</h2>
+
+                <!-- 1. Link extern (tab nou) -->
+                <p>
+                    Descoperă inspirație pentru creații handmade pe 
+                    <a href="https://www.etsy.com" target="_blank">Etsy</a>.
+                </p>
+
+                <!-- 2. Link către un element dintr-o resursă externă (cu id + wbr) -->
+                <p>
+                    Accesează direct noul nostru joc:<br>
+                    <a href="site_extra/index.html#gameCanvas" target="_blank">
+                        site_extra/index.html<wbr>#gameCanvas
+                    </a>
+                </p>
+
+                <!-- 3. Link în footer către începutul paginii (aici doar linkul, footerul îl ai deja) -->
+                <p>
+                    <a href="#welcome">Înapoi la începutul paginii</a>
+                </p>
+
+                <!-- 4. Link cu imagine (click → imagine mare în același tab) -->
+                <p>
+                    <a href="./resurse/imagini/produs_mare.webp">
+                        <img src="./resurse/imagini/produs_mic.png" 
+                            alt="Produs handmade mini" 
+                            style="width:150px;">
+                    </a>
+                </p>
+
+                <!-- 5. Link de tip download cu nume schimbat -->
+                <p>
+                    <a href="./resurse/imagini/produs_original.webp" download="produs_descarcat.webp">
+                        Descarcă imaginea produsului
+                    </a>
+                </p>
+            </section>
+
+
+
+            <section id="image-map">
+                <h2>Descoperă produsele handmade</h2>
+
+                <!-- Imaginea cu harta -->
+                <img src="./resurse/imagini/harta-produse.png" 
+                    alt="Hartă interactivă cu produse handmade"
+                    usemap="#mapa-produse"
+                    style="width: 900px; height: auto;">
+
+                <!-- Harta de imagini -->
+                <map name="mapa-produse">
+
+                    <area shape="circle"
+                        coords="208,285,115"
+                        href="#promotii"
+                        alt="Coliere handmade">
+
+                    <area shape="rect"
+                        coords="435,110,803,267"
+                        href="#produse"
+                        alt="Accesorii handmade">
+
+                    <area shape="poly"
+                        coords="612,290,737,326,759,407,651,488,580,476,529,354"
+                        href="#favorite"
+                        alt="Decorațiuni handmade">
+
+                </map>
+            </section>
+
+
+
+
+        </div>
+    </main>
+
+    
+
+    <%- include('../fragmente/footer') %>
+
+</body>
+
+</html>

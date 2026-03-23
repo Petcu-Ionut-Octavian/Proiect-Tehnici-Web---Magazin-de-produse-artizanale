@@ -21,13 +21,24 @@
     <meta name="apple-mobile-web-app-title" content="Artizania">
     <link rel="manifest" href="/resurse/imagini/favicon/site.webmanifest">
 
+    <!-- CSS-uri -->
+    <link rel="stylesheet" href="/resurse/css/0-reset.css">
+    <link rel="stylesheet" href="/resurse/css/1-general.css">
+    <link rel="stylesheet" href="/resurse/css/2-grid-pagina.css">
+    <link rel="stylesheet" href="/resurse/css/3-buton-fix.css">
+    <link rel="stylesheet" href="/resurse/css/4-header.css">
+    <link rel="stylesheet" href="/resurse/css/5-header1000.css" media="(max-width: 1000px)">
+    <link rel="stylesheet" href="/resurse/css/6-header700.css" media="(max-width: 700px)">
 
 
-    <link rel="stylesheet" href="/resurse/css/general.css">
 
-    <link rel="stylesheet" href="/resurse/css/nav.css">
-    <link rel="stylesheet" href="/resurse/css/nav700.css" media="(max-width: 700px)">
-        <link rel="stylesheet" href="/resurse/css/nav1000.css" media="(max-width: 1000px)">
+
+    <link rel="stylesheet" href="/resurse/css/tabel.css">
+    <link rel="stylesheet" href="/resurse/css/buton-fix.css">
+    <link rel="stylesheet" href="/resurse/css/formula-mathml.css">
+
+    <link rel="stylesheet" href="/resurse/css/fragmente/tutoriale.css">
+
 
 
 
@@ -38,33 +49,27 @@
 
 <body> 
     <header>
-        <!-- HAMBURGER FĂRĂ JS -->
-        <input type="checkbox" id="menu-toggle">
-        <label for="menu-toggle" class="hamburger">
-            <img src="/resurse/imagini/meniu.png" alt="Meniu">
-        </label>
-
         <nav>
-            <ul>
-                <li class="brand">
-                    <a href="#welcome">
-                        <img src="/resurse/imagini/sigla.png" alt="Sigla Artizania">
-                        <h1>Artizania</h1>
-                    </a>
-                </li>
-
+            <label id="hamburger" for="ch-menu">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+            <input type="checkbox" id="ch-menu"/>
+            <ul class="meniu">
+                <!-- DESPRE NOI -->
                 <li>
-                    <a href="#welcome">Despre noi</a>
+                    <div class="text-icon">Despre noi</div>
+                    <div class="imag-icon"><span class="fas fa-house"></span></div>
                     <ul>
                         <li><a href="#welcome">Bine ați venit</a></li>
                         <li><a href="#about-us">About us</a></li>
                         <li><a href="#why-shop">Why shop with us</a></li>
-                        <li><a href="#anunturi">Anunțuri</a></li>
                     </ul>
                 </li>
 
+                <!-- PRODUSE -->
                 <li>
-                    <a href="#produse">Produse</a>
+                    <div class="text-icon">Produse</div>
+                    <div class="imag-icon"><span class="fas fa-bag-shopping"></span></div>
                     <ul>
                         <li><a href="#produse">Toate produsele</a></li>
                         <li><a href="#promotii">Promoții</a></li>
@@ -74,35 +79,47 @@
                     </ul>
                 </li>
 
+                <!-- RESURSE -->
                 <li>
-                    <a href="#tutoriale">Resurse</a>
+                    <div class="text-icon">Resurse</div>
+                    <div class="imag-icon"><span class="fas fa-book"></span></div>
                     <ul>
                         <li><a href="#tutoriale">Tutoriale</a></li>
-                        <li><a href="#bloguri">Bloguri artizani</a></li>
+                        <li><a href="#bloguri">Bloguri</a></li>
                         <li><a href="#index-intrebari">Întrebări</a></li>
-                        <li><a href="#help">Help</a></li>
+                        <li><a href="#help_">Help</a></li>
                     </ul>
                 </li>
 
+                <!-- GALERIE -->
                 <li>
-                    <a href="#galerie-statica">Galerie</a>
+                    <div class="text-icon">Galerie</div>
+                    <div class="imag-icon"><span class="fas fa-image"></span></div>
                     <ul>
                         <li><a href="#galerie-statica">Galerie statică</a></li>
-                        <li><a href="#fig1">Figuri</a></li>
+                        <li><a href="#fig1">Figuri 1</a></li>
+                        <li><a href="#fig2">Figuri 2</a></li>
+                        <li><a href="#fig3">Figuri 3</a></li>
+                        <li><a href="#fig4">Figuri 4</a></li>
                     </ul>
                 </li>
 
+                <!-- INFO -->
                 <li>
-                    <a href="#contact">Contact</a>
+                    <div class="text-icon">Info</div>
+                    <div class="imag-icon"><span class="fas fa-circle-info"></span></div>
                     <ul>
                         <li><a href="#orar">Orar</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#evenimente">Evenimente</a></li>
+                        <li><a href="#ad">Reclame</a></li>
+                        <li><a href="#image-map">Hartă</a></li>
                     </ul>
                 </li>
             </ul>
         </nav>
         <hr>
     </header>
+
 
 
 
@@ -426,32 +443,39 @@
                         Pentru transparență, iată cum se calculează prețul unui obiect artizanal realizat manual:
                     </p>
 
-                    <math>
+                    <math class="formula-cost">
                         <mrow>
-                            <mi>preț</mi>
+                            <mi class="var-pret">preț</mi>
                             <mo>=</mo>
 
                             <!-- Suma materialelor -->
                             <munder>
-                                <mo>∑</mo>
-                                <mi>i</mi>
+                                <mo class="sum-symbol">∑</mo>
+                                <mi class="index-i">i</mi>
                             </munder>
 
                             <mrow>
                                 <mo>(</mo>
-                                <msub><mi>preț</mi><mi>i</mi></msub>
+                                <msub>
+                                    <mi class="var-pret-i">preț</mi>
+                                    <mi class="index-i">i</mi>
+                                </msub>
                                 <mo>×</mo>
-                                <msub><mi>cantitate</mi><mi>i</mi></msub>
+                                <msub>
+                                    <mi class="var-cant-i">cantitate</mi>
+                                    <mi class="index-i">i</mi>
+                                </msub>
                                 <mo>)</mo>
                             </mrow>
 
-                            <!-- plus timpul de lucru -->
                             <mo>+</mo>
-                            <mi>timp</mi>
+
+                            <mi class="var-timp">timp</mi>
                             <mo>×</mo>
-                            <mi>tarif</mi>
+                            <mi class="var-tarif">tarif</mi>
                         </mrow>
                     </math>
+
 
                     <p>
                         Această formulă detaliază modul real în care se calculează prețul unui produs handmade: 
@@ -1026,6 +1050,11 @@
     
 
     <footer id="contact">
+        <a href="#top" id="link-top" aria-label="Mergi sus">
+            <span class="sageata">&#8593;</span>
+            <span class="tooltip">Mergi la începutul paginii</span>
+        </a>
+
         <address>
             <strong>Contact</strong><br>
 

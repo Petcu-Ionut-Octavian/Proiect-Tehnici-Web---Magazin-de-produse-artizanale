@@ -1,0 +1,26 @@
+/* TELEFON – 700px */
+
+/* ascundem textul */
+.text-icon {
+    display: none;
+}
+
+/* iconițele devin centrul butonului */
+ul.meniu > li {
+    width: 60px;      /* butoane mici, pătrate */
+    height: 60px;
+    line-height: 60px;
+    padding: 0;
+}
+
+/* iconițele mai mari */
+.imag-icon span {
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+/* submeniile se aliniază frumos */
+ul.meniu ul {
+    width: 150px; /* submeniile rămân lizibile */
+    padding-left: 0;
+}

@@ -1,0 +1,159 @@
+nav {
+    --latime-buton: 140px;
+    --inaltime-buton: 40px;
+    background-color: var(--color-4);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+/* LISTE */
+ul.meniu, ul.meniu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* HAMBURGER */
+#hamburger {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 2rem;
+    color: var(--color-5);
+}
+
+#hamburger i {
+    font-size: 2rem;
+}
+
+
+#hamburger {
+    display: inline-block;
+}
+
+#ch-menu {
+    display: none;
+}
+
+/* MENIU PRINCIPAL */
+ul.meniu {
+    display: none;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#ch-menu:checked + ul.meniu {
+    display: flex;
+}
+
+/* BUTOANE MENIU */
+ul.meniu > li {
+    cursor: pointer;
+    width: var(--latime-buton);
+    height: var(--inaltime-buton);
+    background-color: var(--color-1);
+    border: 2px solid var(--color-5);
+    color: var(--color-5);
+    text-align: center;
+    line-height: var(--inaltime-buton);
+    position: relative;
+    transition: 0.3s ease;
+    border-radius: 8px;
+}
+
+ul.meniu > li:hover {
+    background-color: var(--color-5);
+    color: var(--color-1);
+}
+
+/* ICON + TEXT */
+.text-icon, .imag-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.imag-icon span {
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+/* SUBMENIU */
+ul.meniu ul {
+    display: none;
+    position: absolute;
+    top: var(--inaltime-buton);
+    left: 0;
+    background-color: var(--color-1);
+    border: 2px solid var(--color-5);
+    border-radius: 8px;
+    padding: 5px 0;
+    z-index: 10;
+    animation: animatie_submeniu 0.3s ease;
+}
+
+ul.meniu > li:hover ul {
+    display: block;
+    width: var(--latime-buton);
+}
+
+/* LINKURI SUBMENIU */
+ul.meniu ul li a {
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: var(--color-5);
+    white-space: nowrap;
+}
+
+ul.meniu ul li a:hover {
+    background-color: var(--color-5);
+    color: var(--color-1);
+}
+
+/* ANIMAȚIE */
+@keyframes animatie_submeniu {
+    0% { opacity: 0; transform: scaleY(0); }
+    100% { opacity: 1; transform: scaleY(1); }
+}
+
+/* RESPONSIVE – MENIU PE O SINGURĂ COLONĂ */
+@media (max-width: 900px) {
+    ul.meniu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    ul.meniu > li {
+        width: 100%;
+    }
+
+    ul.meniu ul {
+        position: static;
+        border: none;
+        background: var(--color-2);
+        padding-left: 20px;
+    }
+}
+
+
+#ch-menu {
+    display: none;
+}
+
+#hamburger {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 2rem;
+    color: var(--color-5);
+}
+
+ul.meniu {
+    display: none;
+}
+
+#ch-menu:checked + ul.meniu {
+    display: flex;
+}

@@ -1,0 +1,100 @@
+@charset "UTF-8";
+#grid-pagina {
+  display: grid;
+  gap: 5px;
+  padding: 5px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "welcome why-shop promotii"
+    "trending recomandat favorite"
+    "index-intrebari tutoriale help_"
+    "bloguri galerie-statica ad"
+    "image-map image-map image-map";
+}
+
+@media screen and (max-width: 700px) {
+  #grid-pagina {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "welcome"
+      "why-shop"
+      "promotii"
+      "trending"
+      "recomandat"
+      "favorite"
+      "index-intrebari"
+      "tutoriale"
+      "help_"
+      "bloguri"
+      "galerie-statica"
+      "ad"
+      "image-map";
+  }
+}
+#welcome {
+  grid-area: welcome;
+}
+
+#about-us {
+  grid-area: about-us;
+}
+
+#why-shop {
+  grid-area: why-shop;
+}
+
+#promotii {
+  grid-area: promotii;
+}
+
+#welcome {
+  grid-area: welcome;
+}
+
+#why-shop {
+  grid-area: why-shop;
+}
+
+#promotii {
+  grid-area: promotii;
+}
+
+#trending {
+  grid-area: trending;
+}
+
+#recomandat {
+  grid-area: recomandat;
+}
+
+#favorite {
+  grid-area: favorite;
+}
+
+#index-intrebari {
+  grid-area: index-intrebari;
+}
+
+#tutoriale {
+  grid-area: tutoriale;
+}
+
+#help {
+  grid-area: help_;
+}
+
+#bloguri {
+  grid-area: bloguri;
+}
+
+#galerie-statica {
+  grid-area: galerie-statica;
+}
+
+#ad {
+  grid-area: ad;
+}
+
+#image-map {
+  grid-area: image-map;
+}

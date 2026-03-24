@@ -24,17 +24,18 @@
     <!-- CSS-uri -->
     <link rel="stylesheet" href="/resurse/css/0-reset.css">
     <link rel="stylesheet" href="/resurse/css/1-general.css">
-    <link rel="stylesheet" href="/resurse/css/2-grid-pagina.css">
+    <link rel="stylesheet" href="/resurse/css/99999-grid-vechi.css">
     <link rel="stylesheet" href="/resurse/css/3-buton-fix.css">
     <link rel="stylesheet" href="/resurse/css/4-header.css">
     <link rel="stylesheet" href="/resurse/css/5-header1000.css" media="(max-width: 1000px)">
     <link rel="stylesheet" href="/resurse/css/6-header700.css" media="(max-width: 700px)">
+    <link rel="stylesheet" href="/resurse/css/7-footer.css">
 
 
 
 
     <link rel="stylesheet" href="/resurse/css/tabel.css">
-    <link rel="stylesheet" href="/resurse/css/buton-fix.css">
+    <link rel="stylesheet" href="/resurse/css/tutoriale.css">
     <link rel="stylesheet" href="/resurse/css/formula-mathml.css">
 
     <link rel="stylesheet" href="/resurse/css/fragmente/tutoriale.css">
@@ -117,6 +118,10 @@
                 </li>
             </ul>
         </nav>
+        <h1 id="t">
+            Artizania <span>Magazin Artizanal</span>
+            <i class="fa-solid fa-leaf fa-bounce"></i>
+        </h1>
         <hr>
     </header>
 
@@ -902,22 +907,34 @@
 
             
 
-            <figure id="fig1" class="fg-img">
-                <img src="/resurse/imagini/produse_1.webp" alt="produse artizanale">
-                <figcaption>Produse 1</figcaption>
-            </figure>
-            <figure id="fig2" class="fg-img">
-                <img src="/resurse/imagini/produse_2.webp" alt="produse artizanale">
-                <figcaption>Produse 2</figcaption>
-            </figure>
-            <figure  id="fig3" class="fg-img">
-                <img src="/resurse/imagini/produse_3.webp" alt="produse artizanale">
-                <figcaption>Produse 3</figcaption>
-            </figure>
-            <figure  id="fig4">
-                <img src="/resurse/imagini/produse_4.webp" alt="produse artizanale">
-                <figcaption>Produse 4</figcaption>
-            </figure>
+            <section id="fig1">
+                <figure class="fg-img">
+                    <img src="/resurse/imagini/produse_1.webp" alt="produse artizanale">
+                    <figcaption>Produse 1</figcaption>
+                </figure>
+            </section>
+
+            <section id="fig2">
+                <figure class="fg-img">
+                    <img src="/resurse/imagini/produse_2.webp" alt="produse artizanale">
+                    <figcaption>Produse 2</figcaption>
+                </figure>
+            </section>
+
+            <section id="fig3">
+                <figure class="fg-img">
+                    <img src="/resurse/imagini/produse_3.webp" alt="produse artizanale">
+                    <figcaption>Produse 3</figcaption>
+                </figure>
+            </section>
+
+            <section id="fig4">
+                <figure class="fg-img">
+                    <img src="/resurse/imagini/produse_4.webp" alt="produse artizanale">
+                    <figcaption>Produse 4</figcaption>
+                </figure>
+            </section>
+
 
             
 
@@ -982,7 +999,7 @@
                 <!-- 2. Link către un element dintr-o resursă externă (cu id + wbr) -->
                 <p>
                     Accesează direct noul nostru joc:<br>
-                    <a href="site_extra/index.html#gameCanvas" target="_blank">
+                    <a href="/site_extra/index.html#gameCanvas" target="_blank">
                         site_extra/index.html<wbr>#gameCanvas
                     </a>
                 </p>

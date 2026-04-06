@@ -134,3 +134,9 @@
 .th-2 {
     width: 2fr;
 }
+
+#tab-orar tbody tr:hover td[rowspan],
+#tab-orar tbody tr:hover th[rowspan] {
+    outline: none !important;
+}
+

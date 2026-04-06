@@ -28,7 +28,7 @@ console.log("Cale fisier", __filename);
 app.use("/resurse",express.static(path.join(__dirname, "resurse")));
 
 
-app.get("/", function(req, res){
+app.get(["/", "/index", "/home"], function(req, res){
     try {
         res.render("pagini/index");
     } catch (err) {
@@ -118,29 +118,17 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
 })
 
 function afisareEroare(res, identificator = 0, titlu, text, imagine){
-    let eroareGasita = obGlobal.obErori.info_erori.find(e => e.identificator == identificator);
-    let eroare = eroareGasita || obGlobal.obErori.eroare_default;
+    let eroare = obGlobal.obErori.info_erori.find(elem => elem.identificator == identificator);
+    let eroareDefault = obGlobal.obErori.eroare_default;
+    if(eroare?.status)
+        res.status(eroare.identificator);
+    res.render("pagini/eroare", {
+        imagine: imagine || eroare?.imagine || eroareDefault.imagine,
+        titlu: titlu || eroare?.titlu || eroareDefault.titlu,
+        text: text || eroare?.text || eroareDefault.text
+    });
+};
 
-    const finalTitlu = titlu || eroare.titlu;
-    const finalText = text || eroare.text;
-    const finalImagine = imagine ? path.join(obGlobal.obErori.cale_baza, imagine) : eroare.imagine;
-
-    const status = (typeof identificator === 'number' && identificator >= 100 && identificator < 600)
-        ? identificator
-        : (eroareGasita ? eroareGasita.identificator : 500);
-
-    res.status(status).send(`
-        <html lang="ro">
-            <head><meta charset="utf-8"><title>${finalTitlu}</title></head>
-            <body style="font-family: Arial, sans-serif; text-align:center; padding: 2rem;">
-                <h1>${finalTitlu}</h1>
-                <p>${finalText}</p>
-                <p><img src="${finalImagine}" alt="${finalTitlu}" style="max-width:280px; max-height:280px;"></p>
-                <p><a href="/">Înapoi la pagina principală</a></p>
-            </body>
-        </html>
-    `);
-}
 
 app.use((req, res) => {
     afisareEroare(res, 404);
@@ -151,5 +139,62 @@ app.use((err, req, res, next) => {
     afisareEroare(res, 500, '500 - Eroare internă', 'Ceva nu a mers bine pe server. Încearcă din nou mai târziu.');
 });
 
+app.get("/*pagina", function(req, res){
+    console.log("Cale pagina", req.url);
+
+    // Daca cererea e pentru un folder / cale fara extensie, returnam 403 (interzis)
+    if (path.extname(req.url)=="") {
+        afisareEroare(res,403, "403 - Acces interzis", "Nu este permis accesul direct la un folder.");
+        return;
+    }
+
+    if (req.url.startsWith("/resurse") && path.extname(req.url)==""){
+        afisareEroare(res,403);
+        return;
+    }
+    if (path.extname(req.url)==".ejs"){
+        afisareEroare(res,400);
+        return;
+    }
+    try{
+        res.render("pagini"+req.url, function(err, rezRandare){
+            if (err){
+                if (err.message.includes("Failed to lookup view")){
+                    afisareEroare(res,404)
+                }
+                else{
+                    afisareEroare(res);
+                }
+            }
+            else{
+                res.send(rezRandare);
+                console.log("Rezultat randare", rezRandare);
+            }
+        });
+    }
+    catch(err){
+        if (err.message.includes("Cannot find module")){
+            afisareEroare(res,404)
+        }
+        else{
+            afisareEroare(res);
+        }
+    }
+});
+
+app.get("/favicon.ico", function(req, res){
+    res.sendFile(path.join(__dirname,"resurse/imagini/favicon/favicon.ico"))
+});
+
+let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ]
+for (let folder of vect_foldere){
+    let caleFolder=path.join(__dirname, folder);
+    if (!fs.existsSync(caleFolder)) {
+        fs.mkdirSync(path.join(caleFolder), {recursive:true});   
+    }
+}
+
 app.listen(8080);
 console.log("Serverul a pornit!");
+
+

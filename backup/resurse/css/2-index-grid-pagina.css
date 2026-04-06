@@ -1,34 +1,15 @@
-@charset "UTF-8";
 #grid-pagina {
   display: grid;
   gap: 5px;
   padding: 5px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas:
-    "welcome why-shop promotii"
-    "trending recomandat favorite"
-    "index-intrebari tutoriale help_"
-    "bloguri galerie-statica ad"
-    "image-map image-map image-map";
+  grid-template-areas: "welcome why-shop promotii" "trending recomandat favorite" "ad ad index-intrebari" "help_ help_ help_" "tutoriale tutoriale tutoriale" "bloguri bloguri galerie-statica" "image-map image-map image-map";
 }
 
 @media screen and (max-width: 700px) {
   #grid-pagina {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "welcome"
-      "why-shop"
-      "promotii"
-      "trending"
-      "recomandat"
-      "favorite"
-      "index-intrebari"
-      "tutoriale"
-      "help_"
-      "bloguri"
-      "galerie-statica"
-      "ad"
-      "image-map";
+    grid-template-areas: "welcome" "why-shop" "promotii" "trending" "recomandat" "favorite" "index-intrebari" "tutoriale" "help_" "bloguri" "galerie-statica" "ad" "image-map";
   }
 }
 #welcome {

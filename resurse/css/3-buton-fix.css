@@ -33,7 +33,8 @@
 #link-top .sageata {
   font-size: 2rem;
   color: var(--color-5);
-  filter: blur(4px);
+  /* blur inițial */
+  filter: blur(2px);
   transition: filter 0.5s ease;
 }
 
@@ -70,7 +71,7 @@
 }
 
 #link-top:hover .sageata {
-   filter: blur(0px); 
+  filter: blur(0);
 }
 
 #link-top .tooltip {

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <title>Eroare - Artizania</title>
+    <meta name="description" content="Pagina de eroare - Artizania">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="stylesheet" href="/resurse/css/2-index-grid-pagina.css">
+
+    <%- include('../fragmente/0-head.ejs') %>
+
+    <link rel="stylesheet" href="/resurse/css/8-eroare.css">
+
+</head>
+
+<body>
+    
+    <%- include('../fragmente/1-header.ejs') %>
+
+    <main>
+        <div id="grid-pagina">
+            <section id="eroare-container" class="eroare-container">
+                <div class="eroare-content">
+                    <div class="eroare-imagine">
+                        <img src="<%= imagine %>" alt="<%= titlu %>">
+                    </div>
+                    
+                    <div class="eroare-text">
+                        <h1><%= titlu %></h1>
+                        <p><%= text %></p>
+                        
+                        <div class="eroare-actiuni">
+                            <a href="/" class="btn-home">Înapoi la acasă</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <%- include('../fragmente/2-footer.ejs') %>
+
+
+</body>
+
+</html>

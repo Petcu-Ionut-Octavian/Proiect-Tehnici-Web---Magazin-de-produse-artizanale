@@ -24,19 +24,3 @@ ul.meniu ul {
   width: 150px; /* submeniile rămân lizibile */
   padding-left: 0;
 }
-
-
-
-
-
-
-
-
-
-ul.meniu > li ul {
-  left: 100%;      /* submeniul apare în dreapta butonului */
-  top: 0;          /* aliniat sus, nu sub buton */
-  margin-top: -60px;
-  margin-left: 65px; /* mic spațiu între buton și submeniu */
-  z-index: 9999;   /* apare deasupra */
-}

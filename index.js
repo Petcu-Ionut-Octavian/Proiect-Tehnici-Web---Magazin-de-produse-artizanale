@@ -1,6 +1,7 @@
 const express= require("express");
 const path= require("path");
 const fs=require("fs");
+const sharp = require("sharp");
 let sass;
 try {
     sass = require("sass");
@@ -10,7 +11,6 @@ try {
 
 app= express();
 app.set("view engine", "ejs")
-
 
 
 obGlobal={
@@ -30,12 +30,26 @@ app.use("/resurse",express.static(path.join(__dirname, "resurse")));
 
 app.get(["/", "/index", "/home"], function(req, res){
     try {
-        res.render("pagini/index");
+        res.render("pagini/index", {
+            imagini: obGlobal.obImagini.imagini
+        });
     } catch (err) {
         console.error("Eroare la render index:", err);
         afisareEroare(res, 500, "Eroare la încărcarea paginii", "A apărut o problemă la afișarea paginii principale.");
     }
 });
+
+app.get("/index2", function(req, res){
+    try {
+        res.render("pagini/index2", {
+            imagini: obGlobal.obImagini.imagini
+        });
+    } catch (err) {
+        console.error("Eroare la render index:", err);
+        afisareEroare(res, 500, "Eroare la încărcarea paginii", "A apărut o problemă la afișarea paginii principale.");
+    }
+});
+
 
 app.get("/despre", function(req, res){
     try {
@@ -193,6 +207,31 @@ for (let folder of vect_foldere){
         fs.mkdirSync(path.join(caleFolder), {recursive:true});   
     }
 }
+
+function initImagini(){
+    var continut= fs.readFileSync(path.join(__dirname,"resurse/json/galerie.json")).toString("utf-8");
+
+    obGlobal.obImagini=JSON.parse(continut);
+    let vImagini=obGlobal.obImagini.imagini;
+    let caleGalerie=obGlobal.obImagini.cale_galerie
+
+    let caleAbs=path.join(__dirname,caleGalerie);
+    let caleAbsMediu=path.join(caleAbs, "mediu");
+    if (!fs.existsSync(caleAbsMediu))
+        fs.mkdirSync(caleAbsMediu);
+    
+    for (let imag of vImagini){
+        [numeFis, ext]=imag.fisier.split("."); //"ceva.png" -> ["ceva", "png"]
+        let caleFisAbs=path.join(caleAbs,imag.fisier);
+        let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
+        sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
+        imag.fisier_mediu=path.join("/", caleGalerie, "mediu", numeFis+".webp" )
+        imag.fisier=path.join("/", caleGalerie, imag.fisier )
+        
+    }
+    // console.log(obGlobal.obImagini)
+}
+initImagini();
 
 app.listen(8080);
 console.log("Serverul a pornit!");

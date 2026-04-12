@@ -41,14 +41,14 @@
 
     /* blur inițial */
     filter: blur(2px);
-    transition: filter 0.5s ease;
+    transition: transform 0.5s ease, filter 0.5s ease;
 }
 
 /* ============================
    TOOLTIP
    ============================ */
 #link-top .tooltip {
-    position: absolute;
+    position: fixed;
     bottom: 70px;
     background: var(--color-4);
     color: var(--color-1);
@@ -58,25 +58,25 @@
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /* tooltip la hover */
 #link-top:hover .tooltip {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-10px) rotate(-90deg);
 }
 
 /* ============================
    HOVER – ROTIRE + CLARITATE
    ============================ */
 #link-top:hover {
-    transform: rotate(360deg);
+    transform: rotate(90deg);
     opacity: 1;
 }
 
 #link-top:hover .sageata {
+    transform: rotate(-90deg);
     filter: blur(0);
 }
 

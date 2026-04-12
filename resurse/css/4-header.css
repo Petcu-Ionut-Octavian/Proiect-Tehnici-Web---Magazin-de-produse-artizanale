@@ -105,11 +105,21 @@ ul.meniu ul li a {
   text-decoration: none;
   color: var(--color-5);
   white-space: nowrap;
+  transition: font-size 0.2s ease;
 }
 
 ul.meniu ul li a:hover {
   background-color: var(--color-5);
   color: var(--color-1);
+  font-size: 0.8em;
+}
+
+ul.meniu ul li a:hover::before,
+ul.meniu ul li a:hover::after {
+  content: "✦";
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-5);
 }
 
 /* ANIMAȚIE */

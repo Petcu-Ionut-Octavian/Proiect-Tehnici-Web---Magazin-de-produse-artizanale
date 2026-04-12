@@ -4,6 +4,17 @@
 
     <div id="grid-galerie">
 
+        <% for(let imag of locals.imagini) { %>
+            <figure>
+                <picture>
+                    <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1100px)">
+                    <img src="<%- imag.fisier%>" alt="briose">
+                </picture>
+                <figcaption><%- imag.descriere %></figcaption>
+            </figure>
+        <% } %>
+
+
         <figure>
             <div>
                 <img src="/resurse/imagini/ceramica-pictata.webp" alt="ceramică pictată" loading="lazy">

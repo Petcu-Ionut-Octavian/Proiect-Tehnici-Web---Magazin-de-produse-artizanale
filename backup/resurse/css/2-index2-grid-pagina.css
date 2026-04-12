@@ -1,0 +1,53 @@
+#grid-pagina {
+  display: grid;
+  gap: 5px;
+  padding: 5px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas: "welcome welcome welcome welcome" "orar orar why-shop why-shop" "evenimente date-utilizator ad ad" "utilizatori-online date-utilizator index-intrebari index-intrebari" "utilizatori-online anunturi anunturi date-server";
+}
+
+@media screen and (max-width: 700px) {
+  #grid-pagina {
+    grid-template-columns: 1fr;
+    grid-template-areas: "welcome" "orar" "why-shop" "evenimente" "utilizatori-online" "date-utilizator" "anunturi" "date-server" "ad" "index-intrebari";
+  }
+}
+#welcome {
+  grid-area: welcome;
+}
+
+#orar {
+  grid-area: orar;
+}
+
+#anunturi {
+  grid-area: anunturi;
+}
+
+#evenimente {
+  grid-area: evenimente;
+}
+
+#utilizatori-online {
+  grid-area: utilizatori-online;
+}
+
+#date-utilizator {
+  grid-area: date-utilizator;
+}
+
+#date-server {
+  grid-area: date-server;
+}
+
+#why-shop {
+  grid-area: why-shop;
+}
+
+#ad {
+  grid-area: ad;
+}
+
+#index-intrebari {
+  grid-area: index-intrebari;
+}

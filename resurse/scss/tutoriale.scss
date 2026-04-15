@@ -1,88 +1,83 @@
-/* ---------------------------------------------------
-   LAYOUT GENERAL — două coloane
---------------------------------------------------- */
-#tutoriale .container-iframe {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1rem;
-    width: 100%;
+#tutoriale {
+    .container-iframe {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .taburi-iframe {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        width: 220px;
+        flex-shrink: 0;
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 100%;
+            height: 3rem;
+
+            background: var(--color-1);
+            border: 2px solid var(--color-2);
+            border-radius: 8px 0 0 8px;
+
+            color: var(--color-5);
+            font-weight: 600;
+            text-decoration: none;
+
+            box-shadow: -8px 0 0 var(--color-2);
+
+            transition:
+                box-shadow .25s ease,
+                background .25s ease,
+                color .25s ease,
+                border-color .25s ease;
+
+            &:hover {
+                background: var(--color-3);
+                color: var(--color-1);
+                border-color: var(--color-4);
+                box-shadow: -8px 0 0 var(--color-4);
+            }
+        }
+    }
+
+    iframe[name="ifr-video"] {
+        flex: 1;
+        min-width: 0;
+        max-width: 100%;
+
+        width: 100%;
+        aspect-ratio: 16 / 9;
+
+        border-radius: 8px;
+        border: 2px solid var(--color-2);
+    }
+
+    .playlist-container iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+
+        border-radius: 8px;
+        border: 2px solid var(--color-2);
+
+        max-width: 100%;
+        height: auto;
+    }
 }
 
-/* ---------------------------------------------------
-   TABURILE — coloana din stânga
---------------------------------------------------- */
-#tutoriale .taburi-iframe {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+@media (max-width: 700px) {
+    #tutoriale .container-iframe {
+        flex-direction: column;
+    }
 
-    width: 220px;      /* AICI modifici manual lățimea taburilor */
-    flex-shrink: 0;    /* nu se micșorează niciodată */
-}
-
-/* ---------------------------------------------------
-   BUTOANELE TABURILOR
---------------------------------------------------- */
-#tutoriale .taburi-iframe a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;       /* 100% din cei 220px */
-    height: 3rem;
-
-    background: var(--color-1);
-    border: 2px solid var(--color-2);
-    border-radius: 8px 0 0 8px;
-
-    color: var(--color-5);
-    font-weight: 600;
-    text-decoration: none;
-
-    /* UMBRA VIZIBILĂ ÎNAINTE DE HOVER */
-    box-shadow: -8px 0 0 var(--color-2);
-
-    transition:
-        box-shadow .25s ease,
-        background .25s ease,
-        color .25s ease,
-        border-color .25s ease;
-}
-
-/* ---------------------------------------------------
-   HOVER — umbra devine intensă
---------------------------------------------------- */
-#tutoriale .taburi-iframe a:hover {
-    background: var(--color-3);
-    color: var(--color-1);
-    border-color: var(--color-4);
-
-    box-shadow: -8px 0 0 var(--color-4);
-}
-
-/* ---------------------------------------------------
-   IFRAME — coloana din dreapta
---------------------------------------------------- */
-#tutoriale iframe[name="ifr-video"] {
-    flex: 1;
-    min-width: 0;
-    max-width: 100%;
-
-    width: 100%;
-    aspect-ratio: 16 / 9; /* face iframe-ul mare și proporțional */
-    
-    border-radius: 8px;
-    border: 2px solid var(--color-2);
-}
-
-#tutoriale .playlist-container iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-
-    border-radius: 8px;
-    border: 2px solid var(--color-2);
-
-    max-width: 100%;
-    height: auto;
+    #tutoriale .taburi-iframe {
+        width: 100%;
+    }
 }

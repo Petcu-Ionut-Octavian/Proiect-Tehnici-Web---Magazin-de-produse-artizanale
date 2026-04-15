@@ -5,13 +5,13 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: "about-us produse produse" "orar orar  orar" "evenimente fig1 fig2" "fig3 fig3 fig4";
 }
-
 @media screen and (max-width: 700px) {
   #grid-pagina {
     grid-template-columns: 1fr;
     grid-template-areas: "about-us" "evenimente" "produse" "orar" "fig1" "fig2" "fig3" "fig4";
   }
 }
+
 #about-us {
   grid-area: about-us;
 }

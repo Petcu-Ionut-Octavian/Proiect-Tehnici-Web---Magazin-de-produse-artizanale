@@ -1,9 +1,6 @@
-/* ------------------------------
-   Variabile globale
------------------------------- */
 :root {
-    --font-base: 16px;        /* baza pentru html/body (fixă) */
-    --font-scale: 1rem;       /* restul textelor (relativ) */
+    --font-base: 16px;
+    --font-scale: 1rem;
 
     --space-xxs: 0.25rem;
     --space-xs:  0.5rem;
@@ -19,9 +16,6 @@
     --table-border: 1px solid var(--color-border);
 }
 
-/* ------------------------------
-   Reset general (inspirat Meyer)
------------------------------- */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -43,7 +37,6 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
-/* HTML și body au dimensiuni fixe */
 html {
     font-size: var(--font-base);
 }
@@ -54,59 +47,54 @@ body {
     color: var(--color-text);
 }
 
-/* ------------------------------
-   Stiluri implicite modernizate
------------------------------- */
-
-/* Liste */
 ul, ol {
     padding-left: var(--space-l);
     margin-bottom: var(--space-m);
+
+    li {
+        list-style-type: none;
+    }
 }
 
-ul li {
-    list-style-type: none;
-}
-
-ol li {
-    list-style-type: none;
-}
-
-/* Bold & italic */
-strong, b {
+%bold {
     font-weight: 700;
 }
 
-em, i {
+%italic {
     font-style: italic;
 }
 
-/* Tabele */
+strong, b {
+    @extend %bold;
+}
+
+em, i {
+    @extend %italic;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: var(--space-m);
+
+    th, td {
+        padding: var(--space-xs);
+        border: var(--table-border);
+        text-align: left;
+    }
 }
 
-th, td {
-    padding: var(--space-xs);
-    border: var(--table-border);
-    text-align: left;
-}
-
-/* Imagini */
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* Linkuri */
 a {
     color: inherit;
     text-decoration: none;
-}
 
-a:hover {
-    text-decoration: underline;
+    &:hover {
+        text-decoration: underline;
+    }
 }

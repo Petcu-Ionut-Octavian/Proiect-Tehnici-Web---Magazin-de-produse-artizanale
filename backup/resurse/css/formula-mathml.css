@@ -1,43 +1,29 @@
-@charset "UTF-8";
-/* simbolul ∑ */
 .formula-cost .sum-symbol {
   color: #c0392b;
   font-size: 1.4em;
   font-weight: bold;
 }
-
-/* variabila principală preț */
 .formula-cost .var-pret {
   color: #2c3e50;
   font-weight: bold;
   font-style: italic;
 }
-
-/* indexul i */
 .formula-cost .index-i {
   font-size: 0.8em;
   color: #8e44ad;
 }
-
-/* preț_i */
 .formula-cost .var-pret-i {
   color: #2980b9;
   font-weight: bold;
 }
-
-/* cantitate_i */
 .formula-cost .var-cant-i {
   color: #27ae60;
   font-style: italic;
 }
-
-/* timp */
 .formula-cost .var-timp {
   color: #d35400;
   font-weight: bold;
 }
-
-/* tarif */
 .formula-cost .var-tarif {
   color: #16a085;
   text-decoration: underline;

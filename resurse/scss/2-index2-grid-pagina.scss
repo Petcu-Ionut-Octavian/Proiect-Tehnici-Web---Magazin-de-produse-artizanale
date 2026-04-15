@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 #grid-pagina {
   display: grid;
   gap: 5px;
@@ -10,25 +11,22 @@
     "evenimente date-utilizator ad ad"
     "utilizatori-online date-utilizator index-intrebari index-intrebari"
     "utilizatori-online anunturi anunturi date-server";
-}
 
-@media screen and (max-width: 700px) {
-  #grid-pagina {
+  @media screen and (max-width: 700px) {
     grid-template-columns: 1fr;
     grid-template-areas:
-    "welcome"
-    "orar"
-    "why-shop"
-    "evenimente"
-    "utilizatori-online"
-    "date-utilizator"
-    "anunturi"
-    "date-server"
-    "ad"
-    "index-intrebari";
-    }
+      "welcome"
+      "orar"
+      "why-shop"
+      "evenimente"
+      "utilizatori-online"
+      "date-utilizator"
+      "anunturi"
+      "date-server"
+      "ad"
+      "index-intrebari";
+  }
 }
-
 
 #welcome {
   grid-area: welcome;

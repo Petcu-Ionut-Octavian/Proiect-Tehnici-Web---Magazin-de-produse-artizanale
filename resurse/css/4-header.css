@@ -8,14 +8,13 @@ nav {
   flex-direction: row;
 }
 
-/* LISTE */
-ul.meniu, ul.meniu ul {
+ul.meniu,
+ul.meniu ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-/* HAMBURGER */
 #hamburger {
   display: inline-block;
   cursor: pointer;
@@ -23,32 +22,20 @@ ul.meniu, ul.meniu ul {
   font-size: 2rem;
   color: var(--color-5);
 }
-
 #hamburger i {
   font-size: 2rem;
-}
-
-#hamburger {
-  display: inline-block;
 }
 
 #ch-menu {
   display: none;
 }
 
-/* MENIU PRINCIPAL */
 ul.meniu {
   display: none;
   flex-direction: row;
   gap: 10px;
   margin-top: 10px;
 }
-
-#ch-menu:checked + ul.meniu {
-  display: flex;
-}
-
-/* BUTOANE MENIU */
 ul.meniu > li {
   cursor: pointer;
   width: var(--latime-buton);
@@ -62,25 +49,11 @@ ul.meniu > li {
   transition: 0.3s ease;
   border-radius: 8px;
 }
-
 ul.meniu > li:hover {
   background-color: var(--color-5);
   color: var(--color-1);
 }
-
-/* ICON + TEXT */
-.text-icon, .imag-icon {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.imag-icon span {
-  font-size: 1.2rem;
-  margin-left: 5px;
-}
-
-/* SUBMENIU */
-ul.meniu ul {
+ul.meniu > li ul {
   display: none;
   position: absolute;
   top: var(--inaltime-buton);
@@ -92,14 +65,7 @@ ul.meniu ul {
   z-index: 10;
   animation: animatie_submeniu 0.3s ease;
 }
-
-ul.meniu > li:hover ul {
-  display: block;
-  width: var(--latime-buton);
-}
-
-/* LINKURI SUBMENIU */
-ul.meniu ul li a {
+ul.meniu > li ul li a {
   display: block;
   padding: 8px 15px;
   text-decoration: none;
@@ -107,22 +73,37 @@ ul.meniu ul li a {
   white-space: nowrap;
   transition: font-size 0.2s ease;
 }
-
-ul.meniu ul li a:hover {
+ul.meniu > li ul li a:hover {
   background-color: var(--color-5);
   color: var(--color-1);
   font-size: 0.8em;
 }
-
-ul.meniu ul li a:hover::before,
-ul.meniu ul li a:hover::after {
+ul.meniu > li ul li a:hover::before, ul.meniu > li ul li a:hover::after {
   content: "✦";
   width: 6px;
   height: 6px;
   background-color: var(--color-5);
 }
+ul.meniu > li:hover ul {
+  display: block;
+  width: var(--latime-buton);
+}
 
-/* ANIMAȚIE */
+#ch-menu:checked + ul.meniu {
+  display: flex;
+}
+
+.text-icon,
+.imag-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.imag-icon span {
+  font-size: 1.2rem;
+  margin-left: 5px;
+}
+
 @keyframes animatie_submeniu {
   0% {
     opacity: 0;
@@ -133,7 +114,6 @@ ul.meniu ul li a:hover::after {
     transform: scaleY(1);
   }
 }
-/* RESPONSIVE – MENIU PE O SINGURĂ COLONĂ */
 @media (max-width: 900px) {
   ul.meniu {
     flex-direction: column;
@@ -149,26 +129,6 @@ ul.meniu ul li a:hover::after {
     padding-left: 20px;
   }
 }
-#ch-menu {
-  display: none;
-}
-
-#hamburger {
-  display: inline-block;
-  cursor: pointer;
-  padding: 10px;
-  font-size: 2rem;
-  color: var(--color-5);
-}
-
-ul.meniu {
-  display: none;
-}
-
-#ch-menu:checked + ul.meniu {
-  display: flex;
-}
-
 #t {
   text-align: center;
 }

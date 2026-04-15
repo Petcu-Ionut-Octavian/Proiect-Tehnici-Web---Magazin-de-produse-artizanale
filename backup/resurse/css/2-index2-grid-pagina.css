@@ -5,13 +5,13 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas: "welcome welcome welcome welcome" "orar orar why-shop why-shop" "evenimente date-utilizator ad ad" "utilizatori-online date-utilizator index-intrebari index-intrebari" "utilizatori-online anunturi anunturi date-server";
 }
-
 @media screen and (max-width: 700px) {
   #grid-pagina {
     grid-template-columns: 1fr;
     grid-template-areas: "welcome" "orar" "why-shop" "evenimente" "utilizatori-online" "date-utilizator" "anunturi" "date-server" "ad" "index-intrebari";
   }
 }
+
 #welcome {
   grid-area: welcome;
 }

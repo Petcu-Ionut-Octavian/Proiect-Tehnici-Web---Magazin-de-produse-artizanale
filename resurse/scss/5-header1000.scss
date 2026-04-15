@@ -1,20 +1,24 @@
-/* TABLETĂ – 1000px */
-ul.meniu {
-    gap: 5px; /* mai compact */
+@media (max-width: 1000px) {
+    ul.meniu {
+        gap: 5px;
+
+        > li {
+            width: 120px;
+            height: 38px;
+            line-height: 38px;
+        }
+
+        ul {
+            margin-left: 120px;
+            margin-top: -40px;
+        }
+    }
+
+    .text-icon {
+        font-size: 0.9rem;
+    }
+
+    .imag-icon span {
+        font-size: 1rem;
+    }
 }
-
-ul.meniu > li {
-    width: 120px; /* puțin mai mic */
-    height: 38px;
-    line-height: 38px;
-}
-
-.text-icon {
-    font-size: 0.9rem;
-}
-
-.imag-icon span {
-    font-size: 1rem;
-}
-
-

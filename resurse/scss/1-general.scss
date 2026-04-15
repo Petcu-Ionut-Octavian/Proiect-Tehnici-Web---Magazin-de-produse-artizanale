@@ -6,40 +6,27 @@
     --color-5: #3E2C1C;
 }
 
-
 body {
     background-color: var(--color-1);
-    
 }
 
 main {
     margin-left: 25px;
     margin-right: 25px;
     padding: 40px;
-}
 
-
-/* Telefoane (sub 600px) */
-@media (max-width: 600px) {
-    main {
+    @media (max-width: 600px) {
         padding: 20px;
     }
-}
 
-/* Tablete (600px – 900px) */
-@media (min-width: 600px) and (max-width: 900px) {
-    main {
+    @media (min-width: 600px) and (max-width: 900px) {
         padding: 30px;
     }
-}
 
-/* Desktop mare (peste 1200px) */
-@media (min-width: 1200px) {
-    main {
+    @media (min-width: 1200px) {
         padding: 60px;
     }
 }
-
 
 section {
     width: 100%;
@@ -49,86 +36,76 @@ section {
     padding: 10px;
 }
 
-/* H1 */
-h1 {
-    font-size: 2.4rem;
+%heading-base {
     font-weight: bold;
     text-decoration: underline;
+    color: var(--color-5);
+    border-radius: 8px;
+}
+
+%heading-bg-1 {
+    background-color: var(--color-1);
+}
+
+%heading-bg-2 {
+    background-color: var(--color-2);
+}
+
+h1 {
+    @extend %heading-base;
+    @extend %heading-bg-2;
+    font-size: 2.4rem;
     padding: 14px 20px;
     margin: 25px 0;
     border: 3px solid var(--color-4);
-    background-color: var(--color-2);
-    color: var(--color-5);
-    border-radius: 8px;
 }
 
-/* H2 */
 h2 {
+    @extend %heading-base;
+    @extend %heading-bg-1;
     font-size: 2rem;
-    font-weight: bold;
-    text-decoration: underline;
     padding: 12px 18px;
     margin: 22px 0;
     border: 3px solid var(--color-3);
-    background-color: var(--color-1);
-    color: var(--color-5);
-    border-radius: 8px;
     text-align: center;
 }
 
-/* H3 */
 h3 {
+    @extend %heading-base;
+    @extend %heading-bg-1;
     font-size: 1.7rem;
-    font-weight: bold;
-    text-decoration: underline;
     padding: 10px 16px;
     margin: 20px 0;
     border: 2px solid var(--color-3);
-    background-color: var(--color-1);
-    color: var(--color-5);
-    border-radius: 8px;
 }
 
-/* H4 */
 h4 {
+    @extend %heading-base;
+    @extend %heading-bg-1;
     font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: underline;
     padding: 8px 14px;
     margin: 18px 0;
     border: 2px solid var(--color-2);
-    background-color: var(--color-1);
-    color: var(--color-5);
-    border-radius: 8px;
 }
 
-/* H5 */
 h5 {
+    @extend %heading-base;
+    @extend %heading-bg-1;
     font-size: 1.3rem;
-    font-weight: bold;
-    text-decoration: underline;
     padding: 6px 12px;
     margin: 16px 0;
     border: 2px solid var(--color-2);
-    background-color: var(--color-1);
-    color: var(--color-5);
-    border-radius: 8px;
 }
 
-/* H6 */
 h6 {
+    @extend %heading-base;
+    @extend %heading-bg-1;
     font-size: 1.15rem;
-    font-weight: bold;
-    text-decoration: underline;
     padding: 5px 10px;
     margin: 14px 0;
     border: 2px solid var(--color-2);
-    background-color: var(--color-1);
-    color: var(--color-5);
-    border-radius: 8px;
 }
 
-/* Paragrafe */
 p {
     font-size: 1rem;
     line-height: 1.6;
@@ -140,18 +117,12 @@ p {
     border-radius: 8px;
 }
 
-
 hr {
     border: none;
     height: 5px;
     width: 60%;
     margin: 40px auto;
-    background: linear-gradient(
-        90deg,
-        var(--color-4),
-        var(--color-3),
-        var(--color-4)
-    );
+    background: linear-gradient(90deg, var(--color-4), var(--color-3), var(--color-4));
     border-radius: 5px;
 }
 
@@ -159,53 +130,20 @@ img {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: cover; /* sau contain, după preferință */
+    object-fit: cover;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-picture img {
-    width: 100%;
-    max-width: 100%;
-    max-height: 100vh;
-    height: auto;
-    width: auto;
-    display: block;
-    object-fit: contain;
+picture {
+    img {
+        width: 100%;
+        max-width: 100%;
+        max-height: 100vh;
+        height: auto;
+        width: auto;
+        display: block;
+        object-fit: contain;
+    }
 }
-
-
-
-
-
-
-
-
-
-
 
 #pdf-ghid {
     width: 100%;
@@ -214,74 +152,52 @@ picture img {
     border: none;
 }
 
-
-
-
-
-
-
-/* Stil general */
 meter {
     width: 200px;
     height: 20px;
 }
 
-/* Valoare mică → verde */
-#meter-mic::-webkit-meter-suboptimum-value,
-#meter-mic::-webkit-meter-optimum-value {
-    background: green;
+#meter-mic {
+    &::-webkit-meter-suboptimum-value,
+    &::-webkit-meter-optimum-value {
+        background: green;
+    }
 }
 
-/* Valoare mare → roșu */
-#meter-mare::-webkit-meter-suboptimum-value,
-#meter-mare::-webkit-meter-even-less-good-value {
-    background: red;
+#meter-mare {
+    &::-webkit-meter-suboptimum-value,
+    &::-webkit-meter-even-less-good-value {
+        background: red;
+    }
 }
 
-
-
-
-
-
-
-
-
-/* Containerul figurilor — pune figurile pe linie */
 #grid-galerie {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
+
+    figure {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 250px;
+        margin: 0;
+
+        img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--color-5);
+        }
+    }
 }
-
-/* Fiecare figure — card vertical */
-#grid-galerie figure {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 250px;
-    margin: 0;
-}
-
-/* Imaginile — păstrează raportul, nu se întind */
-#grid-galerie figure img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 10px;
-    display: block;
-}
-
-/* Figcaption — text centrat sub imagine */
-#grid-galerie figure figcaption {
-    margin-top: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-align: center;
-    color: var(--color-5);
-}
-
-
-
-
-

@@ -201,3 +201,74 @@ meter {
         }
     }
 }
+
+
+
+
+.container-video {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.container-video video {
+    width: 80%;
+    max-width: 800px;
+    min-width: 300px;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+}
+
+
+
+
+
+
+
+
+/* linkuri vizitate */
+a:visited {
+    color: var(--color-3);
+}
+
+/* linkuri externe */
+a[href^="http"]::before {
+    content: "⮳";
+    font-size: 150%; /* cu 50% mai mare */
+    margin-right: 0.25em;
+    color: var(--color-3);
+    transition: color 0.3s ease;
+}
+
+/* hover pe linkuri externe */
+a[href^="http"]:hover::before {
+    color: var(--color-4);
+}
+
+/* linkuri din main cu efectul de pată */
+main a {
+    position: relative;
+    background-image: radial-gradient(
+        circle,
+        var(--color-3) 0%,
+        var(--color-3) 40%,
+        transparent 80%,
+        transparent 100%
+    );
+    background-size: 0% 0%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease;
+}
+
+/* hover pe linkurile din main */
+main a:hover {
+    background-size: 100% 100%;
+}
+
+/* click pe linkurile din main */
+main a:active {
+    border: 2px solid var(--color-3);
+    border-radius: 4px;
+}
+

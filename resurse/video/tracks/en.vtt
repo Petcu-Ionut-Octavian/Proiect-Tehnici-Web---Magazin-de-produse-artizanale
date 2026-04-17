@@ -1,0 +1,21 @@
+WEBVTT
+
+STYLE
+::cue {
+    background: white;
+    color: #3E2C1C;
+    text-align: center;
+    line: 5%;
+}
+
+00:00.000 --> 00:03.000
+Discover our handcrafted clay teapot.
+
+00:03.000 --> 00:07.000
+Shaped by hand, it preserves the authentic aroma of tea.
+
+00:07.000 --> 00:11.000
+Each piece is unique, traditionally fired in a kiln.
+
+00:11.000 --> 00:14.000
+Perfect for relaxation and <i>zen</i> tea rituals.

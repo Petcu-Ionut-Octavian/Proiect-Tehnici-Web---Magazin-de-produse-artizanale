@@ -4,53 +4,51 @@
 
     <div id="grid-galerie">
 
-        <% for(let imag of locals.imagini) { %>
+    
+
+        <% 
+        const roman = [
+            "I","II","III","IV","V","VI","VII","VIII","IX","X",
+            "XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX",
+            "XXI","XXII","XXIII","XXIV","XXV","XXVI","XXVII","XXVIII","XXIX","XXX"
+            ];
+
+        let idx = 0;
+        %>
+
+        <% for (let imag of imagini) { 
+
+            // PNG original (desktop)
+            const fisier_png = imag.fisier;   // deja setat în initImagini()
+
+            // WEBP pentru telefon/tabletă (generat de initImagini)
+            const fisier_webp = imag.fisier_mediu;
+
+            const altText = imag.continut_alternativ || imag.nume_poza;
+        %>
+
             <figure>
                 <picture>
-                    <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1100px)">
-                    <img src="<%- imag.fisier%>" alt="briose">
+                    <!-- telefon -->
+                    <source srcset="<%= fisier_webp %>" media="(max-width:600px)" type="image/webp">
+
+                    <!-- tabletă -->
+                    <source srcset="<%= fisier_webp %>" media="(max-width:1100px)" type="image/webp">
+
+                    <!-- desktop (PNG) -->
+                    <img 
+                        src="<%= fisier_png %>" 
+                        alt="<%= altText %>" 
+                        title="<%= imag.descriere %>"
+                        loading="lazy">
                 </picture>
-                <figcaption><%- imag.descriere %></figcaption>
+
+                <figcaption>
+                    <%= roman[idx] || (idx+1) %>. <%= imag.nume_poza %>
+                </figcaption>
             </figure>
-        <% } %>
 
-
-        <figure>
-            <div>
-                <img src="/resurse/imagini/ceramica-pictata.webp" alt="ceramică pictată" loading="lazy">
-            </div>
-            <figcaption>Ceramică pictată manual</figcaption>
-        </figure>
-
-        <figure>
-            <img src="/resurse/imagini/lumanare-parfumata.webp" alt="lumânare artizanală" loading="lazy">
-            <figcaption>Lumânare parfumată artizanală</figcaption>
-        </figure>
-
-        <figure>
-            <img src="/resurse/imagini/bratara-impletita.webp" alt="brățară împletită" loading="lazy">
-            <figcaption>Brățară împletită manual</figcaption>
-        </figure>
-
-        <figure>
-            <img src="/resurse/imagini/agenda-handmade.webp" alt="agendă handmade" loading="lazy">
-            <figcaption>Agendă legată manual</figcaption>
-        </figure>
-
-        <figure>
-            <img src="/resurse/imagini/ornament-lemn.webp" alt="ornament din lemn" loading="lazy">
-            <figcaption>Ornament sculptat în lemn</figcaption>
-        </figure>
-
-        <figure>
-            <img src="/resurse/imagini/cercei-argila.webp" alt="cercei din argilă" loading="lazy">
-            <figcaption>Cercei din argilă polimerică</figcaption>
-        </figure>
-
-        <figure>
-            <img src="/resurse/imagini/tesatura-artizanala.webp" alt="țesătură artizanală" loading="lazy">
-            <figcaption>Țesătură artizanală</figcaption>
-        </figure>
+        <% idx++; } %>
 
     </div>
     <hr>

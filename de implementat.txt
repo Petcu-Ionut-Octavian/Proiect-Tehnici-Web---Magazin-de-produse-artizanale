@@ -27,15 +27,81 @@ ctrl + f     ca sa dam replace all
 
 
 
-Bonusuri HTML
-1   423
-2   731
-3   990
-4   1043
-5   669
 
 
 
 
 
 
+
+
+
+
+
+app.get("/*pagina", function(req, res){
+    console.log("Cale pagina", req.url);
+
+    // Daca cererea e pentru un folder / cale fara extensie, returnam 403 (interzis)
+    if (path.extname(req.url)=="") {
+        afisareEroare(res,403, "403 - Acces interzis", "Nu este permis accesul direct la un folder.");
+        return;
+    }
+
+    if (req.url.startsWith("/resurse") && path.extname(req.url)==""){
+        afisareEroare(res,403);
+        return;
+    }
+    if (path.extname(req.url)==".ejs"){
+        afisareEroare(res,400);
+        return;
+    }
+    try{
+        res.render("pagini"+req.url, function(err, rezRandare){
+            if (err){
+                if (err.message.includes("Failed to lookup view")){
+                    afisareEroare(res,404)
+                }
+                else{
+                    afisareEroare(res);
+                }
+            }
+            else{
+                res.send(rezRandare);
+                console.log("Rezultat randare", rezRandare);
+            }
+        });
+    }
+    catch(err){
+        if (err.message.includes("Cannot find module")){
+            afisareEroare(res,404)
+        }
+        else{
+            afisareEroare(res);
+        }
+    }
+});
+
+
+
+
+
+
+
+
+
+<% for(let imag of locals.imagini) { %>
+            <figure>
+                <picture>
+                    <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1100px)">
+                    <img src="<%- imag.fisier%>" alt="briose" loading="lazy">
+                </picture>
+                <figcaption><%- imag.descriere %></figcaption>
+            </figure>
+        <% } %>
+
+
+
+
+
+
+vezi ce e cu imaginea: produs-mic.webp

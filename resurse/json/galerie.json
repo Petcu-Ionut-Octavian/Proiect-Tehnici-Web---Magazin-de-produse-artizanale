@@ -1,41 +1,96 @@
 {
-	"cale_galerie":"resurse/imagini/galerie",
-	"imagini": [
-		{
-			"fisier":"briose-frisca.png",
-			"descriere":"Brioșe",
-			"luni":["martie","februarie","noiembrie","aprilie", "decembrie","octombrie"]
-		},
-		{
-			"fisier":"clatite.png",
-			"descriere":"Clătite cu dulceață",
-			"luni":["ianuarie","februarie","iunie","octombrie"]
-			
-		},
-		{
-			"fisier":"gogosi.png",
-			"descriere":"Gogoși glazurate",
-			"luni":["ianuarie","noiembrie","iunie","martie","aprilie"]
-		},
-		{
-			"fisier":"tort-scortisoara.png",
-			"descriere":"Tort cu scorțisoară",
-			
-			"luni":["noiembrie","aprilie", "decembrie"]
-		},
-		{
-			"fisier":"prajitura-ciocolata.png",
-			"descriere":"Prăjitură cu ciocolată",
-			
-			"luni":["noiembrie","aprilie", "decembrie","octombrie"]
-		},
-		{
-			"fisier":"tarta-afine.png",
-			"descriere":"Tartă cu afine"
-		},
-		{
-			"fisier":"tort-trandafiri.png",
-			"descriere":"Tort special"
-		}
-	]
+  "cale_galerie": "resurse/imagini/galerie",
+  "imagini": [
+    {
+      "fisier": "canuta-ceramica.png",
+      "descriere": "Cănuță ceramică lucrată manual",
+      "continut_alternativ": "Cănuță ceramică artizanală",
+      "nume_poza": "Cănuță ceramică lucrată manual",
+      "intervale_zile": [["luni", "miercuri"], ["sambata", "sambata"]]
+    },
+    {
+      "fisier": "lumanare-soia.png",
+      "descriere": "Lumânare parfumată din soia",
+      "continut_alternativ": "Lumânare artizanală din ceară de soia",
+      "nume_poza": "Lumânare parfumată din soia",
+      "intervale_zile": [["joi", "duminica"]]
+    },
+    {
+      "fisier": "sapun-natural.png",
+      "descriere": "Săpun natural cu plante",
+      "continut_alternativ": "Săpun artizanal cu plante",
+      "nume_poza": "Săpun natural cu plante",
+      "intervale_zile": [["luni", "vineri"]]
+    },
+    {
+      "fisier": "tablou-brodat.png",
+      "descriere": "Tablou brodat manual",
+      "continut_alternativ": "Tablou decorativ brodat",
+      "nume_poza": "Tablou brodat manual",
+      "intervale_zile": [["miercuri", "duminica"]]
+    },
+    {
+      "fisier": "cercei-argila.png",
+      "descriere": "Cercei din argilă polimerică",
+      "continut_alternativ": "Cercei artizanali din argilă",
+      "nume_poza": "Cercei din argilă polimerică",
+      "intervale_zile": [["marti", "joi"]]
+    },
+    {
+      "fisier": "saculet-lavanda.png",
+      "descriere": "Săculeț cu lavandă",
+      "continut_alternativ": "Săculeț textil cu lavandă",
+      "nume_poza": "Săculeț cu lavandă",
+      "intervale_zile": [["vineri", "duminica"]]
+    },
+    {
+      "fisier": "ceramica-pictata.png",
+      "descriere": "Ceramică pictată manual",
+      "continut_alternativ": "ceramică pictată",
+      "nume_poza": "Ceramică pictată manual",
+      "intervale_zile": [["luni", "duminica"]]
+    },
+    {
+      "fisier": "lumanare-parfumata.png",
+      "descriere": "Lumânare parfumată artizanală",
+      "continut_alternativ": "lumânare artizanală",
+      "nume_poza": "Lumânare parfumată artizanală",
+      "intervale_zile": [["marti", "vineri"]]
+    },
+    {
+      "fisier": "bratara-impletita.png",
+      "descriere": "Brățară împletită manual",
+      "continut_alternativ": "brățară împletită",
+      "nume_poza": "Brățară împletită manual",
+      "intervale_zile": [["miercuri", "sambata"]]
+    },
+    {
+      "fisier": "agenda-handmade.png",
+      "descriere": "Agendă legată manual",
+      "continut_alternativ": "agendă handmade",
+      "nume_poza": "Agendă handmade",
+      "intervale_zile": [["luni", "luni"]]
+    },
+    {
+      "fisier": "ornament-lemn.png",
+      "descriere": "Ornament sculptat în lemn",
+      "continut_alternativ": "ornament din lemn",
+      "nume_poza": "Ornament sculptat în lemn",
+      "intervale_zile": [["joi", "duminica"]]
+    },
+    {
+      "fisier": "cercei-argila2.png",
+      "descriere": "Cercei din argilă polimerică",
+      "continut_alternativ": "cercei din argilă",
+      "nume_poza": "Cercei din argilă polimerică",
+      "intervale_zile": [["marti", "marti"]]
+    },
+    {
+      "fisier": "tesatura-artizanala.png",
+      "descriere": "Țesătură artizanală",
+      "continut_alternativ": "țesătură artizanală",
+      "nume_poza": "Țesătură artizanală",
+      "intervale_zile": [["vineri", "duminica"]]
+    }
+  ]
 }

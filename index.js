@@ -12,7 +12,6 @@ try {
 app= express();
 app.set("view engine", "ejs")
 
-
 obGlobal={
     obErori:null,
     obImagini:null,
@@ -25,44 +24,20 @@ console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
 
+let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ]
+for (let folder of vect_foldere){
+    let caleFolder=path.join(__dirname, folder);
+    if (!fs.existsSync(caleFolder)) {
+        fs.mkdirSync(path.join(caleFolder), {recursive:true});   
+    }
+}
+
 app.use("/resurse",express.static(path.join(__dirname, "resurse")));
-
-
-app.get(["/", "/index", "/home"], function(req, res){
-    try {
-        res.render("pagini/index", {
-            imagini: obGlobal.obImagini.imagini
-        });
-    } catch (err) {
-        console.error("Eroare la render index:", err);
-        afisareEroare(res, 500, "Eroare la încărcarea paginii", "A apărut o problemă la afișarea paginii principale.");
-    }
-});
-
-app.get("/index2", function(req, res){
-    try {
-        res.render("pagini/index2", {
-            imagini: obGlobal.obImagini.imagini
-        });
-    } catch (err) {
-        console.error("Eroare la render index:", err);
-        afisareEroare(res, 500, "Eroare la încărcarea paginii", "A apărut o problemă la afișarea paginii principale.");
-    }
-});
-
-
-app.get("/despre", function(req, res){
-    try {
-        res.render("pagini/despre");
-    } catch (err) {
-        console.error("Eroare la render despre:", err);
-        afisareEroare(res, 500, "Eroare la încărcarea paginii", "A apărut o problemă la afișarea paginii despre noi.");
-    }
-});
+app.use("/dist",express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
 
 
 
-
+// ERORI
 function initErori(){
     let continut = fs.readFileSync(path.join(__dirname,"resurse/json/erori.json")).toString("utf-8");
     let erori=obGlobal.obErori=JSON.parse(continut)
@@ -75,8 +50,22 @@ function initErori(){
 }
 initErori()
 
+function afisareEroare(res, identificator = 0, titlu, text, imagine){
+    let eroare = obGlobal.obErori.info_erori.find(elem => elem.identificator == identificator);
+    let eroareDefault = obGlobal.obErori.eroare_default;
+    if(eroare?.status)
+        res.status(eroare.identificator);
+    res.render("pagini/eroare", {
+        imagine: imagine || eroare?.imagine || eroareDefault.imagine,
+        titlu: titlu || eroare?.titlu || eroareDefault.titlu,
+        text: text || eroare?.text || eroareDefault.text
+    });
+};
 
 
+
+
+// SCSS
 function compileazaScss(caleScss, caleCss){
     if(!caleCss){
 
@@ -131,36 +120,66 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
     }
 })
 
-function afisareEroare(res, identificator = 0, titlu, text, imagine){
-    let eroare = obGlobal.obErori.info_erori.find(elem => elem.identificator == identificator);
-    let eroareDefault = obGlobal.obErori.eroare_default;
-    if(eroare?.status)
-        res.status(eroare.identificator);
-    res.render("pagini/eroare", {
-        imagine: imagine || eroare?.imagine || eroareDefault.imagine,
-        titlu: titlu || eroare?.titlu || eroareDefault.titlu,
-        text: text || eroare?.text || eroareDefault.text
-    });
-};
 
 
-app.use((req, res) => {
-    afisareEroare(res, 404);
+
+
+
+// IMAGINI
+function initImagini(){
+    var continut= fs.readFileSync(path.join(__dirname,"resurse/json/galerie.json")).toString("utf-8");
+
+    obGlobal.obImagini=JSON.parse(continut);
+    let vImagini=obGlobal.obImagini.imagini;
+    let caleGalerie=obGlobal.obImagini.cale_galerie;
+
+    let caleAbs=path.join(__dirname,caleGalerie);
+    let caleAbsMediu=path.join(caleAbs, "mediu");
+    if (!fs.existsSync(caleAbsMediu))
+        fs.mkdirSync(caleAbsMediu);
+    
+    for (let imag of vImagini){
+        [numeFis, ext]=imag.fisier.split("."); //"ceva.png" -> ["ceva", "png"]
+        let caleFisAbs=path.join(caleAbs,imag.fisier);
+        let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
+        sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
+        imag.fisier_mediu=path.join("/", caleGalerie, "mediu", numeFis+".webp" )
+        imag.fisier=path.join("/", caleGalerie, imag.fisier )
+        
+    }
+    // console.log(obGlobal.obImagini)
+}
+initImagini();
+
+
+
+
+// PENTRU ID
+app.use(function(req, res, next){
+    res.locals.ip = req.ip;
+    next();
 });
 
-app.use((err, req, res, next) => {
-    console.error('Eroare internă', err);
-    afisareEroare(res, 500, '500 - Eroare internă', 'Ceva nu a mers bine pe server. Încearcă din nou mai târziu.');
+
+
+// GETTURILE
+app.get(["/", "/index", "/home"], function(req, res){
+    try {
+        res.render("pagini/index", {
+            imagini: obGlobal.obImagini.imagini
+        });
+    } catch (err) {
+        console.error("Eroare la render index:", err);
+        afisareEroare(res, 500, "Eroare la încărcarea paginii", "A apărut o problemă la afișarea paginii principale.");
+    }
+});
+
+app.get("/favicon.ico", function(req, res){
+    res.sendFile(path.join(__dirname,"resurse/imagini/favicon/favicon.ico"))
 });
 
 app.get("/*pagina", function(req, res){
     console.log("Cale pagina", req.url);
-
-    // Daca cererea e pentru un folder / cale fara extensie, returnam 403 (interzis)
-    if (path.extname(req.url)=="") {
-        afisareEroare(res,403, "403 - Acces interzis", "Nu este permis accesul direct la un folder.");
-        return;
-    }
 
     if (req.url.startsWith("/resurse") && path.extname(req.url)==""){
         afisareEroare(res,403);
@@ -196,42 +215,17 @@ app.get("/*pagina", function(req, res){
     }
 });
 
-app.get("/favicon.ico", function(req, res){
-    res.sendFile(path.join(__dirname,"resurse/imagini/favicon/favicon.ico"))
+app.use((req, res) => {
+    afisareEroare(res, 404);
 });
 
-let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ]
-for (let folder of vect_foldere){
-    let caleFolder=path.join(__dirname, folder);
-    if (!fs.existsSync(caleFolder)) {
-        fs.mkdirSync(path.join(caleFolder), {recursive:true});   
-    }
-}
+app.use((err, req, res, next) => {
+    console.error('Eroare internă', err);
+    afisareEroare(res, 500, '500 - Eroare internă', 'Ceva nu a mers bine pe server. Încearcă din nou mai târziu.');
+});
 
-function initImagini(){
-    var continut= fs.readFileSync(path.join(__dirname,"resurse/json/galerie.json")).toString("utf-8");
 
-    obGlobal.obImagini=JSON.parse(continut);
-    let vImagini=obGlobal.obImagini.imagini;
-    let caleGalerie=obGlobal.obImagini.cale_galerie
 
-    let caleAbs=path.join(__dirname,caleGalerie);
-    let caleAbsMediu=path.join(caleAbs, "mediu");
-    if (!fs.existsSync(caleAbsMediu))
-        fs.mkdirSync(caleAbsMediu);
-    
-    for (let imag of vImagini){
-        [numeFis, ext]=imag.fisier.split("."); //"ceva.png" -> ["ceva", "png"]
-        let caleFisAbs=path.join(caleAbs,imag.fisier);
-        let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
-        sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
-        imag.fisier_mediu=path.join("/", caleGalerie, "mediu", numeFis+".webp" )
-        imag.fisier=path.join("/", caleGalerie, imag.fisier )
-        
-    }
-    // console.log(obGlobal.obImagini)
-}
-initImagini();
 
 app.listen(8080);
 console.log("Serverul a pornit!");

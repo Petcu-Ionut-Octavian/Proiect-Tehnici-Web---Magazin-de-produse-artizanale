@@ -12,18 +12,43 @@
 
         <area shape="circle"
             coords="208,285,115"
-            href="#promotii"
+            href="/index#promotii"
             alt="Coliere handmade">
 
         <area shape="rect"
             coords="435,110,803,267"
-            href="#produse"
+            href="/despre#produse"
             alt="Accesorii handmade">
 
         <area shape="poly"
             coords="612,290,737,326,759,407,651,488,580,476,529,354"
-            href="#favorite"
+            href="/index#favorite"
             alt="Decorațiuni handmade">
 
     </map>
+
+    <div class="container-video" id = "video-vtt">
+        <video controls preload="metadata" poster="/resurse/imagini/poster-video.webp">
+            <!-- sursa 1 -->
+            <source src="/resurse/video/clip.mp4" type="video/mp4">
+            <!-- sursa 2 -->
+            <source src="/resurse/video/clip.ogv" type="video/ogg">
+
+            <!-- track română (default) -->
+            <track src="/resurse/video/tracks/ro.vtt" 
+                kind="subtitles" 
+                srclang="ro" 
+                label="Română" 
+                default>
+
+            <!-- track engleză -->
+            <track src="/resurse/video/tracks/en.vtt" 
+                kind="subtitles" 
+                srclang="en" 
+                label="English">
+
+            Browserul tău nu suportă elementul video.
+        </video>
+    </div>
+
 </section>

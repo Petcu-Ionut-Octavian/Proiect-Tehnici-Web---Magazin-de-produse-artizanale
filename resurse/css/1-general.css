@@ -236,3 +236,13 @@ main a:active {
   border: 2px solid var(--color-3);
   border-radius: 4px;
 }
+
+#banner.banner-avertizare {
+  background-color: #5de550;
+  color: #4a0000;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #c70101;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+}

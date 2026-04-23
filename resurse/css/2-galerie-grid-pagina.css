@@ -1,0 +1,28 @@
+#grid-galerie {
+  display: grid;
+  gap: 15px;
+  padding: 10px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#grid-galerie figure {
+  grid-column: var(--col-desktop);
+  grid-row: var(--row);
+}
+
+@media (max-width: 1100px) {
+  #grid-galerie {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #grid-galerie figure {
+    grid-column: var(--col-tablet);
+  }
+}
+@media (max-width: 700px) {
+  #grid-galerie {
+    grid-template-columns: 1fr;
+  }
+  #grid-galerie figure {
+    grid-column: auto;
+  }
+}

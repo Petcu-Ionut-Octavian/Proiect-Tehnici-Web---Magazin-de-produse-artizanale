@@ -16,6 +16,16 @@
         let idx = 0;
         %>
 
+        <%
+        let p = idx % 4;
+        let col;
+
+        if (p === 0) col = 1;      
+        else if (p === 1) col = 2; 
+        else if (p === 2) col = 3; 
+        else if (p === 3) col = 2; 
+        %>
+
         <% for (let imag of imagini) { 
 
             // PNG original (desktop)
@@ -27,26 +37,42 @@
             const altText = imag.continut_alternativ || imag.nume_poza;
         %>
 
-            <figure>
-                <picture>
-                    <!-- telefon -->
-                    <source srcset="<%= fisier_webp %>" media="(max-width:600px)" type="image/webp">
+        <%
+        let p = idx % 4;
+        let col;
 
-                    <!-- tabletă -->
-                    <source srcset="<%= fisier_webp %>" media="(max-width:1100px)" type="image/webp">
+        if (p === 0) col = 1;      // x o o
+        else if (p === 1) col = 2; // o x o
+        else if (p === 2) col = 3; // o o x
+        else if (p === 3) col = 2; // o x o
 
-                    <!-- desktop (PNG) -->
-                    <img 
-                        src="<%= fisier_png %>" 
-                        alt="<%= altText %>" 
-                        title="<%= imag.descriere %>"
-                        loading="lazy">
-                </picture>
+        // tabletă (2 coloane)
+        let colTablet;
+        if (p === 0) colTablet = 1;
+        else if (p === 1) colTablet = 2;
+        else if (p === 2) colTablet = 1;
+        else if (p === 3) colTablet = 2;
+        
 
-                <figcaption>
-                    <%= roman[idx] || (idx+1) %>. <%= imag.nume_poza %>
-                </figcaption>
-            </figure>
+        %>
+
+        <figure style="--col-desktop:<%= col %>; --col-tablet:<%= colTablet %>; --row:<%= idx+1 %>;
+    ">
+            <picture>
+                <source srcset="<%= fisier_webp %>" media="(max-width:600px)" type="image/webp">
+                <source srcset="<%= fisier_webp %>" media="(max-width:1100px)" type="image/webp">
+                <img 
+                    src="<%= fisier_png %>" 
+                    alt="<%= altText %>" 
+                    title="<%= imag.descriere %>"
+                    loading="lazy">
+            </picture>
+
+            <figcaption>
+                <%= roman[idx] || (idx+1) %>. <%= imag.nume_poza %>
+            </figcaption>
+        </figure>
+
 
         <% idx++; } %>
 

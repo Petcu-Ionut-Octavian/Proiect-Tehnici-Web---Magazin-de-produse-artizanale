@@ -1,0 +1,2 @@
+User: postgres
+Parola: Octavian2005

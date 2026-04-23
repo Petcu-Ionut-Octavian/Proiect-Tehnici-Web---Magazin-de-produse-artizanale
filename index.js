@@ -165,12 +165,38 @@ app.use(function(req, res, next){
 // GETTURILE
 app.get(["/", "/index", "/home"], function(req, res){
     try {
-        res.render("pagini/index", {
-            imagini: obGlobal.obImagini.imagini
+        const azi = new Date();
+        const zile = ["duminica", "luni", "marti", "miercuri", "joi", "vineri", "sambata"];
+        const ziCurenta = zile[azi.getDay()]; // ex: "joi"
+
+        function ziInInterval(zi, interval) {
+            const [start, end] = interval;
+            const idxStart = zile.indexOf(start);
+            const idxEnd = zile.indexOf(end);
+            const idxZi = zile.indexOf(zi);
+
+            if (idxStart <= idxEnd) {
+                // interval normal: luni–miercuri
+                return idxZi >= idxStart && idxZi <= idxEnd;
+            } else {
+                // interval care trece peste duminică: vineri–marti
+                return idxZi >= idxStart || idxZi <= idxEnd;
+            }
+        }
+
+        const imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => {
+            // img.intervale_zile este o LISTĂ de intervale
+            return img.intervale_zile.some(interval => ziInInterval(ziCurenta, interval));
         });
+
+        res.render("pagini/galerie", {
+            imagini: imaginiFiltrate,
+            caleGalerie: obGlobal.obImagini.cale_galerie
+        });
+
     } catch (err) {
-        console.error("Eroare la render index:", err);
-        afisareEroare(res, 500, "Eroare la încărcarea paginii", "A apărut o problemă la afișarea paginii principale.");
+        console.error("Eroare la render galerie:", err);
+        afisareEroare(res, 500, "Eroare la încărcarea galeriei", "A apărut o problemă la afișarea paginii galeriei.");
     }
 });
 

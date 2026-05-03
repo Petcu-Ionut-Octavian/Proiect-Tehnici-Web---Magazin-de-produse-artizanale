@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <title>Artizania - Produs</title>
+    <meta name="description" content="Magazin de produse artizanale handmade: decorațiuni, accesorii, cadouri personalizate și creații unicat realizate de artizani locali.">
+    <meta name="keywords" content="Artizania, handmade, produse handmade, artizani locali, obiecte realizate manual, decorațiuni handmade, accesorii handmade, cosmetice naturale, cadouri personalizate, produse unicat, materiale pentru creație, fire și textile, materiale naturale, seturi DIY, accesorii meșteșug, ambalaje artizanale, lumânări parfumate, ceramică pictată manual, decorațiuni din lemn, accesorii textile brodate, comunitate artizani, creații autentice, produse artizanale România">
+
+    <%- include('../fragmente/0-head.ejs') %>
+
+    <link rel="stylesheet" href="/resurse/css/10-produs.css">
+
+</head>
+
+<body>
+
+    <%- include("../fragmente/1-header") %>
+
+
+<main>
+    <section>
+        <h2>Pagină produs</h2>
+
+        <article id="art-produs">
+
+            <h3 class="nume"><%- prod.nume %></h3>
+
+            <p class="pret">
+                Preț: <span><%- prod.pret %> lei</span>
+            </p>
+
+            <p class="descriere">
+                Descriere: <span><%- prod.descriere %></span>
+            </p>
+
+            <p class="greutate">
+                Greutate: <span><%- prod.greutate %> g</span>
+            </p>
+
+            <p class="complexitate">
+                Complexitate: <span><%- prod.complexitate %></span>
+            </p>
+
+            <p class="tip">
+                Tip articol: <span><%- prod.tip_articol %></span>
+            </p>
+
+            <p class="categorie">
+                Categorie: <span><%- prod.categorie %></span>
+            </p>
+
+            <p class="materiale">
+                Materiale:
+                <span>
+                    <%- prod.materiale && prod.materiale.length ? prod.materiale.join(", ") : "—" %>
+                </span>
+            </p>
+
+            <p class="eco">
+                Ecologic: <span><%- prod.este_ecologic ? "Da" : "Nu" %></span>
+            </p>
+
+            <p class="data">
+                Data adăugare: <span><%- prod.data_adaugare.toLocaleString() %></span>
+            </p>
+
+            <figure class="imag-produs">
+                <img src="/resurse/imagini/produse/<%- prod.imagine %>"
+                     alt="[imagine <%- prod.nume %>]">
+            </figure>
+
+        </article>
+    </section>
+</main>
+
+
+    <%- include("../fragmente/2-footer") %>
+
+</body>
+
+</html>

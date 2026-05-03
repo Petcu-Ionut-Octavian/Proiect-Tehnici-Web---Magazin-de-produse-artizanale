@@ -34,26 +34,35 @@
   border-bottom: 3px solid var(--color-4);
 }
 #tab-orar tbody tr:nth-child(even) {
-  border-bottom: 1px solid var(--color-3);
+  border-bottom: 2px solid var(--color-3);
 }
 #tab-orar tbody tr:nth-child(even) td {
   background-color: var(--color-2);
 }
-#tab-orar tbody tr:nth-child(odd) {
-  border-bottom: 1px solid var(--color-4);
+#tab-orar tbody tr:nth-child(even):hover td,
+#tab-orar tbody tr:nth-child(even):hover th {
+  outline: 6px solid var(--color-5);
+  outline-offset: -3px;
 }
-#tab-orar tbody tr td,
-#tab-orar tbody tr th {
-  transition: outline 0.5s ease;
+#tab-orar tbody tr:nth-child(even):hover td[rowspan],
+#tab-orar tbody tr:nth-child(even):hover th[rowspan] {
+  outline: none !important;
+}
+#tab-orar tbody tr:nth-child(odd) {
+  border-bottom: 2px solid var(--color-4);
 }
 #tab-orar tbody tr:hover td,
 #tab-orar tbody tr:hover th {
-  outline: 6px solid rgba(0, 0, 0, 0.7);
+  outline: 6px solid var(--color-4);
   outline-offset: -3px;
 }
 #tab-orar tbody tr:hover td[rowspan],
 #tab-orar tbody tr:hover th[rowspan] {
   outline: none !important;
+}
+#tab-orar tbody tr td,
+#tab-orar tbody tr th {
+  transition: outline 0.5s ease;
 }
 #tab-orar tbody td {
   padding: 10px;

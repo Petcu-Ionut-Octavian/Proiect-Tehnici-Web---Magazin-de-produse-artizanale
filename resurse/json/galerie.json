@@ -3,91 +3,91 @@
   "imagini": [
     {
       "fisier": "canuta-ceramica.png",
-      "descriere": "Cănuță ceramică lucrată manual",
+      "descriere": "Cănuță ceramică modelată și pictată manual, cu detalii fine și textură naturală.",
       "continut_alternativ": "Cănuță ceramică artizanală",
       "nume_poza": "Cănuță ceramică lucrată manual",
       "intervale_zile": [["luni", "miercuri"], ["sambata", "sambata"]]
     },
     {
       "fisier": "lumanare-soia.png",
-      "descriere": "Lumânare parfumată din soia",
+      "descriere": "Lumânare parfumată turnată din ceară de soia, cu aromă delicată și ardere curată.",
       "continut_alternativ": "Lumânare artizanală din ceară de soia",
       "nume_poza": "Lumânare parfumată din soia",
       "intervale_zile": [["joi", "duminica"]]
     },
     {
       "fisier": "sapun-natural.png",
-      "descriere": "Săpun natural cu plante",
+      "descriere": "Săpun natural realizat din plante și uleiuri esențiale, blând cu pielea.",
       "continut_alternativ": "Săpun artizanal cu plante",
       "nume_poza": "Săpun natural cu plante",
       "intervale_zile": [["luni", "vineri"]]
     },
     {
       "fisier": "tablou-brodat.png",
-      "descriere": "Tablou brodat manual",
+      "descriere": "Tablou brodat manual, cu motive decorative realizate prin tehnici tradiționale.",
       "continut_alternativ": "Tablou decorativ brodat",
       "nume_poza": "Tablou brodat manual",
       "intervale_zile": [["miercuri", "duminica"]]
     },
     {
       "fisier": "cercei-argila.png",
-      "descriere": "Cercei din argilă polimerică",
+      "descriere": "Cercei din argilă polimerică, modelați și finisați manual pentru un aspect unic.",
       "continut_alternativ": "Cercei artizanali din argilă",
       "nume_poza": "Cercei din argilă polimerică",
       "intervale_zile": [["marti", "joi"]]
     },
     {
       "fisier": "saculet-lavanda.png",
-      "descriere": "Săculeț cu lavandă",
+      "descriere": "Săculeț textil umplut cu lavandă naturală, perfect pentru parfumarea spațiilor.",
       "continut_alternativ": "Săculeț textil cu lavandă",
       "nume_poza": "Săculeț cu lavandă",
       "intervale_zile": [["vineri", "duminica"]]
     },
     {
       "fisier": "ceramica-pictata.png",
-      "descriere": "Ceramică pictată manual",
+      "descriere": "Piesă de ceramică pictată manual, cu motive artistice și culori vibrante.",
       "continut_alternativ": "ceramică pictată",
       "nume_poza": "Ceramică pictată manual",
       "intervale_zile": [["luni", "duminica"]]
     },
     {
       "fisier": "lumanare-parfumata.png",
-      "descriere": "Lumânare parfumată artizanală",
+      "descriere": "Lumânare artizanală parfumată, turnată manual și decorată cu grijă.",
       "continut_alternativ": "lumânare artizanală",
       "nume_poza": "Lumânare parfumată artizanală",
       "intervale_zile": [["marti", "vineri"]]
     },
     {
       "fisier": "bratara-impletita.png",
-      "descriere": "Brățară împletită manual",
+      "descriere": "Brățară împletită manual din fire rezistente, cu design minimalist și natural.",
       "continut_alternativ": "brățară împletită",
       "nume_poza": "Brățară împletită manual",
       "intervale_zile": [["miercuri", "sambata"]]
     },
     {
       "fisier": "agenda-handmade.png",
-      "descriere": "Agendă legată manual",
+      "descriere": "Agendă legată manual, cu copertă artizanală și pagini de calitate.",
       "continut_alternativ": "agendă handmade",
       "nume_poza": "Agendă handmade",
       "intervale_zile": [["luni", "luni"]]
     },
     {
       "fisier": "ornament-lemn.png",
-      "descriere": "Ornament sculptat în lemn",
+      "descriere": "Ornament sculptat în lemn, realizat manual cu detalii fine și finisaj natural.",
       "continut_alternativ": "ornament din lemn",
       "nume_poza": "Ornament sculptat în lemn",
       "intervale_zile": [["joi", "duminica"]]
     },
     {
       "fisier": "cercei-argila2.png",
-      "descriere": "Cercei din argilă polimerică",
+      "descriere": "Cercei din argilă polimerică, creați manual în stil modern și ușor de purtat.",
       "continut_alternativ": "cercei din argilă",
       "nume_poza": "Cercei din argilă polimerică",
       "intervale_zile": [["marti", "marti"]]
     },
     {
       "fisier": "tesatura-artizanala.png",
-      "descriere": "Țesătură artizanală",
+      "descriere": "Țesătură artizanală realizată la război, cu modele tradiționale și textură autentică.",
       "continut_alternativ": "țesătură artizanală",
       "nume_poza": "Țesătură artizanală",
       "intervale_zile": [["vineri", "duminica"]]

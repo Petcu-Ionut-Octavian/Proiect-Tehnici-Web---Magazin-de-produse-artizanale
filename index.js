@@ -2,6 +2,7 @@ const express= require("express");
 const path= require("path");
 const fs=require("fs");
 const sharp = require("sharp");
+const pg = require("pg");
 let sass;
 try {
     sass = require("sass");
@@ -31,6 +32,27 @@ for (let folder of vect_foldere){
         fs.mkdirSync(path.join(caleFolder), {recursive:true});   
     }
 }
+
+// CONFIGURARE BAZA DE DATE
+client=new pg.Client({
+    database:"artizania_db",
+    user:"octavian",
+    password:"octavian",
+    host:"localhost",
+    port:5432
+})
+
+client.connect()
+
+// client.query("select * from articole", function(err,rez) {
+//     if (err){
+//         console.log("Eroare la interogare", err);
+//     } else {
+//         console.log("Rezultat interogare", rez);
+//     }
+// })
+
+
 
 app.use("/resurse",express.static(path.join(__dirname, "resurse")));
 app.use("/dist",express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
@@ -189,7 +211,7 @@ app.get(["/", "/index", "/home"], function(req, res){
             return img.intervale_zile.some(interval => ziInInterval(ziCurenta, interval));
         });
 
-        res.render("pagini/galerie", {
+        res.render("pagini/index", {
             imagini: imaginiFiltrate,
             caleGalerie: obGlobal.obImagini.cale_galerie
         });
@@ -236,6 +258,43 @@ app.get("/galerie", function(req, res){
         afisareEroare(res, 500, "Eroare la încărcarea galeriei", "A apărut o problemă la afișarea paginii galeriei.");
     }
 });
+
+app.get("/produse", function(req, res){
+    let clauzaWhere="";
+    if (req.query.tip){
+        clauzaWhere=` where tip_articol='${req.query.tip}'`
+    }
+    client.query(`select * from articole ${clauzaWhere}`, function(err, rez){
+        if (err){
+            console.log("Eroare la interogare", err);
+            afisareEroare(res, 2, "Eroare la încărcarea produselor", "A apărut o problemă la afișarea paginii produselor.");
+        } else {
+            console.log("Rezultat interogare", rez);
+            res.render("pagini/produse", {
+                articole: rez.rows,
+                optiuni:[]
+            });
+        }
+})});
+
+app.get("/produs/:id", function(req, res){
+    client.query(`select * from articole where id=${req.params.id}`, function(err, rez){
+        if (err){
+            console.log("Eroare la interogare", err);
+            afisareEroare(res, 2, "Eroare la încărcarea produselor", "A apărut o problemă la afișarea paginii produselor.");
+        } else {
+            if(rez.rowCount==0){
+                afisareEroare(res, 404, "Produs inexistent", "Produsul cu ID-ul specificat nu a fost găsit.");
+                return;
+            }
+            else {
+                console.log("Rezultat interogare", rez);
+                res.render("pagini/produs", {
+                    prod: rez.rows[0]
+                });
+            }
+        }
+})});
 
 app.get("/favicon.ico", function(req, res){
     res.sendFile(path.join(__dirname,"resurse/imagini/favicon/favicon.ico"))

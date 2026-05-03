@@ -1,7 +1,7 @@
 @charset "UTF-8";
 nav {
   --latime-buton: 140px;
-  --inaltime-buton: 40px;
+  --inaltime-buton: 50px;
   background-color: var(--color-4);
   padding: 10px;
   display: flex;
@@ -48,6 +48,9 @@ ul.meniu > li {
   position: relative;
   transition: 0.3s ease;
   border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 ul.meniu > li:hover {
   background-color: var(--color-5);

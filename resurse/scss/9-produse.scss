@@ -1,0 +1,126 @@
+#produse {
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
+
+.grid-produse {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.produs {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform .2s ease, box-shadow .2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .nume {
+    font-size: 1.1rem;
+    margin-bottom: .5rem;
+
+    a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+
+      &:hover {
+        color: #8a4baf;
+      }
+    }
+  }
+
+  .pret {
+    font-size: 1rem;
+    margin-bottom: .5rem;
+    color: #444;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: opacity .2s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+.val-pret {
+  font-weight: bold;
+  color: #8a4baf;
+}
+
+main {
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    margin: .5rem 1rem .5rem 0;
+    font-weight: 500;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select {
+    padding: .3rem .5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-left: 0;
+  }
+}
+
+
+button {
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: .3rem;
+  font-weight: 600;
+  transition: background .2s ease, transform .2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+#filtrare {
+  background: #982bd7;
+  color: white;
+}
+
+#resetare {
+  background: #f90808;
+}
+
+#sortCrescNume,
+#sortDescrescNume {
+  background: #23ff40;
+}
+
+@media (max-width: 600px) {
+  .grid-produse {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+
+  .produs {
+    padding: .7rem;
+  }
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <title>Artizania - Produse</title>
+    <meta name="description" content="Magazin de produse artizanale handmade: decorațiuni, accesorii, cadouri personalizate și creații unicat realizate de artizani locali.">
+    <meta name="keywords" content="Artizania, handmade, produse handmade, artizani locali, obiecte realizate manual, decorațiuni handmade, accesorii handmade, cosmetice naturale, cadouri personalizate, produse unicat, materiale pentru creație, fire și textile, materiale naturale, seturi DIY, accesorii meșteșug, ambalaje artizanale, lumânări parfumate, ceramică pictată manual, decorațiuni din lemn, accesorii textile brodate, comunitate artizani, creații autentice, produse artizanale România">
+
+    <%- include('../fragmente/0-head.ejs') %>
+
+    <link rel="stylesheet" href="/resurse/css/9-produse.css">
+
+    <script type="text/javascript" src=/resurse/js/produse.js></script>
+    <script type="text/javascript" src=/resurse/js/produse-cos.js></script>
+
+</head>
+
+    <body>
+
+    <%- include("../fragmente/1-header") %>
+
+    <main>
+
+
+
+        <label> Nume:
+            <input type="text" id="inp-nume">
+        </label>
+
+        <label> Preț minim:
+            <input type="range" id="inp-pret" value="0" min="0" max="200">
+            <span id="infoRange">(0)</span>
+        </label>
+
+        <label> Tip articol:
+            <select id="inp-tip">
+                <option value="toate" selected>Toate</option>
+                <option value="ceramica">Ceramică</option>
+                <option value="textile">Textile</option>
+                <option value="lemn">Lemn</option>
+                <option value="bijuterii">Bijuterii</option>
+                <option value="accesorii">Accesorii</option>
+            </select>
+        </label>
+
+        <label> Categorie:
+            <select id="inp-categorie" multiple>
+                <option value="toate" selected>Toate</option>
+                <option value="comun">Comun</option>
+                <option value="cadou">Cadou</option>
+                <option value="editie limitata">Ediție limitată</option>
+                <option value="decoratiune">Decorațiune</option>
+                <option value="pentru copii">Pentru copii</option>
+                <option value="comanda speciala">Comandă specială</option>
+            </select>
+        </label>
+
+        <div>
+            <p><label> Ecologic
+                <input type="radio" name="gr_ecologic" value="true">
+            </label></p>
+
+            <p><label> Non-ecologic
+                <input type="radio" name="gr_ecologic" value="false">
+            </label></p>
+
+            <p><label> Toate
+                <input type="radio" name="gr_ecologic" value="toate" checked>
+            </label></p>
+        </div>
+
+        <p>
+            <button id="filtrare">Filtrează</button>
+            <button id="resetare">Resetează</button><br>
+
+            <button id="sortCrescNume">Sortează crescător după preț și nume</button>
+            <button id="sortDescrescNume">Sortează descrescător după preț și nume</button>
+        </p>
+
+        <p id="p-suma">Apăsați Alt+"c" pentru suma prețurilor produselor afișate.</p>
+
+
+
+        <section id="produse">
+            <h2>Produse artizanale</h2>
+
+            <div class="grid-produse">
+                <% for (let art of articole) { %>
+                    <article class="produs">
+
+                        <h3 class="nume">
+                            <a href="/produs/<%- art.id %>">
+                                <span class="val-nume"><%- art.nume %></span>
+                            </a>
+                        </h3>
+
+                        <p class="pret">
+                            Preț: <span class="val-pret"><%- art.pret %> lei</span>
+                        </p>
+
+                        <!-- Astea TREBUIE adăugate pentru sortare-->
+                        <span class="tip" style="display:none;"><%- art.tip_articol %></span>
+                        <span class="categorie" style="display:none;"><%- art.categorie %></span>
+                        <span class="ecologic" style="display:none;"><%- art.este_ecologic %></span>
+
+                        <figure>
+                            <a href="/produs/<%- art.id %>">
+                                <img src="/resurse/imagini/produse/<%- art.imagine %>"
+                                    alt="[imagine <%- art.nume %>]"
+                                    style="width:50%;height:auto;">
+                            </a>
+                        </figure>
+
+                    </article>
+                <% } %>
+            </div>
+        </section>
+
+  
+
+    </main>
+
+    <%- include('../fragmente/2-footer.ejs') %>
+    </body>
+</html>

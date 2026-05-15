@@ -6,13 +6,15 @@ nav {
   padding: 10px;
   display: flex;
   flex-direction: row;
+  max-width: 100%;
 }
 
 ul.meniu,
 ul.meniu ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
+  max-width: 100%;
 }
 
 #hamburger {
@@ -31,6 +33,7 @@ ul.meniu ul {
 }
 
 ul.meniu {
+  z-index: 5;
   display: none;
   flex-direction: row;
   gap: 10px;
@@ -39,6 +42,7 @@ ul.meniu {
 ul.meniu > li {
   cursor: pointer;
   width: var(--latime-buton);
+  max-width: 14%;
   height: var(--inaltime-buton);
   background-color: var(--color-1);
   border: 2px solid var(--color-5);
@@ -46,7 +50,6 @@ ul.meniu > li {
   text-align: center;
   line-height: var(--inaltime-buton);
   position: relative;
-  transition: 0.3s ease;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -56,7 +59,7 @@ ul.meniu > li {
 ul.meniu > li:hover {
   background-color: var(--color-2);
   color: var(--color-1);
-  box-shadow: inset 0px 0px 15px 10px var(--color-5);
+  box-shadow: inset 0 0 15px 10px var(--color-5);
 }
 ul.meniu > li ul {
   display: none;
@@ -69,14 +72,16 @@ ul.meniu > li ul {
   padding: 5px 0;
   z-index: 10;
   animation: animatie_submeniu 0.3s ease;
+  transform-origin: top center;
 }
 ul.meniu > li ul li a {
   display: block;
+  font-size: 1.2vw;
   padding: 8px 15px;
   text-decoration: none;
   color: var(--color-5);
   white-space: nowrap;
-  transition: font-size 0.2s ease;
+  transition: font-size 0.2s cubic-bezier(0.84, 2.15, 0.6, -0.03);
 }
 ul.meniu > li ul li a::before {
   position: absolute;
@@ -86,7 +91,7 @@ ul.meniu > li ul li a::before {
 ul.meniu > li ul li a:hover {
   background-color: var(--color-5);
   color: var(--color-1);
-  font-size: 0.8em;
+  font-size: 1vw;
 }
 ul.meniu > li ul li a:hover::before {
   animation: animatie_sageata 1s forwards;
@@ -104,6 +109,8 @@ ul.meniu > li:hover ul {
 
 #ch-menu:checked + ul.meniu {
   display: flex;
+  transform-origin: center left;
+  animation: animatie_principala 0.5s ease-in-out forwards;
 }
 
 .text-icon,
@@ -119,7 +126,7 @@ ul.meniu > li:hover ul {
 
 @keyframes animatie_submeniu {
   0% {
-    opacity: 0;
+    opacity: 1;
     transform: scaleY(0);
   }
   100% {
@@ -129,27 +136,22 @@ ul.meniu > li:hover ul {
 }
 @keyframes animatie_sageata {
   0% {
-    left: 0px;
+    left: -1vw;
     opacity: 1;
   }
   100% {
-    left: 20px;
+    left: 0vw;
     opacity: 1;
   }
 }
-@media (max-width: 900px) {
-  ul.meniu {
-    flex-direction: column;
-    width: 100%;
+@keyframes animatie_principala {
+  0% {
+    opacity: 1;
+    transform: scaleX(0);
   }
-  ul.meniu > li {
-    width: 100%;
-  }
-  ul.meniu ul {
-    position: static;
-    border: none;
-    background: var(--color-2);
-    padding-left: 20px;
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
   }
 }
 #t {

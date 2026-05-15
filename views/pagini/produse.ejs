@@ -32,28 +32,40 @@
             <span id="infoRange">(0)</span>
         </label>
 
-        <label> Tip articol:
-            <select id="inp-tip">
+        <label> Categorie:
+            <select id="inp-categorie">
                 <option value="toate" selected>Toate</option>
-                <option value="ceramica">Ceramică</option>
-                <option value="textile">Textile</option>
-                <option value="lemn">Lemn</option>
-                <option value="bijuterii">Bijuterii</option>
-                <option value="accesorii">Accesorii</option>
+
+                <% for (let opt of optiuni) { %>
+                    <option value="<%= opt.categorie %>"><%= opt.categorie %></option>
+                <% } %>
             </select>
         </label>
 
-        <label> Categorie:
-            <select id="inp-categorie" multiple>
+
+        <label> Materiale:
+            <select id="inp-materiale" multiple>
                 <option value="toate" selected>Toate</option>
-                <option value="comun">Comun</option>
-                <option value="cadou">Cadou</option>
-                <option value="editie limitata">Ediție limitată</option>
-                <option value="decoratiune">Decorațiune</option>
-                <option value="pentru copii">Pentru copii</option>
-                <option value="comanda speciala">Comandă specială</option>
+                <option value="lemn">Lemn</option>
+                <option value="vopsea">Vopsea</option>
+                <option value="lac">Lac</option>
+                <option value="hartie">Hârtie</option>
+                <option value="textil">Textil</option>
+                <option value="lipici">Lipici</option>
+                <option value="metal">Metal</option>
+                <option value="plastic">Plastic</option>
+                <option value="pigment">Pigment</option>
+                <option value="snur">Șnur</option>
+                <option value="ceara">Ceară</option>
+                <option value="fitil">Fitil</option>
+                <option value="rama">Ramă</option>
+                <option value="umplutura">Umplutură</option>
+                <option value="flori">Flori</option>
+                <option value="rasina">Rășină</option>
+                <option value="tus">Tuș</option>
             </select>
         </label>
+
 
         <div>
             <p><label> Ecologic
@@ -102,6 +114,7 @@
                         <span class="tip" style="display:none;"><%- art.tip_articol %></span>
                         <span class="categorie" style="display:none;"><%- art.categorie %></span>
                         <span class="ecologic" style="display:none;"><%- art.este_ecologic %></span>
+                        <span class="materiale" style="display:none;"><%- art.materiale %></span>
 
                         <figure>
                             <a href="/produs/<%- art.id %>">

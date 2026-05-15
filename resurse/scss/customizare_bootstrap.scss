@@ -1,7 +1,67 @@
-@use '../../node_modules/bootstrap/scss/bootstrap.scss' with 
-(
-    $primary: red,
-    $secondary:purple,
-    
-)
+// ===============================
+// CUSTOMIZARE BOOTSTRAP PRIN SASS
+// ===============================
 
+// 1. Variabile personalizate proprii
+$brand-accent: #ffb347;
+$brand-dark: #2a1f1a;
+
+// 2. Variabile Bootstrap care NU pot fi suprascrise în "with()"
+//    (trebuie definite înainte de import)
+$font-family-sans-serif: "Poppins", "Segoe UI", sans-serif;
+
+// 3. Import Bootstrap cu variabile suprascrise prin "with()"
+@use "../../node_modules/bootstrap/scss/bootstrap" with (
+
+  // --- CULORI TEME ---
+  $primary: #c0392b,
+  $secondary: #8e44ad,
+
+  $theme-colors: (
+    "primary": #c0392b,
+    "secondary": #8e44ad,
+    "dark": #2a1f1a,
+    "light": #f8f1e7
+  ),
+
+  // --- CULORI FONT ---
+  $body-color: #2a1f1a,
+  $link-color: #c0392b,
+
+  // --- BREAKPOINTS CUSTOM ---
+  $grid-breakpoints: (
+    xs: 0,
+    sm: 600px,
+    md: 900px,
+    lg: 1300px,
+    xl: 1500px
+  ),
+
+  // --- BORDER RADIUS ---
+  $border-radius: 0.75rem,
+  $border-radius-lg: 1rem,
+  $border-radius-sm: 0.5rem,
+
+  // --- DIMENSIUNI HEADINGS ---
+  $h1-font-size: 3rem,
+  $h2-font-size: 2.4rem,
+  $h3-font-size: 1.9rem,
+  $h4-font-size: 1.5rem,
+  $h5-font-size: 1.2rem,
+  $h6-font-size: 1rem
+);
+
+// ===============================
+// REGULI EXTRA 
+// ===============================
+
+.btn-accent {
+  background-color: $brand-accent;
+  color: white;
+  border-radius: 0.75rem;
+  padding: 0.6rem 1.2rem;
+
+  &:hover {
+    background-color: darken($brand-accent, 10%);
+  }
+}

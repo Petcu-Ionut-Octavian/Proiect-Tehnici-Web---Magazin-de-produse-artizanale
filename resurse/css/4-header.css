@@ -1,6 +1,6 @@
 @charset "UTF-8";
 nav {
-  --latime-buton: 140px;
+  --latime-buton: 180px;
   --inaltime-buton: 50px;
   background-color: var(--color-4);
   padding: 10px;
@@ -51,10 +51,12 @@ ul.meniu > li {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: box-shadow 0.3s ease;
 }
 ul.meniu > li:hover {
-  background-color: var(--color-5);
+  background-color: var(--color-2);
   color: var(--color-1);
+  box-shadow: inset 0px 0px 15px 10px var(--color-5);
 }
 ul.meniu > li ul {
   display: none;
@@ -76,12 +78,20 @@ ul.meniu > li ul li a {
   white-space: nowrap;
   transition: font-size 0.2s ease;
 }
+ul.meniu > li ul li a::before {
+  position: absolute;
+  content: "→";
+  opacity: 0;
+}
 ul.meniu > li ul li a:hover {
   background-color: var(--color-5);
   color: var(--color-1);
   font-size: 0.8em;
 }
-ul.meniu > li ul li a:hover::before, ul.meniu > li ul li a:hover::after {
+ul.meniu > li ul li a:hover::before {
+  animation: animatie_sageata 1s forwards;
+}
+ul.meniu > li ul li a:hover::after {
   content: "✦";
   width: 6px;
   height: 6px;
@@ -115,6 +125,16 @@ ul.meniu > li:hover ul {
   100% {
     opacity: 1;
     transform: scaleY(1);
+  }
+}
+@keyframes animatie_sageata {
+  0% {
+    left: 0px;
+    opacity: 1;
+  }
+  100% {
+    left: 20px;
+    opacity: 1;
   }
 }
 @media (max-width: 900px) {

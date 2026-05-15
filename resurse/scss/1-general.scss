@@ -6,6 +6,23 @@
     --color-5: #3E2C1C;
 }
 
+// .dark {
+//   --color-1: #1E1A16;
+//   --color-2: #2A241F;
+//   --color-3: #3A3028;
+//   --color-4: #4A3E33;
+//   --color-5: #E8D7C3;
+// }
+
+.dark {
+  --color-1: #E4F4E7;  /* verde foarte deschis, pastel */
+  --color-2: #B7D9BD;  /* verde soft, natural */
+  --color-3: #7FB88A;  /* verde mediu, echilibrat */
+  --color-4: #4F8A5C;  /* verde închis, saturat */
+  --color-5: #1F3D26;  /* verde foarte închis, aproape negru */
+}
+
+
 body {
     background-color: var(--color-1);
 }
@@ -117,14 +134,49 @@ p {
     border-radius: 8px;
 }
 
+
+
+
+
+
+
+/* HR GENERAL */
 hr {
-    border: none;
-    height: 5px;
-    width: 60%;
-    margin: 40px auto;
-    background: linear-gradient(90deg, var(--color-4), var(--color-3), var(--color-4));
-    border-radius: 5px;
+  border: none;
+  height: 5px;
+  width: 60%;
+  margin: 40px auto;
+  background: linear-gradient(90deg, var(--color-4), var(--color-3), var(--color-4));
+  position: relative;
+  overflow: visible;
+  opacity: 1;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+
+  &::before {
+    left: 0;
+    border-left: 20px solid var(--color-5);   // spre interior
+  }
+
+  &::after {
+    right: 0;
+    border-right: 20px solid var(--color-5);  // spre interior
+  }
 }
+
+
+
+
+
+
 
 img {
     width: 100%;

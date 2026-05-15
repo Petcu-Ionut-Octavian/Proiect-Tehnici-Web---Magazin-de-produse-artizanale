@@ -76,6 +76,12 @@ main {
     font-weight: 500;
   }
 
+  /* când radio-ul din interior este bifat */
+  label:has(input:checked) {
+      background-color: #ef954b; /* verde pal */
+      border: 1px solid #690000;
+  }
+
   input[type="text"],
   input[type="number"],
   select {

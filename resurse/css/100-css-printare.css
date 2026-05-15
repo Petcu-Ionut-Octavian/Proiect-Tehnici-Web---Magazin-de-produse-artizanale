@@ -12,6 +12,11 @@ p#banner {
 }
 
 /* 2. Ascundem imaginile, videoclipurile, iframe-urile, media + descrieri */
+#pdf-ghid,
+#hamburger,
+#schimba_tema,
+.taburi-iframe,
+hr,
 img,
 video,
 iframe,
@@ -56,8 +61,11 @@ nav li {
   display: list-item !important;
   margin: 5px 0;
 }
-nav {
-  page-break-after: always;
+
+#t {
+  position: absolute;
+  top: 200px;
+  right: 40px;
 }
 
 /* Page break înainte de footer */
@@ -115,5 +123,10 @@ body::after {
 }
 
 section {
+  border: none !important;
+}
+
+body * {
+  padding: none !important;
   border: none !important;
 }

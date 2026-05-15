@@ -32,6 +32,109 @@ for (let folder of vect_foldere){
         fs.mkdirSync(path.join(caleFolder), {recursive:true});   
     }
 }
+ 
+// Verificarea din etapa 4 - erori.json
+function verificaEroriJSON() {
+    const caleFisier = path.join(__dirname, "resurse/json/erori.json");
+
+    // 1. Existența fișierului
+    if (!fs.existsSync(caleFisier)) {
+        console.error("[EROARE CRITICĂ] Fișierul erori.json NU există! Serverul se oprește.");
+        process.exit();
+    }
+
+    // 2. Citire brută pentru detectarea proprietăților duplicate
+    const continutBrut = fs.readFileSync(caleFisier, "utf-8");
+
+    // Detectare proprietăți duplicate în orice obiect JSON
+    const regexObj = /{[\s\S]*?}/g;
+    const obiecte = continutBrut.match(regexObj) || [];
+
+    for (let objText of obiecte) {
+        const regexProp = /"([^"]+)"\s*:/g;
+        let match;
+        const props = {};
+
+        while ((match = regexProp.exec(objText)) !== null) {
+            const prop = match[1];
+            if (props[prop]) {
+                console.error(`[EROARE] Proprietatea "${prop}" apare de mai multe ori în obiectul:\n${objText}`);
+            }
+            props[prop] = true;
+        }
+    }
+
+    // 3. Parsare JSON
+    let erori;
+    try {
+        erori = JSON.parse(continutBrut);
+    } catch (err) {
+        console.error("[EROARE] JSON invalid în erori.json:", err.message);
+        return;
+    }
+
+    // 4. Verificare proprietăți obligatorii
+    const propObl = ["info_erori", "cale_baza", "eroare_default"];
+    for (let p of propObl) {
+        if (!(p in erori)) {
+            console.error(`[EROARE] Lipsește proprietatea obligatorie "${p}" din erori.json`);
+        }
+    }
+
+    // 5. Verificare proprietăți obligatorii în eroarea default
+    const def = erori.eroare_default || {};
+    const propDef = ["titlu", "text", "imagine"];
+    for (let p of propDef) {
+        if (!(p in def)) {
+            console.error(`[EROARE] În eroarea default lipsește proprietatea "${p}"`);
+        }
+    }
+
+    // 6. Verificare existență folder cale_baza
+    const caleBazaAbs = path.join(__dirname, erori.cale_baza || "");
+    if (!fs.existsSync(caleBazaAbs)) {
+        console.error(`[EROARE] Folderul cale_baza NU există: ${caleBazaAbs}`);
+    }
+
+    // 7. Verificare existență imagini + imagini unice
+    const imaginiVazute = new Set();
+    const toateErorile = [erori.eroare_default, ...erori.info_erori];
+
+    for (let eroare of toateErorile) {
+        const caleImgAbs = path.join(caleBazaAbs, eroare.imagine || "");
+
+        if (!fs.existsSync(caleImgAbs)) {
+            console.error(`[EROARE] Imaginea specificată NU există: ${caleImgAbs}`);
+        }
+
+        if (imaginiVazute.has(eroare.imagine)) {
+            console.error(`[EROARE] Imagine duplicată detectată: "${eroare.imagine}". Fiecare eroare trebuie să aibă altă imagine.`);
+        }
+        imaginiVazute.add(eroare.imagine);
+    }
+
+    // 8. Verificare identificatori duplicat
+    const mapId = {};
+    for (let eroare of erori.info_erori) {
+        const id = eroare.identificator;
+        if (!mapId[id]) mapId[id] = [];
+        mapId[id].push(eroare);
+    }
+
+    for (let id in mapId) {
+        if (mapId[id].length > 1) {
+            console.error(`[EROARE] Identificator duplicat: ${id}`);
+            console.error("Obiectele conflictuale (fără identificator):");
+            for (let obj of mapId[id]) {
+                const { identificator, ...rest } = obj;
+                console.error(rest);
+            }
+        }
+    }
+
+    console.log("[OK] Verificarea erori.json s-a încheiat.");
+}
+
 
 // CONFIGURARE BAZA DE DATE
 client=new pg.Client({
@@ -70,6 +173,7 @@ function initErori(){
     }
 
 }
+verificaEroriJSON();
 initErori()
 
 function afisareEroare(res, identificator = 0, titlu, text, imagine){
@@ -243,10 +347,15 @@ app.get("/galerie", function(req, res){
             }
         }
 
-        const imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => {
+        let imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => {
             // img.intervale_zile este o LISTĂ de intervale
             return img.intervale_zile.some(interval => ziInInterval(ziCurenta, interval));
         });
+
+        // TRUNCHIEREA LA CEL MAI MIC NUMĂR PAR
+        if (imaginiFiltrate.length % 2 === 1) {
+            imaginiFiltrate.pop();
+        }
 
         res.render("pagini/galerie", {
             imagini: imaginiFiltrate,
@@ -260,22 +369,37 @@ app.get("/galerie", function(req, res){
 });
 
 app.get("/produse", function(req, res){
-    let clauzaWhere="";
+    let clauzaWhere = "";
     if (req.query.tip){
-        clauzaWhere=` where tip_articol='${req.query.tip}'`
+        clauzaWhere = ` where tip_articol='${req.query.tip}'`;
     }
+
     client.query(`select * from articole ${clauzaWhere}`, function(err, rez){
         if (err){
             console.log("Eroare la interogare", err);
             afisareEroare(res, 2, "Eroare la încărcarea produselor", "A apărut o problemă la afișarea paginii produselor.");
         } else {
             console.log("Rezultat interogare", rez);
-            res.render("pagini/produse", {
-                articole: rez.rows,
-                optiuni:[]
+
+            // AICI: interogarea cu UNNEST pentru categorii
+            client.query(`
+                SELECT unnest(enum_range(NULL::categ_articol)) AS categorie
+            `, function(err2, rez2) {
+
+                if (err2) {
+                    console.log("Eroare la unnest", err2);
+                    afisareEroare(res, 2, "Eroare la încărcarea categoriilor", "A apărut o problemă la încărcarea categoriilor.");
+                } else {
+                    res.render("pagini/produse", {
+                        articole: rez.rows,
+                        optiuni: rez2.rows
+                    });
+                }
             });
         }
-})});
+    });
+});
+
 
 app.get("/produs/:id", function(req, res){
     client.query(`select * from articole where id=${req.params.id}`, function(err, rez){

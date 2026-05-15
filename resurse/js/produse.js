@@ -13,14 +13,17 @@ window.onload = function() {
     // ---------------- FILTRARE ----------------
     document.getElementById("filtrare").onclick = function() {
 
-        let inpNume = document.getElementById("inp-nume").value.toLowerCase();
-        let inpPret = parseFloat(document.getElementById("inp-pret").value);
-        let inpTip = document.getElementById("inp-tip").value;
+        let textCautat = document.getElementById("inp-nume").value.toLowerCase();
+        let pretMinim = parseFloat(document.getElementById("inp-pret").value);
 
-        let selCategorii = document.getElementById("inp-categorie");
-        let categoriiSelectate = Array.from(selCategorii.selectedOptions).map(opt => opt.value);
+        // categorie simplă (nu multiple)
+        let categorieSelectata = document.getElementById("inp-categorie").value.toLowerCase();
 
-        let inpEcologic = document.querySelector("input[name='gr_ecologic']:checked").value;
+        // materiale multiple
+        let selMat = document.getElementById("inp-materiale");
+        let materialeSelectate = Array.from(selMat.selectedOptions).map(opt => opt.value.toLowerCase());
+
+        let ecologicSelectat = document.querySelector("input[name='gr_ecologic']:checked").value;
 
         let produse = document.getElementsByClassName("produs");
 
@@ -28,19 +31,39 @@ window.onload = function() {
 
             prod.style.display = "none";
 
-            let nume = prod.getElementsByClassName("val-nume")[0].innerText.trim().toLowerCase();
-            let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerText.trim());
-            let tip = prod.getElementsByClassName("tip")[0].innerText.trim().toLowerCase();
-            let categorie = prod.getElementsByClassName("categorie")[0].innerText.trim().toLowerCase();
-            let ecologic = prod.getElementsByClassName("ecologic")[0].innerText.trim().toLowerCase();
+            let numeProd = prod.getElementsByClassName("val-nume")[0].innerText.trim().toLowerCase();
+            let pretProd = parseFloat(prod.getElementsByClassName("val-pret")[0].innerText.trim());
+            let categorieProd = prod.getElementsByClassName("categorie")[0].innerText.trim().toLowerCase();
+            let ecologicProd = prod.getElementsByClassName("ecologic")[0].innerText.trim().toLowerCase();
 
-            let cond1 = nume.includes(inpNume);
-            let cond2 = pret >= inpPret;
-            let cond3 = (inpTip === "toate") || (tip === inpTip);
-            let cond4 = (categoriiSelectate.includes("toate")) || (categoriiSelectate.includes(categorie));
-            let cond5 = (inpEcologic === "toate") || (ecologic === inpEcologic);
+            // --- MATERIALS: transformăm {lemn,vopsea,lac} în array JS ---
+            let materialeProd = prod.getElementsByClassName("materiale")[0].innerText
+                .replace(/[{}]/g, "")        // scoate acoladele
+                .split(",")                  // sparge în array
+                .map(m => m.trim().toLowerCase())
+                .filter(m => m.length > 0);  // elimină golurile
 
-            if (cond1 && cond2 && cond3 && cond4 && cond5) {
+            // ---------------- CONDIȚII ----------------
+
+            let condNume = numeProd.includes(textCautat);
+
+            let condPret = pretProd >= pretMinim;
+
+            let condCategorie =
+                (categorieSelectata === "toate") ||
+                (categorieProd === categorieSelectata);
+
+            let condEcologic =
+                (ecologicSelectat === "toate") ||
+                (ecologicProd === ecologicSelectat);
+
+            let condMateriale =
+                materialeSelectate.includes("toate") ||
+                materialeSelectate.every(mat => materialeProd.includes(mat));
+
+            // ---------------- AFIȘARE ----------------
+
+            if (condNume && condPret && condCategorie && condEcologic && condMateriale) {
                 prod.style.display = "block";
             }
         }
@@ -69,69 +92,57 @@ window.onload = function() {
     };
 
 
-    // ---------------- SORTARE CRESCĂTOARE ----------------
-    document.getElementById("sortCrescNume").onclick = function() {
-
-        let container = document.querySelector(".grid-produse");
-        let produse = Array.from(container.getElementsByClassName("produs"));
-
-        produse.sort(function(a, b) {
-            let pretA = parseFloat(a.getElementsByClassName("val-pret")[0].innerText);
-            let pretB = parseFloat(b.getElementsByClassName("val-pret")[0].innerText);
-
-            if (pretA === pretB) {
-                let numeA = a.getElementsByClassName("val-nume")[0].innerText.toLowerCase();
-                let numeB = b.getElementsByClassName("val-nume")[0].innerText.toLowerCase();
-                return numeA.localeCompare(numeB);
+    function sorteaza(semn){
+        let produse=document.getElementsByClassName("produs")
+        let vProduse= Array.from(produse)
+        vProduse.sort(function(a,b){
+            let pretA=parseFloat(a.getElementsByClassName("val-pret")[0].innerHTML.trim())
+            let pretB=parseFloat(b.getElementsByClassName("val-pret")[0].innerHTML.trim())
+            if (pretA==pretB){
+                let numeA=a.getElementsByClassName("val-nume")[0].innerHTML.trim().toLowerCase()
+                let numeB=b.getElementsByClassName("val-nume")[0].innerHTML.trim().toLowerCase()
+                return (numeA.localeCompare(numeB))*semn
             }
+            return (pretA-pretB)*semn
+        })
+        for (let prod of vProduse){
+            prod.parentNode.appendChild(prod)
+        }
+    }
 
-            return pretA - pretB;
-        });
-
-        for (let p of produse) container.appendChild(p);
-    };
-
-
-    // ---------------- SORTARE DESCRESCĂTOARE ----------------
-    document.getElementById("sortDescrescNume").onclick = function() {
-
-        let container = document.querySelector(".grid-produse");
-        let produse = Array.from(container.getElementsByClassName("produs"));
-
-        produse.sort(function(a, b) {
-            let pretA = parseFloat(a.getElementsByClassName("val-pret")[0].innerText);
-            let pretB = parseFloat(b.getElementsByClassName("val-pret")[0].innerText);
-
-            if (pretA === pretB) {
-                let numeA = a.getElementsByClassName("val-nume")[0].innerText.toLowerCase();
-                let numeB = b.getElementsByClassName("val-nume")[0].innerText.toLowerCase();
-                return numeB.localeCompare(numeA);
-            }
-
-            return pretB - pretA;
-        });
-
-        for (let p of produse) container.appendChild(p);
-    };
+    document.getElementById("sortCrescNume").onclick = () => sorteaza(1)
+    document.getElementById("sortDescrescNume").onclick = () => sorteaza(-1)
 
 
     // ---------------- SUMA PREȚURI (ALT + C) ----------------
-    document.addEventListener("keydown", function(e) {
-        if (e.altKey && e.key.toLowerCase() === "c") {
-
-            let produse = document.getElementsByClassName("produs");
-            let suma = 0;
-
-            for (let prod of produse) {
-                if (prod.style.display !== "none") {
-                    let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerText);
-                    suma += pret;
+    window.onkeydown=function(e){
+        if (e.key=="c" && e.altKey){
+            let produse = document.getElementsByClassName("produs")
+            let suma = 0
+            for (let prod of produse){
+                if (prod.style.display != "none"){
+                    let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML.trim())
+                    suma += pret
                 }
             }
-
-            document.getElementById("p-suma").innerText =
-                "Suma prețurilor produselor afișate: " + suma + " lei";
+            let p = document.getElementById("infoSuma")
+            if(!p){
+                let p = document.createElement("p")
+                p.innerHTML = `Suma produselor vizibile este: ${suma.toFixed(2)}`
+                p.id = "infoSuma"
+                let sectiuneProduse = document.getElementById("produse")
+                sectiuneProduse.parentElement.insertBefore(p, sectiuneProduse)
+                this.setTimeout(function(){
+                    let p1 = this.document.getElementById("infoSuma")
+                    p1.remove()
+                }, 2000)        
+            }
+            else{
+                p.innerHTML = `Suma produselor vizibile este: ${suma.toFixed(2)}`
+            }
         }
-    });
+    }
 
+
+    
 };

@@ -1,3 +1,5 @@
+@charset "UTF-8";
+/* GRID EXISTENT */
 #grid-galerie {
   display: grid;
   gap: 15px;
@@ -8,8 +10,37 @@
 #grid-galerie figure {
   grid-column: var(--col-desktop);
   grid-row: var(--row);
+  position: relative; /* necesar pentru hover */
+  overflow: hidden; /* ca să nu iasă efectele în afară */
 }
 
+/* IMAGINEA — inițial sepia */
+#grid-galerie img {
+  width: 100%;
+  display: block;
+  filter: sepia(100%);
+  transition: filter 0.8s ease; /* 800 ms */
+}
+
+/* FIGCAPTION — textul imaginii */
+#grid-galerie figcaption {
+  margin-top: 8px;
+  text-align: center;
+  color: #444;
+  transition: color 0.8s ease, text-shadow 0.8s ease;
+}
+
+/* HOVER — efectul cerut */
+#grid-galerie figure:hover img {
+  filter: sepia(0%);
+}
+
+#grid-galerie figure:hover figcaption {
+  color: #000;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* RESPONSIVE EXISTENT */
 @media (max-width: 1100px) {
   #grid-galerie {
     grid-template-columns: repeat(2, 1fr);

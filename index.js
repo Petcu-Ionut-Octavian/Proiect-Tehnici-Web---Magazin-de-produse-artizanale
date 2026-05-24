@@ -192,29 +192,103 @@ function afisareEroare(res, identificator = 0, titlu, text, imagine){
 
 
 // SCSS
+// function compileazaScss(caleScss, caleCss){
+//     if(!caleCss){
+
+//         let numeFisExt=path.basename(caleScss); // "folder1/folder2/a.scss" -> "a.scss"
+//         let numeFis=numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
+//         caleCss=numeFis+".css"; // output: a.css
+//     }
+    
+//     if (!path.isAbsolute(caleScss))
+//         caleScss=path.join(obGlobal.folderScss,caleScss )
+//     if (!path.isAbsolute(caleCss))
+//         caleCss=path.join(obGlobal.folderCss,caleCss )
+    
+//     let caleBackup=path.join(obGlobal.folderBackup, "resurse/css");
+//     if (!fs.existsSync(caleBackup)) {
+//         fs.mkdirSync(caleBackup,{recursive:true})
+//     }
+    
+//     // la acest punct avem cai absolute in caleScss si  caleCss
+
+//     let numeFisCss=path.basename(caleCss);
+//     if (fs.existsSync(caleCss)){
+//         fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "resurse/css",numeFisCss ))// +(new Date()).getTime()
+//     }
+
+//     if (!sass) {
+//         console.warn("SCSS compilation skipped: modul sass nu este disponibil.");
+//         return;
+//     }
+
+//     rez=sass.compile(caleScss, {"sourceMap":true});
+//     fs.writeFileSync(caleCss,rez.css)
+    
+// }
+
+
+// function compileazaScss(caleScss, caleCss){
+//     if(!caleCss){
+//         let numeFisExt = path.basename(caleScss);
+//         let numeFis = numeFisExt.split(".")[0];
+//         caleCss = numeFis + ".css";
+//     }
+
+//     if (!path.isAbsolute(caleScss))
+//         caleScss = path.join(obGlobal.folderScss, caleScss);
+//     if (!path.isAbsolute(caleCss))
+//         caleCss = path.join(obGlobal.folderCss, caleCss);
+
+//     let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");
+//     if (!fs.existsSync(caleBackup)) {
+//         fs.mkdirSync(caleBackup, {recursive:true});
+//     }
+
+//     let numeFisCss = path.basename(caleCss);
+
+//     if (fs.existsSync(caleCss)){
+//         let nume = numeFisCss.split(".")[0];
+//         let ext = numeFisCss.split(".")[1];
+//         let timestamp = Date.now();
+//         let numeBackup = `${nume}_${timestamp}.${ext}`;
+//         fs.copyFileSync(caleCss, path.join(caleBackup, numeBackup));
+//     }
+
+//     if (!sass) {
+//         console.warn("SCSS compilation skipped: modul sass nu este disponibil.");
+//         return;
+//     }
+
+//     let rez = sass.compile(caleScss, {sourceMap:true});
+//     fs.writeFileSync(caleCss, rez.css);
+// }
+
+
 function compileazaScss(caleScss, caleCss){
+    let info = path.parse(caleScss);
+    let numeFis = info.name;
+
     if(!caleCss){
-
-        let numeFisExt=path.basename(caleScss); // "folder1/folder2/a.scss" -> "a.scss"
-        let numeFis=numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
-        caleCss=numeFis+".css"; // output: a.css
+        caleCss = numeFis + ".css";
     }
-    
+
     if (!path.isAbsolute(caleScss))
-        caleScss=path.join(obGlobal.folderScss,caleScss )
+        caleScss = path.join(obGlobal.folderScss, caleScss);
     if (!path.isAbsolute(caleCss))
-        caleCss=path.join(obGlobal.folderCss,caleCss )
-    
-    let caleBackup=path.join(obGlobal.folderBackup, "resurse/css");
-    if (!fs.existsSync(caleBackup)) {
-        fs.mkdirSync(caleBackup,{recursive:true})
-    }
-    
-    // la acest punct avem cai absolute in caleScss si  caleCss
+        caleCss = path.join(obGlobal.folderCss, caleCss);
 
-    let numeFisCss=path.basename(caleCss);
+    let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");
+    if (!fs.existsSync(caleBackup)) {
+        fs.mkdirSync(caleBackup, {recursive:true});
+    }
+
+    let infoCss = path.parse(caleCss);
+
     if (fs.existsSync(caleCss)){
-        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "resurse/css",numeFisCss ))// +(new Date()).getTime()
+        let timestamp = Date.now();
+        let numeBackup = `${infoCss.name}_${timestamp}${infoCss.ext}`;
+        fs.copyFileSync(caleCss, path.join(caleBackup, numeBackup));
     }
 
     if (!sass) {
@@ -222,10 +296,20 @@ function compileazaScss(caleScss, caleCss){
         return;
     }
 
-    rez=sass.compile(caleScss, {"sourceMap":true});
-    fs.writeFileSync(caleCss,rez.css)
-    
+    let rez = sass.compile(caleScss, {sourceMap:true});
+    fs.writeFileSync(caleCss, rez.css);
 }
+
+// exemplu pentru ce returneaza path.parse
+// {
+//   root: '',
+//   dir: '',
+//   base: 'stil.frumos.dark.scss',
+//   ext: '.scss',
+//   name: 'stil.frumos.dark'
+// }
+
+
 
 
 //la pornirea serverului
@@ -248,8 +332,42 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
 
 
 
+// VERIFICARE GALERIE.JSON
+function verificaGalerieJSON() {
+    const caleFisier = path.join(__dirname, "resurse/json/galerie.json");
 
+    if (!fs.existsSync(caleFisier)) {
+        console.error("[EROARE CRITICĂ] Fișierul galerie.json NU există!");
+        return;
+    }
 
+    let continutBrut = fs.readFileSync(caleFisier, "utf-8");
+    let galerie;
+
+    try {
+        galerie = JSON.parse(continutBrut);
+    } catch (err) {
+        console.error("[EROARE] JSON invalid în galerie.json:", err.message);
+        return;
+    }
+
+    const caleGalerieAbs = path.join(__dirname, galerie.cale_galerie || "");
+
+    if (!fs.existsSync(caleGalerieAbs)) {
+        console.error(`[EROARE] Folderul specificat în "cale_galerie" NU există: ${caleGalerieAbs}`);
+    }
+
+    for (let img of galerie.imagini) {
+        const caleImgAbs = path.join(caleGalerieAbs, img.fisier);
+
+        if (!fs.existsSync(caleImgAbs)) {
+            console.error(`[EROARE] Fișierul imagine NU există: ${caleImgAbs}`);
+        }
+    }
+
+    console.log("[OK] Verificarea galerie.json s-a încheiat.");
+}
+verificaGalerieJSON();
 
 // IMAGINI
 function initImagini(){
@@ -365,6 +483,33 @@ app.get("/galerie", function(req, res){
     } catch (err) {
         console.error("Eroare la render galerie:", err);
         afisareEroare(res, 500, "Eroare la încărcarea galeriei", "A apărut o problemă la afișarea paginii galeriei.");
+    }
+});
+
+app.get("/galerie-animata", function (req, res) {
+    try {
+        const toateImaginile = obGlobal.obImagini.imagini;
+
+        function numarImparRandom(min, max) {
+            const impari = [];
+            for (let i = min; i <= max; i++) {
+                if (i % 2 === 1) impari.push(i);
+            }
+            return impari[Math.floor(Math.random() * impari.length)];
+        }
+
+        const n = numarImparRandom(5, 11);
+
+        const imaginiSelectate = toateImaginile.slice(-n);
+
+        res.render("pagini/galerie-animata", {
+            imagini: imaginiSelectate,
+            caleGalerie: obGlobal.obImagini.cale_galerie
+        });
+
+    } catch (err) {
+        console.error("Eroare la galerie animată:", err);
+        afisareEroare(res, 500, "Eroare la galeria animată", "A apărut o problemă la afișarea galeriei animate.");
     }
 });
 

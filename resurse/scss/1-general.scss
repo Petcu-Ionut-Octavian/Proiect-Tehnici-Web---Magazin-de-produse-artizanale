@@ -334,3 +334,19 @@ main a:active {
     margin: 0;
 }
 
+
+
+
+
+
+// Pentru etapa 5
+::selection {
+    background: var(--color-3);
+    color: var(--color-5);
+}
+
+//Firefox
+::-moz-selection { 
+    background: var(--color-3);
+    color: var(--color-5);
+}

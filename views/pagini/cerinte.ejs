@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <title>Artizania - Magazin de produse handmade autentice</title>
+    <meta name="description" content="Magazin de produse artizanale handmade: decorațiuni, accesorii, cadouri personalizate și creații unicat realizate de artizani locali.">
+    <meta name="keywords" content="Artizania, handmade, produse handmade, artizani locali, obiecte realizate manual, decorațiuni handmade, accesorii handmade, cosmetice naturale, cadouri personalizate, produse unicat, materiale pentru creație, fire și textile, materiale naturale, seturi DIY, accesorii meșteșug, ambalaje artizanale, lumânări parfumate, ceramică pictată manual, decorațiuni din lemn, accesorii textile brodate, comunitate artizani, creații autentice, produse artizanale România">
+
+    <link rel="stylesheet" href="/resurse/css/11-cerinte.css">
+
+    <%- include('../fragmente/0-head.ejs') %>
+
+</head>
+
+
+<body> 
+    
+    <%- include('../fragmente/1-header.ejs') %>
+
+    <main>
+        <section id="efect-css-duotone">
+            <figure class="duotone">
+                <figcaption>Artizania – Efect Duotone</figcaption>
+            </figure>
+        </section>
+
+        <section id="efect-css-reflexie-text">
+            <h2 class="titlu-reflexie">
+                Artizania – Creații handmade autentice
+                <span aria-hidden="true">Artizania – Creații handmade autentice</span>
+            </h2>
+        </section>
+
+        <section id="efect-css-coloane">
+            <h2>Despre Artizania</h2>
+            <div class="text-coloane">
+                <p>
+                    Artizania promovează creațiile autentice realizate manual de artizani locali. Fiecare produs este unic,
+                    realizat cu grijă, pasiune și atenție la detalii. În magazinul nostru vei găsi obiecte decorative,
+                    accesorii textile, ceramică pictată manual, lumânări parfumate, bijuterii artizanale și multe alte
+                    creații care aduc un plus de frumusețe și personalitate în orice spațiu. Susținem comunitatea de creatori
+                    locali și încurajăm producția responsabilă, folosind materiale naturale și tehnici tradiționale.
+                </p>
+            </div>
+        </section>
+
+        <section id="efect-css-text-rulant">
+            <div class="marquee">
+                <span>Artizania • Creații handmade autentice • Produse locale • Artă și tradiție •</span>
+                <span>Artizania • Creații handmade autentice • Produse locale • Artă și tradiție •</span>
+                <span>Artizania • Creații handmade autentice • Produse locale • Artă și tradiție •</span>
+            </div>
+        </section>
+
+        <section id="efect-css-bg-fix">
+            <div class="bg-fix-layer">
+                <h2>Artizania – Detalii care rămân cu tine</h2>
+                <p>
+                    Fiecare creație spune o poveste. Derulează pagina și lasă fundalul să-ți rămână în minte,
+                    în timp ce imaginile se schimbă în ritmul lor.
+                </p>
+            </div>
+        </section>
+
+        <section id="tabel-artizanale">
+        <h2>Produse Artizanale</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Nume</th>
+                <th>Material</th>
+                <th>Categorie</th>
+                <th>Preț</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td data-label="Nume">Lumânare parfumată</td>
+                <td data-label="Material">Ceară naturală</td>
+                <td data-label="Categorie">Decor</td>
+                <td data-label="Preț">35 lei</td>
+            </tr>
+            <tr>
+                <td data-label="Nume">Brățară împletită</td>
+                <td data-label="Material">Ață colorată</td>
+                <td data-label="Categorie">Accesorii</td>
+                <td data-label="Preț">25 lei</td>
+            </tr>
+            <tr>
+                <td data-label="Nume">Cană ceramică pictată</td>
+                <td data-label="Material">Ceramică</td>
+                <td data-label="Categorie">Uz casnic</td>
+                <td data-label="Preț">45 lei</td>
+            </tr>
+            <tr>
+                <td data-label="Nume">Tablou din lemn gravat</td>
+                <td data-label="Material">Lemn</td>
+                <td data-label="Categorie">Artă</td>
+                <td data-label="Preț">120 lei</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4">Număr produse: 4</td>
+            </tr>
+            </tfoot>
+        </table>
+        </section>
+
+
+        <section id="sectiune-artizani-transpus">
+            <h2>Artizani locali</h2>
+
+            <table id="transpus">
+                <thead>
+                    <tr>
+                        <th>Nume</th>
+                        <th>Specializare</th>
+                        <th>Experiență</th>
+                        <th>Localitate</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Maria Iacob</td>
+                        <td>Ceramică pictată</td>
+                        <td>12 ani</td>
+                        <td>Sibiu</td>
+                    </tr>
+                    <tr>
+                        <td>Andrei Pop</td>
+                        <td>Prelucrare lemn</td>
+                        <td>8 ani</td>
+                        <td>Brașov</td>
+                    </tr>
+                    <tr>
+                        <td>Elena Tudor</td>
+                        <td>Țesături tradiționale</td>
+                        <td>15 ani</td>
+                        <td>Iași</td>
+                    </tr>
+                    <tr>
+                        <td>Victor Munteanu</td>
+                        <td>Metal artizanal</td>
+                        <td>10 ani</td>
+                        <td>Cluj</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <video playsinline autoplay muted loop poster="/resurse/imagini/poster-video.webp" id="bgvid">
+            <source src="/resurse/video/clip.mp4" type="video/mp4">
+            <source src="/resurse/video/clip.ogv" type="video/ogg">
+        </video>
+
+
+
+
+    </main>
+
+    <%- include('../fragmente/2-footer.ejs') %>
+
+</body>
+
+</html>

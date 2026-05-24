@@ -273,3 +273,13 @@ main a:active {
   text-align: center;
   margin: 0;
 }
+
+::selection {
+  background: var(--color-3);
+  color: var(--color-5);
+}
+
+::-moz-selection {
+  background: var(--color-3);
+  color: var(--color-5);
+}

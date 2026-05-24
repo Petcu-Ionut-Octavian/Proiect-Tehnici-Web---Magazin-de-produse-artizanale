@@ -1,0 +1,97 @@
+@charset "UTF-8";
+.orar-container {
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+#tab-orar {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: var(--color-1);
+  border: 6px inset var(--color-4);
+  border-radius: 10px;
+  overflow: hidden;
+}
+#tab-orar caption {
+  caption-side: bottom;
+  padding: 12px 16px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-5);
+  background-color: var(--color-4);
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+#tab-orar thead th {
+  background-color: var(--color-3);
+  color: var(--color-5);
+  padding: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 3px solid var(--color-4);
+}
+#tab-orar tbody tr:nth-child(even) {
+  border-bottom: 2px solid var(--color-3);
+}
+#tab-orar tbody tr:nth-child(even) td {
+  background-color: var(--color-2);
+}
+#tab-orar tbody tr:nth-child(even):hover td,
+#tab-orar tbody tr:nth-child(even):hover th {
+  outline: 6px solid var(--color-5);
+  outline-offset: -3px;
+}
+#tab-orar tbody tr:nth-child(even):hover td[rowspan],
+#tab-orar tbody tr:nth-child(even):hover th[rowspan] {
+  outline: none !important;
+}
+#tab-orar tbody tr:nth-child(odd) {
+  border-bottom: 2px solid var(--color-4);
+}
+#tab-orar tbody tr:hover td,
+#tab-orar tbody tr:hover th {
+  outline: 6px solid var(--color-4);
+  outline-offset: -3px;
+}
+#tab-orar tbody tr:hover td[rowspan],
+#tab-orar tbody tr:hover th[rowspan] {
+  outline: none !important;
+}
+#tab-orar tbody tr td,
+#tab-orar tbody tr th {
+  transition: outline 0.5s ease;
+}
+#tab-orar tbody td {
+  padding: 10px;
+  text-align: center;
+  color: var(--color-5);
+  background-color: var(--color-1);
+}
+#tab-orar tbody td[rowspan] {
+  background-color: var(--color-3);
+  color: var(--color-5);
+  font-weight: bold;
+}
+#tab-orar tbody td[rowspan="2"] {
+  background-color: var(--color-4) !important;
+  color: var(--color-1);
+}
+#tab-orar tfoot td {
+  background-color: var(--color-4);
+  color: var(--color-1);
+  padding: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* lățimi coloane */
+.th-1 {
+  width: 1fr;
+}
+
+.th-2 {
+  width: 2fr;
+}

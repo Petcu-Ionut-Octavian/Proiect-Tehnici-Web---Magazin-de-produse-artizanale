@@ -1,0 +1,59 @@
+#eroare-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40px 20px;
+}
+#eroare-container .eroare-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+#eroare-container .eroare-content .eroare-imagine {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#eroare-container .eroare-content .eroare-imagine img {
+  max-width: 250px;
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+}
+#eroare-container .eroare-content .eroare-text h1 {
+  font-size: 2.5rem;
+  color: #8b5e3c;
+  margin: 20px 0 15px;
+  font-weight: 700;
+}
+#eroare-container .eroare-content .eroare-text p {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 15px 0 30px;
+  line-height: 1.6;
+}
+#eroare-container .eroare-content .eroare-text .eroare-actiuni {
+  margin-top: 30px;
+}
+#eroare-container .eroare-content .eroare-text .eroare-actiuni .btn-home {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #8b5e3c;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 1rem;
+}
+#eroare-container .eroare-content .eroare-text .eroare-actiuni .btn-home:hover {
+  background-color: #6b4829;
+  transform: scale(1.05);
+}
+#eroare-container .eroare-content .eroare-text .eroare-actiuni .btn-home:active {
+  transform: scale(0.98);
+}

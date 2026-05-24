@@ -1,0 +1,132 @@
+@charset "UTF-8";
+/* 1. Bannerul mutat în dreapta-sus pe prima pagină */
+p#banner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  border: 4px double black;
+  padding: 10px;
+  font-size: 1.1rem;
+  background: white;
+}
+
+/* 2. Ascundem imaginile, videoclipurile, iframe-urile, media + descrieri */
+#pdf-ghid,
+#hamburger,
+#schimba_tema,
+.taburi-iframe,
+hr,
+img,
+video,
+iframe,
+figure,
+figcaption,
+.media,
+.image-description,
+a[href="#top"] {
+  display: none !important;
+}
+
+/* 3. Gridul devine block (evităm tăierea celulelor între pagini) */
+.grid,
+[class*=grid],
+.row,
+.col {
+  display: block !important;
+}
+
+/* 4. Linkurile devin text normal */
+a {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+/* 5. Heading H1 centrat pe prima pagină */
+h1 {
+  text-align: center;
+  margin-top: 0;
+}
+
+/* 6. Meniul devine listă verticală */
+nav ul {
+  list-style-type: disc !important;
+  padding-left: 30px;
+}
+nav ul ul {
+  list-style-type: circle !important;
+  margin-left: 20px;
+}
+nav li {
+  display: list-item !important;
+  margin: 5px 0;
+}
+
+#t {
+  position: absolute;
+  top: 200px;
+  right: 40px;
+}
+
+/* Page break înainte de footer */
+footer {
+  page-break-before: always;
+}
+
+/* 7. Watermark pe fiecare pagină */
+body::after {
+  content: "PetcunIonuț-Octavian";
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 10%;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.3);
+  white-space: pre-line;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 8. Margini diferite pentru paginile stânga/dreapta */
+@page :left {
+  margin-left: 2cm;
+  margin-right: 1cm;
+  margin-top: 1.5cm;
+  margin-bottom: 1.5cm;
+}
+@page :right {
+  margin-left: 1cm;
+  margin-right: 2cm;
+  margin-top: 1.5cm;
+  margin-bottom: 1.5cm;
+}
+/* ============================
+   DEZACTIVARE GRID-PAGINA
+   ============================ */
+#grid-pagina {
+  display: block !important;
+  grid-template-columns: none !important;
+  grid-template-areas: none !important;
+  gap: 0 !important;
+}
+#grid-pagina > * {
+  display: block !important;
+  width: 100% !important;
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+  margin-bottom: 10px;
+  grid-area: auto !important;
+}
+
+section {
+  border: none !important;
+}
+
+body * {
+  padding: none !important;
+  border: none !important;
+}

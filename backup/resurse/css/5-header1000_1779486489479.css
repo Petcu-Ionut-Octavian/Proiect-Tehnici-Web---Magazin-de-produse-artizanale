@@ -1,0 +1,20 @@
+ul.meniu {
+  gap: 5px;
+}
+ul.meniu > li {
+  width: 120px;
+  height: 45px;
+  line-height: 45px;
+}
+ul.meniu ul {
+  margin-left: 0;
+  margin-top: -5px;
+}
+
+.text-icon {
+  font-size: 0.9rem;
+}
+
+.imag-icon span {
+  font-size: 1rem;
+}

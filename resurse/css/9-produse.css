@@ -65,7 +65,7 @@
   border: 1px solid #ddd;
   padding: 0.5rem 0.7rem;
   text-align: left;
-  word-break: break-word; /* IMPORTANT: rupe textul lung */
+  word-break: break-word;
 }
 .produs .tabel-caracteristici th {
   background: #f3e8ff;
@@ -114,54 +114,6 @@
   margin-top: 0.5rem;
   font-weight: 600;
   color: #8a4baf;
-}
-
-/* INPUTURI */
-main label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  margin: 0.5rem 1rem 0.5rem 0;
-  font-weight: 500;
-}
-main label:has(input:checked) {
-  background-color: #ef954b;
-  border: 1px solid #690000;
-}
-main input[type=text],
-main input[type=number],
-main select {
-  padding: 0.3rem 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-/* BUTOANE */
-button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin: 0.3rem;
-  font-weight: 600;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-button:hover {
-  transform: translateY(-2px);
-}
-
-#filtrare {
-  background: #982bd7;
-  color: white;
-}
-
-#resetare {
-  background: #f90808;
-}
-
-#sortCrescNume,
-#sortDescrescNume {
-  background: #23ff40;
 }
 
 /* RESPONSIVE GRID */

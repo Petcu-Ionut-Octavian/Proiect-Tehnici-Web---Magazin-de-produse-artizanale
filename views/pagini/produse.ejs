@@ -22,29 +22,38 @@
     <main>
 
 
+<div class="container my-4">
+    <div class="row g-3">
 
-        <label> Nume:
-            <input type="text" id="inp-nume">
-        </label>
+        <!-- NUME -->
+        <div class="col-md-4">
+            <label for="inp-nume" class="form-label">Nume</label>
+            <input type="text" id="inp-nume" class="form-control">
+        </div>
 
-        <label> Preț minim:
-            <input type="range" id="inp-pret" value="0" min="0" max="200">
-            <span id="infoRange">(0)</span>
-        </label>
+        <!-- PREȚ MINIM -->
+        <div class="col-md-4">
+            <label for="inp-pret" class="form-label">
+                Preț minim: <span id="infoRange">(0)</span>
+            </label>
+            <input type="range" id="inp-pret" class="form-range" min="0" max="200" value="0">
+        </div>
 
-        <label> Categorie:
-            <select id="inp-categorie">
+        <!-- CATEGORIE -->
+        <div class="col-md-4">
+            <label for="inp-categorie" class="form-label">Categorie</label>
+            <select id="inp-categorie" class="form-select">
                 <option value="toate" selected>Toate</option>
-
                 <% for (let opt of optiuni) { %>
                     <option value="<%= opt.categorie %>"><%= opt.categorie %></option>
                 <% } %>
             </select>
-        </label>
+        </div>
 
-
-        <label> Materiale:
-            <select id="inp-materiale" multiple>
+        <!-- MATERIALE -->
+        <div class="col-md-6">
+            <label for="inp-materiale" class="form-label">Materiale</label>
+            <select id="inp-materiale" class="form-select" multiple>
                 <option value="toate" selected>Toate</option>
                 <option value="lemn">Lemn</option>
                 <option value="vopsea">Vopsea</option>
@@ -64,10 +73,13 @@
                 <option value="rasina">Rășină</option>
                 <option value="tus">Tuș</option>
             </select>
-        </label>
+        </div>
 
-        <label> Caută după dată:
-            <input list="lista-date" id="inp-data-datalist">
+        <!-- DATĂ (DATALIST) -->
+        <div class="col-md-6">
+            <label for="inp-data-datalist" class="form-label">Caută după dată</label>
+            <input list="lista-date" id="inp-data-datalist" class="form-control">
+
             <%
                 let setDate = new Set();
                 for (let art of articole) {
@@ -76,53 +88,92 @@
                 let dateDistincte = [...setDate];
             %>
 
+
             <datalist id="lista-date">
                 <% dateDistincte.forEach(d => { %>
                     <option value="<%= d %>">
                 <% }) %>
             </datalist>
-        </label>
-
-
-        <!-- 🔵 CHECKBOX GROUP pentru greutate -->
-        <div> Greutate:
-            <label><input type="checkbox" class="chk-greutate" value="usor" checked> Ușor</label>
-            <label><input type="checkbox" class="chk-greutate" value="mediu" checked> Mediu</label>
-            <label><input type="checkbox" class="chk-greutate" value="greu" checked> Greu</label>
         </div>
 
+        <!-- GREUTATE (TOGGLE BUTTONS) -->
+        <div class="col-md-12">
+            <label class="form-label d-block">Greutate</label>
 
-        <!-- 🔵 TEXTAREA (MINIMAL ADD) -->
-        <label> Cuvinte cheie în descriere:
-            <textarea id="inp-keywords" rows="2" placeholder="ex: manual, pictat, natural"></textarea>
-        </label>
+            <div class="btn-group" role="group">
+                <input type="checkbox" class="btn-check chk-greutate" id="g-usor" value="usor" checked>
+                <label class="btn btn-outline-primary" for="g-usor">Ușor</label>
 
+                <input type="checkbox" class="btn-check chk-greutate" id="g-mediu" value="mediu" checked>
+                <label class="btn btn-outline-primary" for="g-mediu">Mediu</label>
 
-        <div>
-            <p><label> Ecologic
-                <input type="radio" name="gr_ecologic" value="true">
-            </label></p>
-
-            <p><label> Non-ecologic
-                <input type="radio" name="gr_ecologic" value="false">
-            </label></p>
-
-            <p><label> Toate
-                <input type="radio" name="gr_ecologic" value="toate" checked>
-            </label></p>
+                <input type="checkbox" class="btn-check chk-greutate" id="g-greu" value="greu" checked>
+                <label class="btn btn-outline-primary" for="g-greu">Greu</label>
+            </div>
         </div>
 
-        <p>
-            <button id="filtrare">Filtrează</button>
-            <button id="resetare">Resetează</button><br>
+        <!-- TEXTAREA (FLOATING LABEL) -->
+        <div class="col-md-12 form-floating">
+            <textarea class="form-control" id="inp-keywords" placeholder="ex: manual, pictat"></textarea>
+            <label for="inp-keywords">Cuvinte cheie în descriere</label>
+        </div>
 
-            <button id="sortCresc">Sortează crescător (preț → materiale)</button>
-            <button id="sortDesc">Sortează descrescător (preț → materiale)</button>
+        <!-- ECOLOGIC (TOGGLE RADIO BUTTONS) -->
+        <div class="col-md-12">
+            <label class="form-label d-block">Ecologic</label>
 
-            <button id="calculeaza">Calculează suma</button>
-        </p>
+            <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" name="gr_ecologic" id="eco-da" value="true">
+                <label class="btn btn-outline-success" for="eco-da">Ecologic</label>
 
-        <p id="p-suma">Apăsați Alt+"c" pentru suma prețurilor produselor afișate.</p>
+                <input type="radio" class="btn-check" name="gr_ecologic" id="eco-nu" value="false">
+                <label class="btn btn-outline-danger" for="eco-nu">Non-ecologic</label>
+
+                <input type="radio" class="btn-check" name="gr_ecologic" id="eco-toate" value="toate" checked>
+                <label class="btn btn-outline-secondary" for="eco-toate">Toate</label>
+            </div>
+        </div>
+
+        <!-- BUTOANE -->
+        <div class="col-md-12 d-flex flex-wrap gap-2 mt-3">
+
+            <button id="filtrare" class="btn btn-primary btn-lg">
+                <i class="bi bi-funnel"></i>
+                <span class="d-none d-sm-inline">Filtrează</span>
+            </button>
+
+            <button id="resetare" class="btn btn-secondary btn-lg">
+                <i class="bi bi-arrow-counterclockwise"></i>
+                <span class="d-none d-sm-inline">Resetează</span>
+            </button>
+
+            <button id="sortCresc" class="btn btn-info btn-lg">
+                <i class="bi bi-sort-up"></i>
+                <span class="d-none d-sm-inline">Sortare crescătoare</span>
+            </button>
+
+            <button id="sortDesc" class="btn btn-info btn-lg">
+                <i class="bi bi-sort-down"></i>
+                <span class="d-none d-sm-inline">Sortare descrescătoare</span>
+            </button>
+
+            <button id="calculeaza" class="btn btn-warning btn-lg">
+                <i class="bi bi-calculator"></i>
+                <span class="d-none d-sm-inline">Calculează suma</span>
+            </button>
+
+        </div>
+
+        <!-- PARAGRAF ALT + C -->
+        <div class="col-md-12">
+            <p id="p-suma" class="mt-2">
+                Apăsați Alt + "c" pentru suma prețurilor produselor afișate.
+            </p>
+        </div>
+
+    </div>
+</div>
+
 
 
 

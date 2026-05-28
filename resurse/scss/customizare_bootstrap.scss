@@ -7,7 +7,6 @@ $brand-accent: #ffb347;
 $brand-dark: #2a1f1a;
 
 // 2. Variabile Bootstrap care NU pot fi suprascrise în "with()"
-//    (trebuie definite înainte de import)
 $font-family-sans-serif: "Poppins", "Segoe UI", sans-serif;
 
 // 3. Import Bootstrap cu variabile suprascrise prin "with()"
@@ -37,10 +36,13 @@ $font-family-sans-serif: "Poppins", "Segoe UI", sans-serif;
     xl: 1500px
   ),
 
-  // --- BORDER RADIUS ---
+  // --- BORDER RADIUS GLOBAL ---
   $border-radius: 0.75rem,
   $border-radius-lg: 1rem,
   $border-radius-sm: 0.5rem,
+
+  // --- BORDER WIDTH GLOBAL ---
+  $border-width: 2px,
 
   // --- DIMENSIUNI HEADINGS ---
   $h1-font-size: 3rem,
@@ -48,11 +50,36 @@ $font-family-sans-serif: "Poppins", "Segoe UI", sans-serif;
   $h3-font-size: 1.9rem,
   $h4-font-size: 1.5rem,
   $h5-font-size: 1.2rem,
-  $h6-font-size: 1rem
+  $h6-font-size: 1rem,
+
+  // ===============================
+  // RANGE SLIDER
+  // ===============================
+  $form-range-thumb-width: calc(1.5 * 1rem),
+  $form-range-thumb-height: calc(1.5 * 1rem),
+  $form-range-thumb-bg: #c0392b,
+  $form-range-track-bg: #8e44ad,
+
+  // ===============================
+  // INPUTURI
+  // ===============================
+  $input-border-radius: 0.75rem,
+  $input-border-width: 2px,
+  $input-focus-border-color: #c0392b,
+  $input-focus-box-shadow: 0 0 0 0.25rem rgba(192, 57, 43, 0.25),
+
+  // ===============================
+  // BUTOANE
+  // ===============================
+  $btn-border-radius: 0.75rem,
+  $btn-border-width: 2px,
+  $btn-padding-y: 0.55rem,
+  $btn-padding-x: 1.2rem,
+  $btn-font-weight: 600
 );
 
 // ===============================
-// REGULI EXTRA 
+// REGULI EXTRA
 // ===============================
 
 .btn-accent {
@@ -65,3 +92,16 @@ $font-family-sans-serif: "Poppins", "Segoe UI", sans-serif;
     background-color: darken($brand-accent, 10%);
   }
 }
+
+.btn-info {
+  background-color: #23a6d5; // sau culoarea ta preferată
+  color: #fff;
+  border: none;
+}
+
+.btn-warning {
+  background-color: #f1c40f;
+  color: #000;
+  border: none;
+}
+

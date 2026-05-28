@@ -159,6 +159,8 @@ client.connect()
 
 app.use("/resurse",express.static(path.join(__dirname, "resurse")));
 app.use("/dist",express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
+app.use("/bootstrap-icons", express.static(path.join(__dirname, "node_modules/bootstrap-icons/font")));
+
 
 
 

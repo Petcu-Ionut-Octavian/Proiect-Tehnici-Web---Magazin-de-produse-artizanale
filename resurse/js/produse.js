@@ -115,11 +115,12 @@ window.onload = function() {
             }
         }
 
-        // keywords — trebuie să fie array (este garantat, dar verificăm)
-        if (!Array.isArray(keywords)) {
-            alert("Eroare: lista de cuvinte cheie este invalidă.");
+        // keywords — verificăm fiecare keyword pentru caractere interzise
+        if (keywords.some(k => /[!@#$%^&*\/\\]/.test(k))) {
+            alert("Eroare: lista de cuvinte cheie conține caractere interzise.");
             return;
         }
+
 
         let produse = document.getElementsByClassName("produs");
         for (let prod of produse) {
@@ -327,5 +328,18 @@ window.onload = function() {
             }
         }
     }
+
+    window.addEventListener("input", function() {
+        let textarea = document.getElementById("inp-keywords");
+        let raw = textarea.value.trim();
+
+        // dacă conține caractere interzise → invalid
+        if (/[!@#$%^&*\/\\]/.test(raw)) {
+            textarea.classList.add("is-invalid");
+        } else {
+            textarea.classList.remove("is-invalid");
+        }
+    });
+
 
 };

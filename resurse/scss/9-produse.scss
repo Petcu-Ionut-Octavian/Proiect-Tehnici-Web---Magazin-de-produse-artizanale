@@ -3,19 +3,20 @@
   padding: 1rem 0;
 }
 
+/* GRID PRODUSE */
 .grid-produse {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   gap: 2rem;
   padding: 1rem 0;
 }
 
+/* CARD PRODUS */
 .produs {
   background: #fff;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 1.5rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  text-align: center;
   transition: transform .2s ease, box-shadow .2s ease;
 
   &:hover {
@@ -24,8 +25,8 @@
   }
 
   .nume {
-    font-size: 1.1rem;
-    margin-bottom: .5rem;
+    text-align: center;
+    margin-bottom: 1rem;
 
     a {
       text-decoration: none;
@@ -38,35 +39,85 @@
     }
   }
 
-  .pret {
-    font-size: 1rem;
-    margin-bottom: .5rem;
-    color: #444;
-  }
+  /* container tabel + imagine în dreapta */
+  .container-produs {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 1rem;
 
-  figure {
-    margin: 0;
-  }
-
-  img {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    transition: opacity .2s ease;
-
-    &:hover {
-      opacity: 0.9;
+    @media (max-width: 800px) {
+      flex-direction: column;
+      align-items: center;
     }
   }
+
+  /* tabelul ocupă FIX 65% */
+  .tabel-caracteristici {
+    flex: 0 0 65%;
+    max-width: 65%;
+    border-collapse: collapse;
+    font-size: 1rem;  
+    line-height: 3;    
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: .5rem .7rem;
+      text-align: left;
+      word-break: break-word; /* IMPORTANT: rupe textul lung */
+    }
+
+    th {
+      background: #f3e8ff;
+      font-weight: 600;
+    }
+
+    td {
+      background: #fafafa;
+    }
+
+    @media (max-width: 500px) {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+
+  /* imaginea ocupă FIX 35% */
+  .fig-produs {
+    flex: 0 0 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .fig-produs img {
+    height: 260px;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+  }
+
+
+  /* DESCRIERE */
+  .descriere {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #444;
+    text-align: left;
+  }
+
+  /* CATEGORIE */
+  .categorie-text {
+    margin-top: .5rem;
+    font-weight: 600;
+    color: #8a4baf;
+  }
 }
 
-.val-pret {
-  font-weight: bold;
-  color: #8a4baf;
-}
-
+/* INPUTURI */
 main {
   label {
     display: flex;
@@ -76,10 +127,9 @@ main {
     font-weight: 500;
   }
 
-  /* când radio-ul din interior este bifat */
   label:has(input:checked) {
-      background-color: #ef954b; /* verde pal */
-      border: 1px solid #690000;
+    background-color: #ef954b;
+    border: 1px solid #690000;
   }
 
   input[type="text"],
@@ -88,11 +138,10 @@ main {
     padding: .3rem .5rem;
     border-radius: 6px;
     border: 1px solid #ccc;
-    margin-left: 0;
   }
 }
 
-
+/* BUTOANE */
 button {
   padding: .5rem 1rem;
   border: none;
@@ -121,12 +170,9 @@ button {
   background: #23ff40;
 }
 
+/* RESPONSIVE GRID */
 @media (max-width: 600px) {
   .grid-produse {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  }
-
-  .produs {
-    padding: .7rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }

@@ -66,6 +66,37 @@
             </select>
         </label>
 
+        <label> Caută după dată:
+            <input list="lista-date" id="inp-data-datalist">
+            <%
+                let setDate = new Set();
+                for (let art of articole) {
+                    setDate.add(art.data_adaugare.toLocaleDateString("sv-SE"));
+                }
+                let dateDistincte = [...setDate];
+            %>
+
+            <datalist id="lista-date">
+                <% dateDistincte.forEach(d => { %>
+                    <option value="<%= d %>">
+                <% }) %>
+            </datalist>
+        </label>
+
+
+        <!-- 🔵 CHECKBOX GROUP pentru greutate -->
+        <div> Greutate:
+            <label><input type="checkbox" class="chk-greutate" value="usor" checked> Ușor</label>
+            <label><input type="checkbox" class="chk-greutate" value="mediu" checked> Mediu</label>
+            <label><input type="checkbox" class="chk-greutate" value="greu" checked> Greu</label>
+        </div>
+
+
+        <!-- 🔵 TEXTAREA (MINIMAL ADD) -->
+        <label> Cuvinte cheie în descriere:
+            <textarea id="inp-keywords" rows="2" placeholder="ex: manual, pictat, natural"></textarea>
+        </label>
+
 
         <div>
             <p><label> Ecologic
@@ -85,11 +116,14 @@
             <button id="filtrare">Filtrează</button>
             <button id="resetare">Resetează</button><br>
 
-            <button id="sortCrescNume">Sortează crescător după preț și nume</button>
-            <button id="sortDescrescNume">Sortează descrescător după preț și nume</button>
+            <button id="sortCresc">Sortează crescător (preț → materiale)</button>
+            <button id="sortDesc">Sortează descrescător (preț → materiale)</button>
+
+            <button id="calculeaza">Calculează suma</button>
         </p>
 
         <p id="p-suma">Apăsați Alt+"c" pentru suma prețurilor produselor afișate.</p>
+
 
 
 
@@ -97,32 +131,85 @@
             <h2>Produse artizanale</h2>
 
             <div class="grid-produse">
+                <% let idx = 0; %>
+
                 <% for (let art of articole) { %>
-                    <article class="produs">
+                    <article id="ent<%= art.id %>" 
+                            class="produs <%= art.categorie %>"
+                            data-index="<%= idx %>">
+
+                        <% idx++; %>
+
 
                         <h3 class="nume">
-                            <a href="/produs/<%- art.id %>">
-                                <span class="val-nume"><%- art.nume %></span>
+                            <a href="/produs/<%= art.id %>">
+                                <span class="val-nume"><%= art.nume %></span>
                             </a>
                         </h3>
 
-                        <p class="pret">
-                            Preț: <span class="val-pret"><%- art.pret %> lei</span>
-                        </p>
+                        <div class="container-produs">
 
-                        <!-- Astea TREBUIE adăugate pentru sortare-->
-                        <span class="tip" style="display:none;"><%- art.tip_articol %></span>
-                        <span class="categorie" style="display:none;"><%- art.categorie %></span>
-                        <span class="ecologic" style="display:none;"><%- art.este_ecologic %></span>
-                        <span class="materiale" style="display:none;"><%- art.materiale %></span>
+                            <table class="tabel-caracteristici">
+                                <tr>
+                                    <th>Caracteristică</th>
+                                    <th>Valoare</th>
+                                </tr>
 
-                        <figure>
-                            <a href="/produs/<%- art.id %>">
-                                <img src="/resurse/imagini/produse/<%- art.imagine %>"
-                                    alt="[imagine <%- art.nume %>]"
-                                    style="width:50%;height:auto;">
-                            </a>
-                        </figure>
+                                <tr>
+                                    <td>Preț</td>
+                                    <td class="val-pret"><%= art.pret %> lei</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Tip articol</td>
+                                    <td class="val-tip"><%= art.tip_articol %></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Materiale</td>
+                                    <td class="val-materiale"><%= art.materiale %></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Data adăugării</td>
+                                    <td class="val-data">
+                                        <time datetime="<%= art.data_adaugare.toLocaleDateString('sv-SE') %>">
+                                            <% 
+                                                const luni = ["Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie"];
+                                                const zile = ["Duminică","Luni","Marți","Miercuri","Joi","Vineri","Sâmbătă"];
+                                                let d = art.data_adaugare;
+                                            %>
+                                            <%= d.getDate() %>(<%= zile[d.getDay()] %>)/<%= luni[d.getMonth()] %>/<%= d.getFullYear() %>
+                                        </time>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Ecologic</td>
+                                    <td class="val-ecologic"><%= art.este_ecologic ? "Da" : "Nu" %></td>
+                                </tr>
+                            </table>
+
+
+                            <figure class="fig-produs">
+                                <a href="/produs/<%= art.id %>">
+                                    <img src="/resurse/imagini/produse/<%= art.imagine %>"
+                                        alt="imagine <%= art.nume %>">
+                                </a>
+                            </figure>
+
+                        </div>
+
+                        <p class="descriere"><%= art.descriere %></p>
+
+                        <p class="categorie-text">Categorie: <%= art.categorie %></p>
+
+                        <!-- ascunse pentru filtrare/sortare -->
+                        <span class="tip" style="display:none;"><%= art.tip_articol %></span>
+                        <span class="categorie" style="display:none;"><%= art.categorie %></span>
+                        <span class="ecologic" style="display:none;"><%= art.este_ecologic %></span>
+                        <span class="materiale" style="display:none;"><%= art.materiale %></span>
+                        <span class="greutate" style="display:none;"><%= art.greutate %></span>
 
                     </article>
                 <% } %>

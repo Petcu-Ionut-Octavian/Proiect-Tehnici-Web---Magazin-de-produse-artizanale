@@ -4,19 +4,20 @@
   padding: 1rem 0;
 }
 
+/* GRID PRODUSE */
 .grid-produse {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   gap: 2rem;
   padding: 1rem 0;
 }
 
+/* CARD PRODUS */
 .produs {
   background: #fff;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 1.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .produs:hover {
@@ -24,8 +25,8 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 .produs .nume {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 .produs .nume a {
   text-decoration: none;
@@ -35,31 +36,87 @@
 .produs .nume a:hover {
   color: #8a4baf;
 }
-.produs .pret {
+.produs {
+  /* container tabel + imagine în dreapta */
+}
+.produs .container-produs {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1rem;
+}
+@media (max-width: 800px) {
+  .produs .container-produs {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.produs {
+  /* tabelul ocupă FIX 65% */
+}
+.produs .tabel-caracteristici {
+  flex: 0 0 65%;
+  max-width: 65%;
+  border-collapse: collapse;
   font-size: 1rem;
-  margin-bottom: 0.5rem;
-  color: #444;
+  line-height: 3;
 }
-.produs figure {
-  margin: 0;
+.produs .tabel-caracteristici th, .produs .tabel-caracteristici td {
+  border: 1px solid #ddd;
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  word-break: break-word; /* IMPORTANT: rupe textul lung */
 }
-.produs img {
+.produs .tabel-caracteristici th {
+  background: #f3e8ff;
+  font-weight: 600;
+}
+.produs .tabel-caracteristici td {
+  background: #fafafa;
+}
+@media (max-width: 500px) {
+  .produs .tabel-caracteristici {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+.produs {
+  /* imaginea ocupă FIX 35% */
+}
+.produs .fig-produs {
+  flex: 0 0 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.produs .fig-produs img {
+  height: 260px;
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
   display: block;
-  margin: 0 auto;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  transition: opacity 0.2s ease;
 }
-.produs img:hover {
-  opacity: 0.9;
+.produs {
+  /* DESCRIERE */
 }
-
-.val-pret {
-  font-weight: bold;
+.produs .descriere {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #444;
+  text-align: left;
+}
+.produs {
+  /* CATEGORIE */
+}
+.produs .categorie-text {
+  margin-top: 0.5rem;
+  font-weight: 600;
   color: #8a4baf;
 }
 
+/* INPUTURI */
 main label {
   display: flex;
   flex-direction: column;
@@ -67,11 +124,8 @@ main label {
   margin: 0.5rem 1rem 0.5rem 0;
   font-weight: 500;
 }
-main {
-  /* când radio-ul din interior este bifat */
-}
 main label:has(input:checked) {
-  background-color: #ef954b; /* verde pal */
+  background-color: #ef954b;
   border: 1px solid #690000;
 }
 main input[type=text],
@@ -80,9 +134,9 @@ main select {
   padding: 0.3rem 0.5rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  margin-left: 0;
 }
 
+/* BUTOANE */
 button {
   padding: 0.5rem 1rem;
   border: none;
@@ -110,11 +164,9 @@ button:hover {
   background: #23ff40;
 }
 
+/* RESPONSIVE GRID */
 @media (max-width: 600px) {
   .grid-produse {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  }
-  .produs {
-    padding: 0.7rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }

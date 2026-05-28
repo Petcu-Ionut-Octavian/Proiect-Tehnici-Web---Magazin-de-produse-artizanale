@@ -77,3 +77,44 @@ VALUES
 ('Poster decorativ', 'Imagine imprimată pentru cei care nu vor obiecte fizice.', 12.0, 10, 5, 'accesorii', 'comun', '{"hartie","tus"}', FALSE, 'poster.jpg'),
 
 ('Mărgele colorate', 'Set de mărgele pentru copii.', 15.0, 150, 20, 'bijuterii', 'pentru copii', '{"plastic","pigment"}', FALSE, 'margele.jpg');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UPDATE articole SET data_adaugare = '2024-01-05' WHERE id = 1;
+UPDATE articole SET data_adaugare = '2024-01-10' WHERE id = 2;
+UPDATE articole SET data_adaugare = '2024-01-15' WHERE id = 3;
+UPDATE articole SET data_adaugare = '2024-01-20' WHERE id = 4;
+UPDATE articole SET data_adaugare = '2024-01-25' WHERE id = 5;
+
+UPDATE articole SET data_adaugare = '2024-02-01' WHERE id = 6;
+UPDATE articole SET data_adaugare = '2024-02-05' WHERE id = 7;
+UPDATE articole SET data_adaugare = '2024-02-10' WHERE id = 8;
+UPDATE articole SET data_adaugare = '2024-02-15' WHERE id = 9;
+UPDATE articole SET data_adaugare = '2024-02-20' WHERE id = 10;
+
+UPDATE articole SET data_adaugare = '2024-03-01' WHERE id = 11;
+UPDATE articole SET data_adaugare = '2024-03-05' WHERE id = 12;
+UPDATE articole SET data_adaugare = '2024-03-10' WHERE id = 13;
+UPDATE articole SET data_adaugare = '2024-03-15' WHERE id = 14;
+UPDATE articole SET data_adaugare = '2024-03-20' WHERE id = 15;
+
+UPDATE articole SET data_adaugare = '2024-04-01' WHERE id = 16;
+UPDATE articole SET data_adaugare = '2024-04-05' WHERE id = 17;
+UPDATE articole SET data_adaugare = '2024-04-10' WHERE id = 18;
+UPDATE articole SET data_adaugare = '2024-04-15' WHERE id = 19;
+UPDATE articole SET data_adaugare = '2024-04-20' WHERE id = 20;
+
+UPDATE articole SET data_adaugare = '2024-04-25' WHERE id = 21;

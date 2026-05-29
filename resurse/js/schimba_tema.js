@@ -1,28 +1,69 @@
-window.addEventListener("DOMContentLoaded", function(){
-    let sw = document.getElementById("schimba_tema");
-    let icon = document.getElementById("icon-tema");
+window.addEventListener("DOMContentLoaded", function() {
 
-    // restaurare tema
-    if (localStorage.getItem("tema")) {
-        document.body.classList.add("dark");
-        sw.checked = true;
-        icon.classList.replace("fa-moon", "fa-sun");
+    let radiosTema = document.querySelectorAll("input[name='gr_tema']");
+    let switchDark = document.getElementById("schimba_tema");
+
+// -------------------------
+// 1. RESTAURARE TEMA (radio + switch)
+// -------------------------
+let temaSalvata = localStorage.getItem("tema-multipla");
+
+if (!temaSalvata || temaSalvata === "light") {
+
+    switchDark.checked = false;
+    
+    let radio = document.getElementById("tema-light");
+    if (radio) radio.checked = true;
+
+} else {
+
+    if (temaSalvata === "dark") {
+        switchDark.checked = true;
     } else {
-        document.body.classList.remove("dark");
-        sw.checked = false;
-        icon.classList.replace("fa-sun", "fa-moon");
+        switchDark.checked = false;
     }
 
-    // schimbare tema
-    sw.onchange = function(){
-        if (sw.checked) {
+    let radio = document.getElementById("tema-" + temaSalvata);
+    if (radio) radio.checked = true;
+}
+
+
+    // -------------------------
+    // 2. RADIO BUTTONS
+    // -------------------------
+    radiosTema.forEach(r => {
+        r.addEventListener("change", function() {
+
+            document.body.classList.remove("dark", "tema1", "tema2", "tema3");
+
+            if (this.value === "dark") {
+                document.body.classList.add("dark");
+                switchDark.checked = true;
+            } else if (this.value !== "light") {
+                document.body.classList.add(this.value);
+                switchDark.checked = false;
+            } else {
+                switchDark.checked = false;
+            }
+
+            localStorage.setItem("tema-multipla", this.value);
+        });
+    });
+
+    // -------------------------
+    // 3. SWITCH DARK
+    // -------------------------
+    switchDark.addEventListener("change", function() {
+        document.body.classList.remove("dark", "tema1", "tema2", "tema3");
+
+        if (this.checked) {
             document.body.classList.add("dark");
-            localStorage.setItem("tema", "dark");
-            icon.classList.replace("fa-moon", "fa-sun");
+            document.getElementById("tema-dark").checked = true;
+            localStorage.setItem("tema-multipla", "dark");
         } else {
-            document.body.classList.remove("dark");
-            localStorage.removeItem("tema");
-            icon.classList.replace("fa-sun", "fa-moon");
+            document.getElementById("tema-light").checked = true;
+            localStorage.setItem("tema-multipla", "light");
         }
-    }
+    });
+
 });

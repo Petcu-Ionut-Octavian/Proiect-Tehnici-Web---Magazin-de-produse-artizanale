@@ -6,13 +6,13 @@
     --color-5: #3E2C1C;
 }
 
-// .dark {
-//   --color-1: #1E1A16;
-//   --color-2: #2A241F;
-//   --color-3: #3A3028;
-//   --color-4: #4A3E33;
-//   --color-5: #E8D7C3;
-// }
+.light {
+    --color-1: #F5E6D3;  /* bej deschis, cald */
+    --color-2: #D2B48C;  /* bej mediu, natural */
+    --color-3: #A67C52;  /* maro deschis, echilibrat */
+    --color-4: #6B4F3A;  /* maro închis, saturat */
+    --color-5: #3E2C1C;  /* maro foarte închis, aproape negru */
+}
 
 .dark {
   --color-1: #E4F4E7;  /* verde foarte deschis, pastel */
@@ -22,6 +22,29 @@
   --color-5: #1F3D26;  /* verde foarte închis, aproape negru */
 }
 
+.tema1 {
+  --color-1: #F3E8FF;
+  --color-2: #D9B8FF;
+  --color-3: #B07CFF;
+  --color-4: #7A3FD1;
+  --color-5: #3E1A66;
+}
+
+.tema2 {
+  --color-1: #E6F3FF;
+  --color-2: #BBD9FF;
+  --color-3: #7FB3FF;
+  --color-4: #3F7ACC;
+  --color-5: #1A3D66;
+}
+
+.tema3 {
+  --color-1: #FFE8E8;
+  --color-2: #FFB8B8;
+  --color-3: #FF7C7C;
+  --color-4: #CC3F3F;
+  --color-5: #661A1A;
+}
 
 body {
     background-color: var(--color-1);

@@ -27,8 +27,8 @@
 
         <!-- NUME -->
         <div class="col-md-4">
-            <label for="inp-nume" class="form-label">Nume</label>
-            <input type="text" id="inp-nume" class="form-control">
+            <label for="inp-nume" class="form-label">Nume (Ex: <%= articole[0].nume %>)</label>
+            <input type="text" id="inp-nume" class="form-control" value="">
         </div>
 
         <!-- PREȚ MINIM -->
@@ -36,13 +36,22 @@
             <label for="inp-pret" class="form-label">
                 Preț minim: <span id="infoRange">(0)</span>
             </label>
-            <input type="range" id="inp-pret" class="form-range" min="0" max="200" value="0">
+            <%
+                let preturi = articole.map(a => a.pret);
+                let minPret = Math.min(...preturi);
+                let maxPret = Math.max(...preturi);
+            %>
+
+            <input type="range" id="inp-pret" class="form-range" onchange="filtreaza()"
+                min="<%= minPret %>"
+                max="<%= maxPret %>"
+                value="<%= minPret %>">
         </div>
 
         <!-- CATEGORIE -->
         <div class="col-md-4">
             <label for="inp-categorie" class="form-label">Categorie</label>
-            <select id="inp-categorie" class="form-select">
+            <select id="inp-categorie" class="form-select" onchange="filtreaza()">
                 <option value="toate" selected>Toate</option>
                 <% for (let opt of optiuni) { %>
                     <option value="<%= opt.categorie %>"><%= opt.categorie %></option>
@@ -53,32 +62,26 @@
         <!-- MATERIALE -->
         <div class="col-md-6">
             <label for="inp-materiale" class="form-label">Materiale</label>
-            <select id="inp-materiale" class="form-select" multiple>
+            <%
+                let setMat = new Set();
+                for (let art of articole) {
+                    for (let m of art.materiale) setMat.add(m);
+                }
+                let materiale = [...setMat];
+            %>
+
+            <select id="inp-materiale" class="form-select" multiple onchange="filtreaza()">
                 <option value="toate" selected>Toate</option>
-                <option value="lemn">Lemn</option>
-                <option value="vopsea">Vopsea</option>
-                <option value="lac">Lac</option>
-                <option value="hartie">Hârtie</option>
-                <option value="textil">Textil</option>
-                <option value="lipici">Lipici</option>
-                <option value="metal">Metal</option>
-                <option value="plastic">Plastic</option>
-                <option value="pigment">Pigment</option>
-                <option value="snur">Șnur</option>
-                <option value="ceara">Ceară</option>
-                <option value="fitil">Fitil</option>
-                <option value="rama">Ramă</option>
-                <option value="umplutura">Umplutură</option>
-                <option value="flori">Flori</option>
-                <option value="rasina">Rășină</option>
-                <option value="tus">Tuș</option>
+                <% materiale.forEach(m => { %>
+                    <option value="<%= m %>"><%= m %></option>
+                <% }) %>
             </select>
         </div>
 
         <!-- DATĂ (DATALIST) -->
         <div class="col-md-6">
             <label for="inp-data-datalist" class="form-label">Caută după dată</label>
-            <input list="lista-date" id="inp-data-datalist" class="form-control">
+            <input list="lista-date" id="inp-data-datalist" class="form-control" onchange="filtreaza()">
 
             <%
                 let setDate = new Set();
@@ -98,38 +101,78 @@
 
         <!-- GREUTATE (TOGGLE BUTTONS) -->
         <div class="col-md-12">
-            <label class="form-label d-block">Greutate</label>
+
+            <%
+                let greutati = articole.map(a => a.greutate);
+                let minGreutate = Math.min(...greutati);
+                let maxGreutate = Math.max(...greutati);
+            %>
+
+            <label class="form-label d-block">Greutate (<%= minGreutate %>g – <%= maxGreutate %>g)</label>
 
             <div class="btn-group" role="group">
-                <input type="checkbox" class="btn-check chk-greutate" id="g-usor" value="usor" checked>
+                <input type="checkbox" class="btn-check chk-greutate" id="g-usor" value="usor" checked onchange="filtreaza()">
                 <label class="btn btn-outline-primary" for="g-usor">Ușor</label>
 
-                <input type="checkbox" class="btn-check chk-greutate" id="g-mediu" value="mediu" checked>
+                <input type="checkbox" class="btn-check chk-greutate" id="g-mediu" value="mediu" checked onchange="filtreaza()">
                 <label class="btn btn-outline-primary" for="g-mediu">Mediu</label>
 
-                <input type="checkbox" class="btn-check chk-greutate" id="g-greu" value="greu" checked>
+                <input type="checkbox" class="btn-check chk-greutate" id="g-greu" value="greu" checked onchange="filtreaza()">
                 <label class="btn btn-outline-primary" for="g-greu">Greu</label>
             </div>
         </div>
 
         <!-- TEXTAREA (FLOATING LABEL) -->
         <div class="col-md-12 form-floating">
-            <textarea class="form-control" id="inp-keywords" placeholder="ex: manual, pictat"></textarea>
-            <label for="inp-keywords">Cuvinte cheie în descriere</label>
+            <%
+                let setKW = new Set();
+
+                for (let art of articole) {
+                    if (art.descriere) {
+                        // spargem descrierea în cuvinte
+                        let cuvinte = art.descriere
+                            .toLowerCase()
+                            .replace(/[.,!?]/g, "")   // scoatem semnele de punctuație
+                            .split(/\s+/);            // împărțim după spații
+
+                        for (let c of cuvinte) {
+                            if (c.length > 3) setKW.add(c); // ignorăm cuvintele scurte
+                        }
+                    }
+                }
+
+                let kwDistincte = [...setKW].slice(0, 6).join(", ");
+            %>
+
+            <div class="col-md-12 form-floating">
+                <textarea id="inp-keywords" class="form-control"
+                        placeholder=" "></textarea>
+            <label for="inp-keywords">Cuvinte cheie în descriere, exemplu: <%= kwDistincte %></label>
         </div>
 
         <!-- ECOLOGIC (TOGGLE RADIO BUTTONS) -->
         <div class="col-md-12">
-            <label class="form-label d-block">Ecologic</label>
+
+            <%
+                let nrEco = 0;
+                let nrNonEco = 0;
+
+                for (let art of articole) {
+                    if (art.este_ecologic === true) nrEco++;
+                    else if (art.este_ecologic === false) nrNonEco++;
+                }
+            %>
+
+            <label class="form-label d-block">Ecologic (<%= nrEco %> ecologice, <%= nrNonEco %> non‑ecologice)</label>
 
             <div class="btn-group" role="group">
-                <input type="radio" class="btn-check" name="gr_ecologic" id="eco-da" value="true">
+                <input type="radio" class="btn-check" name="gr_ecologic" id="eco-da" value="true" onchange="filtreaza()">
                 <label class="btn btn-outline-success" for="eco-da">Ecologic</label>
 
-                <input type="radio" class="btn-check" name="gr_ecologic" id="eco-nu" value="false">
+                <input type="radio" class="btn-check" name="gr_ecologic" id="eco-nu" value="false" onchange="filtreaza()">
                 <label class="btn btn-outline-danger" for="eco-nu">Non-ecologic</label>
 
-                <input type="radio" class="btn-check" name="gr_ecologic" id="eco-toate" value="toate" checked>
+                <input type="radio" class="btn-check" name="gr_ecologic" id="eco-toate" value="toate" checked onchange="filtreaza()">
                 <label class="btn btn-outline-secondary" for="eco-toate">Toate</label>
             </div>
         </div>
@@ -179,7 +222,7 @@
 
 
         <section id="produse">
-            <h2>Produse artizanale</h2>
+            <h2>Produse artizanale <span id="nr-produse"></span></h2>
 
             <div class="grid-produse">
                 <% let idx = 0; %>
@@ -265,6 +308,12 @@
                     </article>
                 <% } %>
             </div>
+            <p id="mesaj-filtrare" style="display:none; font-weight:bold; font-size:1.2rem;">
+                Nu există produse conform filtrării curente.
+            </p>
+
+            <div id="paginare"></div>
+
         </section>
 
   

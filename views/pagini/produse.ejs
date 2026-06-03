@@ -26,8 +26,8 @@
     <div class="row g-3">
 
         <!-- NUME -->
-        <div class="col-md-4">
-            <label for="inp-nume" class="form-label">Nume (Ex: <%= articole[0].nume %>)</label>
+        <div class="col-md-4"> 
+            <label for="inp-nume" class="form-label">Nume (Ex: <%= articole[0]?.nume %>)</label>
             <input type="text" id="inp-nume" class="form-control" value="">
         </div>
 
@@ -180,27 +180,27 @@
         <!-- BUTOANE -->
         <div class="col-md-12 d-flex flex-wrap gap-2 mt-3">
 
-            <button id="filtrare" class="btn btn-primary btn-lg">
+            <button id="filtrare" class="btn btn-primary btn-lg" title="Apasă pentru a aplica filtrele">
                 <i class="bi bi-funnel"></i>
                 <span class="d-none d-sm-inline">Filtrează</span>
             </button>
 
-            <button id="resetare" class="btn btn-secondary btn-lg">
+            <button id="resetare" class="btn btn-secondary btn-lg" title="Apasă pentru a reseta toate filtrele">
                 <i class="bi bi-arrow-counterclockwise"></i>
                 <span class="d-none d-sm-inline">Resetează</span>
             </button>
 
-            <button id="sortCresc" class="btn btn-info btn-lg">
+            <button id="sortCresc" class="btn btn-info btn-lg" title="Apasă pentru a sorta crescător">
                 <i class="bi bi-sort-up"></i>
                 <span class="d-none d-sm-inline">Sortare crescătoare</span>
             </button>
 
-            <button id="sortDesc" class="btn btn-info btn-lg">
+            <button id="sortDesc" class="btn btn-info btn-lg" title="Apasă pentru a sorta descrescător">
                 <i class="bi bi-sort-down"></i>
                 <span class="d-none d-sm-inline">Sortare descrescătoare</span>
             </button>
 
-            <button id="calculeaza" class="btn btn-warning btn-lg">
+            <button id="calculeaza" class="btn btn-warning btn-lg" title="Apasă pentru a calcula suma prețurilor">
                 <i class="bi bi-calculator"></i>
                 <span class="d-none d-sm-inline">Calculează suma</span>
             </button>
@@ -294,7 +294,26 @@
 
                         </div>
 
-                        <p class="descriere"><%= art.descriere %></p>
+                        <div class="accordion descriere-accordion" id="acc-<%= art.id %>">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-<%= art.id %>">
+                                    <button class="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapse-<%= art.id %>">
+                                        Descriere produs
+                                    </button>
+                                </h2>
+
+                                <div id="collapse-<%= art.id %>"
+                                    class="accordion-collapse collapse"
+                                    data-bs-parent="#acc-<%= art.id %>">
+                                    <div class="accordion-body">
+                                        <p class="descriere"><%= art.descriere %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <p class="categorie-text">Categorie: <%= art.categorie %></p>
 

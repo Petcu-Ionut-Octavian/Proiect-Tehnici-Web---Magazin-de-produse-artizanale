@@ -21,12 +21,12 @@ class AccesBD{
     }
 
     initLocal(){
-        this.client= new Client({database:"cti_2026",
-            user:"irina", 
-            password:"irina", 
+        this.client= new Client({database:"artizania_db",
+            user:"octavian", 
+            password:"octavian", 
             host:"localhost", 
-            port:5433}
-        );//atentie e posibil sa aveti nevoie sa schimbati portul in 5432
+            port:5432}
+        );
         
         this.client.connect();
 

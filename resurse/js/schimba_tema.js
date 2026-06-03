@@ -2,6 +2,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     let radiosTema = document.querySelectorAll("input[name='gr_tema']");
     let switchDark = document.getElementById("schimba_tema");
+    let icon = document.getElementById("icon-tema");
 
 // -------------------------
 // 1. RESTAURARE TEMA (radio + switch)
@@ -15,12 +16,16 @@ if (!temaSalvata || temaSalvata === "light") {
     let radio = document.getElementById("tema-light");
     if (radio) radio.checked = true;
 
+    icon.classList.replace("fa-moon", "fa-sun");
+
 } else {
 
     if (temaSalvata === "dark") {
         switchDark.checked = true;
+        icon.classList.replace("fa-sun", "fa-moon");
     } else {
         switchDark.checked = false;
+        icon.classList.replace("fa-moon", "fa-sun");
     }
 
     let radio = document.getElementById("tema-" + temaSalvata);
@@ -39,11 +44,17 @@ if (!temaSalvata || temaSalvata === "light") {
             if (this.value === "dark") {
                 document.body.classList.add("dark");
                 switchDark.checked = true;
+                icon.classList.remove("fa-sun");
+                icon.classList.add("fa-moon");
             } else if (this.value !== "light") {
                 document.body.classList.add(this.value);
                 switchDark.checked = false;
+                icon.classList.remove("fa-moon");
+                icon.classList.add("fa-sun");
             } else {
                 switchDark.checked = false;
+                icon.classList.remove("fa-moon");
+                icon.classList.add("fa-sun");
             }
 
             localStorage.setItem("tema-multipla", this.value);
@@ -60,9 +71,13 @@ if (!temaSalvata || temaSalvata === "light") {
             document.body.classList.add("dark");
             document.getElementById("tema-dark").checked = true;
             localStorage.setItem("tema-multipla", "dark");
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
         } else {
             document.getElementById("tema-light").checked = true;
             localStorage.setItem("tema-multipla", "light");
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
         }
     });
 

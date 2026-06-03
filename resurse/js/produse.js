@@ -406,3 +406,39 @@ window.onload = function() {
 
 
 };
+
+
+
+
+
+window.addEventListener("DOMContentLoaded", function () {
+    // dacă userul NU a acceptat cookie-urile → nu facem nimic
+    if (!getCookie("acceptat_banner")) return;
+
+    let accs = document.querySelectorAll(".accordion-collapse");
+
+    accs.forEach(acc => {
+        let id = acc.id;
+
+        // Restaurăm starea
+        let state = getCookie("acc-" + id);
+
+        if (state === "open") {
+            acc.classList.add("show");
+            acc.previousElementSibling
+               .querySelector("button")
+               .classList.remove("collapsed");
+        }
+
+        // Salvăm când se deschide
+        acc.addEventListener("shown.bs.collapse", function () {
+            setCookie("acc-" + id, "open", 24 * 60 * 60 * 1000);
+        });
+
+        // Salvăm când se închide
+        acc.addEventListener("hidden.bs.collapse", function () {
+            setCookie("acc-" + id, "closed", 24 * 60 * 60 * 1000);
+        });
+    });
+});
+

@@ -315,3 +315,103 @@ main a:active {
   background: var(--color-3);
   color: var(--color-5);
 }
+
+#animatie-banner.banner-cookies {
+  position: fixed;
+  bottom: 0;
+  left: -100%; /* invizibil inițial */
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+  background-color: var(--color-1); /* c1 */
+  border-top: 4px solid var(--color-3); /* c3 */
+  color: var(--color-5);
+  font-size: 1.1rem;
+  animation: animatie-banner 5s linear forwards;
+}
+
+/* Butonul */
+#animatie-banner button {
+  background: var(--color-4);
+  color: var(--color-1);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+/* ANIMAȚIA cerută */
+@keyframes animatie-banner {
+  0% {
+    left: -100%;
+    background-color: var(--color-1);
+    border-color: var(--color-3);
+  }
+  50% {
+    left: 0%;
+    background-color: var(--color-3);
+    border-color: var(--color-2);
+  }
+  100% {
+    left: 0%;
+    background-color: var(--color-2);
+    border-color: var(--color-3);
+  }
+}
+/* STATIC pe ecrane mici și medii */
+@media (max-width: 992px) {
+  #animatie-banner.banner-cookies {
+    animation: none;
+    left: 0;
+    background-color: var(--color-2);
+    border-color: var(--color-3);
+  }
+}
+#ultima-pagina-container {
+  font-size: 0.9rem;
+  color: #7c0000;
+  margin-left: auto;
+  padding-right: 1rem;
+}
+#ultima-pagina-container a {
+  color: rgb(0, 125, 220);
+  text-decoration: underline;
+}
+
+#cookie-tools {
+  bottom: 1rem;
+  right: 1rem;
+  background: var(--color-1);
+  border: 2px solid var(--color-3);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 99999;
+  font-family: inherit;
+}
+
+#cookie-tools button {
+  background: var(--color-4);
+  color: var(--color-1);
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 0.9rem;
+}
+
+#cookie-tools button:hover {
+  background: var(--color-5);
+  transform: translateY(-2px);
+}
+
+#cookie-tools button:active {
+  transform: translateY(0);
+  background: var(--color-3);
+}

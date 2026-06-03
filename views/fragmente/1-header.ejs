@@ -91,7 +91,7 @@
 <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" id="schimba_tema">
     <label class="form-check-label" for="schimba_tema">
-        <i id="icon-tema" class="fa-solid fa-moon"></i>
+        <i id="icon-tema" class="fa-solid fa-sun"></i>
     </label>
 </div>
 
@@ -134,3 +134,39 @@
 </div>
 
 <script src="/resurse/js/tema.js"></script>
+
+
+
+<div id="animatie-banner" class="banner-cookies">
+    <span class="text-banner">Acesta este un proiect școlar. Acceptați cookie-uri?</span>
+    <button id="ok_cookies">OK</button>
+</div>
+
+
+
+
+
+
+<div id="ultima-pagina-container">
+    Ultima pagină vizitată: 
+    <a id="link-ultima-pagina" href="#">—</a>
+</div>
+<script>
+    let ultima = getCookie("ultima_pagina");
+    if (ultima) {
+        let link = document.getElementById("link-ultima-pagina");
+        link.href = ultima;
+        link.textContent = ultima;
+    }
+</script>
+<script>
+    setCookie("ultima_pagina", window.location.pathname, 24*60*60*1000);
+</script>
+
+
+<div id="cookie-tools">
+    <button onclick="deleteCookie('acceptat_banner')">Șterge cookie banner</button>
+    <button onclick="deleteAllCookies()">Șterge toate cookie-urile</button>
+</div>
+
+

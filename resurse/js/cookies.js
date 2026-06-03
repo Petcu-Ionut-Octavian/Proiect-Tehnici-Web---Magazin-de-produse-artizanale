@@ -8,6 +8,11 @@ function setCookie(nume, val, timpExpirare){//timpExpirare in milisecunde
 }
 
 function getCookie(nume){
+
+    if (!document.cookie.includes("acceptat_banner=true")) {
+        return null;
+    }
+
     vectorParametri=document.cookie.split(";") // ["a=10","b=ceva"]
     for(let param of vectorParametri){
         if (param.trim().startsWith(nume+"="))
@@ -21,14 +26,37 @@ function deleteCookie(nume){
     document.cookie=`${nume}=0; expires=${(new Date()).toUTCString()}`;
 }
 
+function deleteAllCookies() {
+    let cookies = document.cookie.split(";");
+
+    for (let c of cookies) {
+        let eqPos = c.indexOf("=");
+        let name = eqPos > -1 ? c.substr(0, eqPos).trim() : c.trim();
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+
+
 
 window.addEventListener("load", function(){
-    if (getCookie("acceptat_banner")){
-        document.getElementById("banner").style.display="none";
+    let banner = document.getElementById("animatie-banner");
+    let btn = document.getElementById("ok_cookies");
+
+    if (!banner || !btn) return;
+
+    if (getCookie("acceptat_banner")) {
+        banner.style.display = "none";
+    } else {
+        banner.style.display = "flex"; // pornește animația
     }
 
-    this.document.getElementById("ok_cookies").onclick=function(){
-        setCookie("acceptat_banner",true,60000);
-        document.getElementById("banner").style.display="none"
-    }
-})
+    btn.onclick = function () {
+        setCookie("acceptat_banner", true, 24 * 60 * 60 * 1000); // 1 zi
+        banner.style.display = "none";
+    };
+});
+
+
+
+
+

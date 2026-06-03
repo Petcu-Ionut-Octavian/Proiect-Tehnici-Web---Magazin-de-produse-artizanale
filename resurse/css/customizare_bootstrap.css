@@ -10569,6 +10569,16 @@ textarea.form-control-lg {
   background-color: rgb(255, 157.9347826087, 20);
 }
 
+.btn-outline-success {
+  color: #27ae60;
+  border-color: #27ae60;
+}
+
+.btn-outline-danger {
+  color: #c0392b;
+  border-color: #c0392b;
+}
+
 .btn-info {
   background-color: #23a6d5;
   color: #fff;

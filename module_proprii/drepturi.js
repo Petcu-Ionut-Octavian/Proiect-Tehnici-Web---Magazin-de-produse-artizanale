@@ -20,7 +20,7 @@ const Drepturi = {
     cumparareProduse: Symbol("cumparareProduse"),
     vizualizareGrafice: Symbol("vizualizareGrafice"),
 
-    // Drepturi suplimentare necesare
+    // Drepturi suplimentare
     vizualizareProduse: Symbol("vizualizareProduse"),
     modificareProduse: Symbol("modificareProduse"),
     stergereProduse: Symbol("stergereProduse")

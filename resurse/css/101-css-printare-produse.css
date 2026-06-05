@@ -1,0 +1,65 @@
+@charset "UTF-8";
+/* ============================
+   PRINT — PAGINA PRODUSULUI
+   ============================ */
+/* Afișăm DOAR secțiunea cu produse și copiii ei direcți */
+#produse,
+#produse > * {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Fiecare produs (copil direct al secțiunii) pe o pagină separată */
+#produse article {
+  width: 750px !important;
+  padding: 15px !important;
+  border: 1px solid #000 !important;
+  page-break-after: always !important;
+  page-break-inside: avoid !important;
+}
+
+/* Titlul produsului */
+#produse article .nume {
+  font-size: 20px !important;
+  font-weight: bold !important;
+  margin-bottom: 10px !important;
+}
+
+/* Secțiunile de informații */
+#produse article p {
+  font-size: 15px !important;
+  margin: 0 !important;
+  line-height: 1.15 !important;
+}
+
+/* Etichetele (Preț:, Greutate:, etc.) */
+#produse article p span {
+  font-weight: bold !important;
+}
+
+/* Ascundem elementele care nu trebuie printate */
+#container-filtre,
+header, #mesaj-filtrare, #paginare,
+footer,
+#produse h2 {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Imaginea produsului – FORȚĂM toate nivelele să fie vizibile */
+#produse article .fig-produs,
+#produse article .fig-produs a,
+#produse article .fig-produs img {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Stil pentru imagine */
+#produse article .fig-produs img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 100px !important;
+  object-fit: contain !important;
+  margin-top: 0 !important;
+  border: 1px solid #000 !important;
+}

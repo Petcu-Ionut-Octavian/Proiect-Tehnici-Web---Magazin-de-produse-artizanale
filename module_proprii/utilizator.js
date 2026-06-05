@@ -5,7 +5,7 @@ const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 
 /**
- * Reprezintă un utilizator din baza de date.
+ * Clasa care reprezintă un utilizator din baza de date.
  */
 class Utilizator {
     static tipConexiune = "local";
@@ -18,21 +18,8 @@ class Utilizator {
     #eroare;
 
     /**
-     * Creează un obiect Utilizator pe baza unui obiect primit din DB.
-     *
+     * Creează un obiect Utilizator.
      * @param {Object} param0
-     * @param {number} param0.id
-     * @param {string} param0.username
-     * @param {string} param0.nume
-     * @param {string} param0.prenume
-     * @param {string} param0.email
-     * @param {string} param0.parola
-     * @param {string|Object} param0.rol
-     * @param {string} param0.culoare_chat
-     * @param {string} param0.poza
-     * @param {string} param0.cod
-     * @param {boolean} param0.confirmat_mail
-     * @param {string} param0.data_adaugare
      */
     constructor({
         id,
@@ -61,13 +48,15 @@ class Utilizator {
         this.confirmat_mail = confirmat_mail;
         this.data_adaugare = data_adaugare;
 
-        // conversie rol din string în obiect Rol
         if (rol)
             this.rol = rol.cod ? RolFactory.creeazaRol(rol.cod) : RolFactory.creeazaRol(rol);
 
         this.#eroare = "";
     }
 
+    /**
+     * Verifică numele.
+     */
     checkName(nume) {
         return nume !== "" && /^[A-Z][a-z]+$/.test(nume);
     }
@@ -77,6 +66,9 @@ class Utilizator {
         else throw new Error("Nume gresit");
     }
 
+    /**
+     * Verifică username.
+     */
     checkUsername(username) {
         return username !== "" && /^[A-Za-z0-9#_./]+$/.test(username);
     }
@@ -86,6 +78,9 @@ class Utilizator {
         else throw new Error("Username gresit");
     }
 
+    /**
+     * Criptează parola.
+     */
     static criptareParola(parola) {
         return crypto.scryptSync(parola, Utilizator.parolaCriptare, Utilizator.lungimeCod).toString("hex");
     }
@@ -93,7 +88,36 @@ class Utilizator {
     /**
      * Salvează utilizatorul în baza de date.
      */
-    salvareUtilizator() {
+    // salvareUtilizator() {
+    //     let parolaCriptata = Utilizator.criptareParola(this.parola);
+    //     let utiliz = this;
+    //     let token = parole.genereazaToken(100);
+
+    //     AccesBD.getInstanta(Utilizator.tipConexiune).insert({
+    //         tabel: Utilizator.tabel,
+    //         campuri: {
+    //             username: this.username,
+    //             nume: this.nume,
+    //             prenume: this.prenume,
+    //             parola: parolaCriptata,
+    //             email: this.email,
+    //             culoare_chat: this.culoare_chat,
+    //             cod: token,
+    //             poza: this.poza
+    //         }
+    //     }, function (err, rez) {
+    //         if (err) console.log(err);
+    //         else utiliz.trimiteMail(
+    //             "Te-ai inregistrat cu succes",
+    //             "Username-ul tau este " + utiliz.username,
+    //             `<h1>Salut!</h1><p style='color:blue'>Username-ul tau este ${utiliz.username}.</p>
+    //              <p><a href='http://${Utilizator.numeDomeniu}/cod/${utiliz.username}/${token}'>
+    //              Click aici pentru confirmare</a></p>`
+    //         );
+    //     });
+    // }
+
+    salvareUtilizator(callback) {
         let parolaCriptata = Utilizator.criptareParola(this.parola);
         let utiliz = this;
         let token = parole.genereazaToken(100);
@@ -109,19 +133,34 @@ class Utilizator {
                 culoare_chat: this.culoare_chat,
                 cod: token,
                 poza: this.poza
-            }
+            },
+            returnFields: ["id"]   // ID-UL NOU
         }, function (err, rez) {
-            if (err) console.log(err);
-            else utiliz.trimiteMail(
-                "Te-ai inregistrat cu succes",
-                "Username-ul tau este " + utiliz.username,
-                `<h1>Salut!</h1><p style='color:blue'>Username-ul tau este ${utiliz.username}.</p>
-                 <p><a href='http://${Utilizator.numeDomeniu}/cod/${utiliz.username}/${token}'>
-                 Click aici pentru confirmare</a></p>`
-            );
+            if (err) {
+                console.log(err);
+                if (callback) callback(err);
+            } else {
+                // setez id-ul în obiectul curent
+                utiliz.id = rez.rows[0].id;
+
+                // trimit mailul
+                utiliz.trimiteMail(
+                    "Te-ai inregistrat cu succes",
+                    "Username-ul tau este " + utiliz.username,
+                    `<h1>Salut!</h1><p style='color:blue'>Username-ul tau este ${utiliz.username}.</p>
+                    <p><a href='http://${Utilizator.numeDomeniu}/cod/${utiliz.username}/${token}'>
+                    Click aici pentru confirmare</a></p>`
+                );
+
+                if (callback) callback(null, utiliz);
+            }
         });
     }
 
+
+    /**
+     * Trimite email.
+     */
     async trimiteMail(subiect, mesajText, mesajHtml, atasamente = []) {
         var transp = nodemailer.createTransport({
             service: "gmail",
@@ -145,6 +184,9 @@ class Utilizator {
         console.log("trimis mail");
     }
 
+    /**
+     * Returnează utilizatorul după username (async).
+     */
     static async getUtilizDupaUsernameAsync(username) {
         if (!username) return null;
 
@@ -165,6 +207,9 @@ class Utilizator {
         }
     }
 
+    /**
+     * Returnează utilizatorul după username (callback).
+     */
     static getUtilizDupaUsername(username, obparam, proceseazaUtiliz) {
         if (!username) return null;
 
@@ -183,6 +228,73 @@ class Utilizator {
         });
     }
 
+    /**
+     * Modifică utilizatorul în baza de date.
+     */
+    modifica(obiectNou, callback) {
+        if (!this.id) throw new Error("Utilizatorul nu există în baza de date.");
+
+        AccesBD.getInstanta(Utilizator.tipConexiune).update({
+            tabel: Utilizator.tabel,
+            campuri: obiectNou,
+            conditiiAnd: [`id=${this.id}`]
+        }, callback);
+    }
+
+    /**
+     * Șterge utilizatorul.
+     */
+    sterge(callback) {
+        if (!this.id) throw new Error("Utilizatorul nu există în baza de date.");
+
+        AccesBD.getInstanta(Utilizator.tipConexiune).delete({
+            tabel: Utilizator.tabel,
+            conditiiAnd: [`id=${this.id}`]
+        }, callback);
+    }
+
+    /**
+     * Caută utilizatori după câmpuri (callback).
+     */
+    static cauta(obParam, callback) {
+        let conditii = [];
+
+        for (let prop in obParam)
+            if (obParam[prop] !== undefined)
+                conditii.push(`${prop}='${obParam[prop]}'`);
+
+        AccesBD.getInstanta(Utilizator.tipConexiune).select({
+            tabel: Utilizator.tabel,
+            campuri: ['*'],
+            conditiiAnd: conditii
+        }, function (err, rez) {
+            if (err) callback(err, []);
+            else callback(null, rez.rows.map(u => new Utilizator(u)));
+        });
+    }
+
+    /**
+     * Caută utilizatori după câmpuri (async).
+     */
+    static async cautaAsync(obParam) {
+        let conditii = [];
+
+        for (let prop in obParam)
+            if (obParam[prop] !== undefined)
+                conditii.push(`${prop}='${obParam[prop]}'`);
+
+        let rez = await AccesBD.getInstanta(Utilizator.tipConexiune).selectAsync({
+            tabel: Utilizator.tabel,
+            campuri: ['*'],
+            conditiiAnd: conditii
+        });
+
+        return rez.rows.map(u => new Utilizator(u));
+    }
+
+    /**
+     * Verifică dacă utilizatorul are un anumit drept.
+     */
     areDreptul(drept) {
         return this.rol.areDreptul(drept);
     }
